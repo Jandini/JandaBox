@@ -11,14 +11,17 @@ internal class Main
     }
 
 #if (async)
-    public void Run()
-#else
     public async Task Run()
-#endif    
     {
         _logger.LogInformation("Hello, World!");
         await Task.CompletedTask; 
     }
+#else
+    public void Run()
+    {
+        _logger.LogInformation("Hello, World!");
+    }
+#endif
 }
 #else
 using Microsoft.Extensions.Configuration;
@@ -38,12 +41,13 @@ internal class Main
     public async Task Run(string path)
 #else
     public void Run(string path)
-#endif    
+#endif
     {
         var dir = new DirectoryInfo(path);
         _logger.LogInformation(_config.Bind<Settings>().Message, dir.Name, dir.GetFiles().Length);
-
+#if (async)
         await Task.CompletedTask;
+#endif
     }
 }
 #endif
