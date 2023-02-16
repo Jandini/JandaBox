@@ -1,3 +1,4 @@
+using AutoMapper;
 using Serilog;
 using WebApiBox.Services;
 
@@ -36,9 +37,24 @@ builder.Services.AddSwaggerGen(
 
 var app = builder.Build();
 
+
+#if (DEBUG)
+
+// Assert mapper configuration 
+app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
+
+// Log all environment variables
+var variables = Environment.GetEnvironmentVariables();
+foreach (var key in variables.Keys.Cast<string>().Order())
+    logger.ForContext(typeof(Environment)).Debug("{key:l}={value:l}", key, variables[key]);
+
+#endif
+
+
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
+    logger.Warning("Adding swagger");
     app.UseSwagger();
     app.UseSwaggerUI();
 }
