@@ -12,6 +12,10 @@ var logger = new LoggerConfiguration()
     .CreateLogger()
     .ForContext<Program>();
 
+// Log service name and version
+var health = new HealthService().GetHealthInfo();
+logger.Information("Starting {name:l} {version:l}", health.ServiceName, health.ServiceVersion);
+
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
 
