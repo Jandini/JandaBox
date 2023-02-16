@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Janda",
+  "classifications": ["JandaBox/Console"],
+  "name": "JandaBox Console",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "ConsoleBox provides startup solution for console application with dependency injection, logging, and configuration.",
+  "groupIdentity": "jandabox",
+  "precedence": "4000",
+  "identity": "JandaBox.Console",
+  "shortName": "consolebox",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "ConsoleBox",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".vs/**",
+            ".git/**",
+            "/**/obj/**",
+            ".nuspec"
+          ]
+        },
+        {
+          "condition": "(basic)",
+          "exclude": [
+            "src/ConsoleBox/appsettings.json",
+            "src/ConsoleBox/Extensions.cs",
+            "src/ConsoleBox/Options.cs",
+            "src/ConsoleBox/Settings.cs",
+            "src/ConsoleBox/Properties/*"
+          ]
+        },
+        {
+          "condition": "(!git)",
+          "exclude": [
+            "GitVersion.yml"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "sourceName": {
+      "type": "parameter",
+      "replaces": "ConsoleBox",
+    },
+    "basic": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create basic console application."
+    },
+    "serilog": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Use Serilog logger."
+    },
+    "git": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Provide semantic versioning with GitVesion."
+    },
+    "async": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Run main with async await."
+    }
+  }
+}
