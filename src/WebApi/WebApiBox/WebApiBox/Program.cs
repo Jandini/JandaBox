@@ -2,6 +2,10 @@ using WebApiBox.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Read configuration from environment variables
+builder.Configuration.AddEnvironmentVariables();
+
+
 // Add services to the container
 builder.Services.AddHealth();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
