@@ -28,7 +28,15 @@ jobs:
     - name: ConsoleBox
       working-directory: src/Console/src
       run: |  
-        dotnet build -nologo -c:Release
+        dotnet build /p:DefineConstants=basic%3Bserilog%3Basync
+        dotnet build /p:DefineConstants=basic%3Bserilog
+        dotnet build /p:DefineConstants=basic
+        dotnet build /p:DefineConstants=basic%3Basync
+        dotnet build /p:DefineConstants=serilog
+        dotnet build /p:DefineConstants=serilog%3Basync
+        dotnet build /p:DefineConstants=async
+        dotnet build 
+
 
     - name: Version
       run: |  
