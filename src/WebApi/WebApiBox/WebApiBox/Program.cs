@@ -27,7 +27,11 @@ builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(
+    // Get rid of Dto postfix 
+    options => options.CustomSchemaIds((type) => type.Name.EndsWith("Dto")
+        ? type.Name[..^3]
+        : type.Name));
 
 
 var app = builder.Build();
