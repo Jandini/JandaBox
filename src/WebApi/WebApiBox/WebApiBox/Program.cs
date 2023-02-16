@@ -1,3 +1,4 @@
+using Serilog;
 using WebApiBox.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Read configuration from environment variables
 builder.Configuration.AddEnvironmentVariables();
 
+// Create serilog logger
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger()
+    .ForContext<Program>();
+
+// Use serilog for web hosting
+builder.Host.UseSerilog(logger);
 
 // Add services to the container
 builder.Services.AddHealth();
