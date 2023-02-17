@@ -1,3 +1,4 @@
+// Created with JandaBox http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
 using WebApiBox.Services;
@@ -38,6 +39,7 @@ builder.Services.AddSwaggerGen(
 var app = builder.Build();
 
 
+//-:cnd:noEmit
 #if (DEBUG)
 
 // Assert mapper configuration 
@@ -49,7 +51,7 @@ foreach (var key in variables.Keys.Cast<string>().Order())
     logger.ForContext(typeof(Environment)).Debug("{key:l}={value:l}", key, variables[key]);
 
 #endif
-
+//+:cnd:noEmit
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
