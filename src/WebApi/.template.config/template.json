@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
   "classifications": ["JandaBox/WebApi"],
-  "name": "JandaBox ASP.NET Core Web Api",
+  "name": "JandaBox ASP.NET Core Web API",
   "generatorVersions": "[1.0.0.0-*)",
   "description": "JandaBox WebApi provides solution template for web api with AutoMapper, Serilog and Health endpoint.",
   "groupIdentity": "webapibox",
@@ -20,12 +20,9 @@
       "modifiers": [
         {
           "exclude": [
-            ".vs/**",
-            ".git/**",
-            "/**/bin/**",
-            "/**/obj/**",
-            "/**/logs",
-            ".nuspec"
+            "**/bin/**",
+            "**/obj/**",
+            "**/logs/**"
           ]
         }
       ]
@@ -34,7 +31,7 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "WebApiBox",
+      "replaces": "WebApiBox"
     }
   }
 }
