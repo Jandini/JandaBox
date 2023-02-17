@@ -24,7 +24,27 @@ jobs:
     - name: ConsoleBox
       working-directory: src/Console/src
       run: |
-        dotnet build -nologo -c:Release
+        echo Basic, Serilog, Async
+        dotnet build -nologo -c:Release /p:DefineConstants=basic%3Bserilog%3Basync
+        echo Basic, Serilog
+        dotnet build -nologo -c:Release /p:DefineConstants=basic%3Bserilog
+        echo Basic
+        dotnet build -nologo -c:Release /p:DefineConstants=basic
+        echo Basic, Async
+        dotnet build -nologo -c:Release /p:DefineConstants=basic%3Basync
+        echo Serilog
+        dotnet build -nologo -c:Release /p:DefineConstants=serilog
+        echo Serilog, Async
+        dotnet build -nologo -c:Release /p:DefineConstants=serilog%3Basync
+        echo Async
+        dotnet build -nologo -c:Release /p:DefineConstants=async
+        echo Default
+        dotnet build -nologo -c:Release 
+
+    - name: WebApiBox
+      working-directory: src/WebApi/src
+      run: |
+        dotnet build -nologo -c:Release 
 
     - name: Version
       run: |  
