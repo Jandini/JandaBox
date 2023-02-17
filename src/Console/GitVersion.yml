@@ -1,3 +1,5 @@
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatchTag
 assembly-informational-format: '{SemVer}'
 continuous-delivery-fallback-tag: main
 
