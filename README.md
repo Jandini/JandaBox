@@ -3,12 +3,15 @@
 [![.NET](https://github.com/Jandini/JandaBox/actions/workflows/build.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/build.yml)
 [![NuGet](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml)
 
-.NET6/7 templates provides startup code with dependency injection, logging, configuration and more...
+Out of the box .NET6/7 templates
+
+- Console App template with dependency injection, logging and configuration.
+- ASP.NET Core Web API with Serilog, AutoMapper and simple health endpoint. 
 
 ```
 Template Name                  Short Name  Language  Tags
 -----------------------------  ----------  --------  ----------------
-JandaBox ASP.NET Core Web Api  webapibox   [C#]      JandaBox/WebApi
+JandaBox ASP.NET Core Web API  webapibox   [C#]      JandaBox/WebApi
 JandaBox Console App           consolebox  [C#]      JandaBox/Console
 ```
 
@@ -31,7 +34,7 @@ dotnet new -i JandaBox
 
 ## Quick Start
 
-Create default .NET6 console application with `consolebox` template.
+Create default .NET6 console application from `consolebox` template.
 
 ```sh
 dotnet new consolebox -n MyApp
@@ -42,6 +45,10 @@ The name parameter `-n` is optional.
 ```sh
 dotnet new consolebox
 ```
+
+
+
+
 
 
 
@@ -146,14 +153,12 @@ dotnet new consolebox -h
 
 
 
-## JandaBox ASP.NET Core Web Api
+## JandaBox ASP.NET Core Web API
+
+...
 
 
 
-TODO:
-
-* Exclude logs
-* ​
 
 
 
