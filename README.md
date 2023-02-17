@@ -5,10 +5,13 @@
 
 .NET6/7 templates provides startup code with dependency injection, logging, configuration and more...
 
-###### Templates
+```
+Template Name                  Short Name  Language  Tags
+-----------------------------  ----------  --------  ----------------
+JandaBox ASP.NET Core Web Api  webapibox   [C#]      JandaBox/WebApi
+JandaBox Console App           consolebox  [C#]      JandaBox/Console
+```
 
-* ConsoleBox
-* ActionBox
 
 
 ## Install
@@ -42,7 +45,9 @@ dotnet new consolebox
 
 
 
-### ConsoleBox
+
+
+## JandaBox Console App
 
 ConsoleBox .NET template provides startup solution for console application with dependency injection, logging, and configuration. Default logger is [Serilog](https://serilog.net). Use `--serilog false` parameter to switch to Microsoft console logger.
 
@@ -94,7 +99,7 @@ ConsoleBox .NET template provides startup solution for console application with 
   - Verbs and options parser
 - Asynchronous code
 
-## 
+
 
 
 ### Basic console application
@@ -141,7 +146,20 @@ dotnet new consolebox -h
 
 
 
-## ActionBox
+## JandaBox ASP.NET Core Web Api
+
+
+
+TODO:
+
+* Exclude logs
+* ​
+
+
+
+
+
+## JandaBox Actions 
 
 Provides GitHub actions templates. 
 
@@ -154,6 +172,9 @@ dotnet new actionbox --build
 - `--build`  
 - `--nuget`  
 - `--docker`
+
+
+
 
 
 
