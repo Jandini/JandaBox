@@ -3,10 +3,11 @@
 [![.NET](https://github.com/Jandini/JandaBox/actions/workflows/build.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/build.yml)
 [![NuGet](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml)
 
-Out of the box .NET6/7 templates
+Out of the box .NET6 and .NET7 templates
 
-- Console App template with dependency injection, logging and configuration.
-- ASP.NET Core Web API with Serilog, AutoMapper and simple health endpoint. 
+- Console App template with dependency injection, logging, configuration, [GitVersion](https://gitversion.net/docs/) and [CommandLineParser](https://github.com/commandlineparser/commandline).
+- ASP.NET Core Web API with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/). 
+- GitHub Actions Workflows provides docker, NuGet and simple build/test workflows.  
 
 ```
 Template Name                  Short Name  Language  Tags
@@ -17,7 +18,11 @@ JandaBox Console App           consolebox  [C#]      JandaBox/Console
 
 
 
-## Install
+## Quick Start
+
+Install template and create console applications or web services. 
+
+### Install
 
 To install JandaBox templates use `dotnet` command. It will automatically download NuGet package from https://www.nuget.org/packages/JandaBox
 
@@ -32,7 +37,7 @@ dotnet new -i JandaBox
 
 
 
-## Quick Start
+### Console App
 
 Create default .NET6 console application from `consolebox` template.
 
@@ -48,15 +53,19 @@ dotnet new consolebox
 
 
 
+### Web API
 
+Create .NET7 web API  from `webapibox` template.
 
-
+```sh
+dotnet new webapibox -n MyWebService
+```
 
 
 
 ## JandaBox Console App
 
-ConsoleBox .NET template provides startup solution for console application with dependency injection, logging, and configuration. Default logger is [Serilog](https://serilog.net). Use `--serilog false` parameter to switch to Microsoft console logger.
+ConsoleBox .NET template provides solution for console application with dependency injection, logging, and configuration. Default logger is [Serilog](https://serilog.net). Use `--serilog false` parameter to switch to Microsoft console logger.
 
 
 
@@ -68,7 +77,7 @@ ConsoleBox .NET template provides startup solution for console application with 
 
 * `--async` Create asynchronous code.  Default value is `false`.
 
-* `--git` Add versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
+* `--git` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
 
   ```sh
   dotnet new consolebox -n MyApp --git
@@ -81,18 +90,18 @@ ConsoleBox .NET template provides startup solution for console application with 
 
   ​
 
-### Features
+The template provides: 
 
 - Repository Layout
   - The `src` and `bin` folders 
   - Default `README.md` file 
   - Default `.gitignore` file
-  - Default `launchSettings.json` file​
+  - Default `launchSettings.json` file
 - Dependency Injection
   - Main service with logging
   - Dispose service provider 
 - Logging
-  - `Serilog`  or `Microsoft` log providers  
+  - `Serilog` or `Microsoft` log providers  
   - Serilog environment enrichers
   - Unhandled exceptions logging
 - Configuration
@@ -100,11 +109,12 @@ ConsoleBox .NET template provides startup solution for console application with 
   - Override embedded `appsettings.json` with a file
   - Configuration binding
 - Semantic Versioning
-  - GitVersion.MsBuild package
+  - `GitVersion.MsBuild` package
   - Configuration `GitVersion.yml` file
-- Command line parser
+- Command Line Parser
   - Verbs and options parser
 - Asynchronous code
+  - Run Main with `async` and `await`
 
 
 
@@ -155,11 +165,52 @@ dotnet new consolebox -h
 
 ## JandaBox ASP.NET Core Web API
 
-...
+Create web API service with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/) and simple Health endpoint.
+
+```sh
+dotnet new webapibox -n MyWebService
+```
 
 
 
+The template provides: 
 
+- Repository Layout
+
+  - The `src` and `bin` folders 
+  - Default `README.md` file 
+  - Default `.gitignore` file
+  - Default `launchSettings.json` file
+
+- Simple Health endpoint
+
+  - Name and version of the service
+
+- AutoMapper
+
+  - DTO profiles and mapping
+
+- Logging
+
+  - `Serilog` for web hosting
+  - Serilog environment enrichers (Computer Name)
+
+- Configuration
+
+  - `appsettings.json` file
+  - Environment variables
+
+- Startup
+
+  - Remove "Dto" postfix from DTOs class names for Swagger 
+
+  - Log all environment variables in `DEBUG` build
+
+  - Validate AutoMapper profiles in `DEBUG` build
+
+  - Log web service name and version
+
+    ​
 
 
 
@@ -185,7 +236,7 @@ dotnet new actionbox --build
 
 ## Useful Extensions
 
-
+A few useful extensions that not necessarily have to belong to the template. 
 
 #### Add file logger
 
@@ -210,6 +261,8 @@ internal static void AddFileLogger(this ILoggerFactory factory, FileInfo logFile
 
 ## Resources
 
-Box icon was downloaded from [Flaticon](https://www.flaticon.com/free-icon/open-box_869027?term=box&related_id=869027).
+* Box icon was downloaded from [Flaticon](https://www.flaticon.com/free-icon/open-box_869027?term=box&related_id=869027).
 
 
+* https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
+* https://github.com/dotnet/templating/wiki
