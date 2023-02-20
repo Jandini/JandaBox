@@ -2,6 +2,7 @@
 using AutoMapper;
 using Serilog;
 using WebApiBox.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,9 @@ var logger = new LoggerConfiguration()
     .ForContext<Program>();
 
 // Log service name and version
-var health = new HealthService().GetHealthInfo();
-logger.Information("Starting {name:l} {version:l}", health.ServiceName, health.ServiceVersion);
+var assembly = Assembly.GetExecutingAssembly();
+var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+logger.Information("Starting {name:l} {version:l}", assembly.GetName().Name, version);
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
