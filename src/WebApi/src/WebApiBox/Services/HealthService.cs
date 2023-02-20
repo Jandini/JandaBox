@@ -4,7 +4,7 @@ namespace WebApiBox.Services
 {
     public class HealthService : IHealthService
     {
-        public HealthInfo GetHealthInfo()
+        public async Task<HealthInfo> GetHealthInfoAsync()
         {
             var assembly = Assembly.GetExecutingAssembly();
             var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
@@ -15,7 +15,7 @@ namespace WebApiBox.Services
                 ServiceVersion = version
             };
 
-            return info;
+            return await Task.FromResult(info);
         }
     }
 }

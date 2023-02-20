@@ -23,12 +23,12 @@ namespace WebApiBox.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<HealthInfoDto> GetHealthInfo()
+        public async Task<ActionResult<HealthInfoDto>> GetHealthInfoAsync()
         {
             try
             {
                 _logger.LogDebug("Getting health info");
-                var healthInfo = _healthService.GetHealthInfo();
+                var healthInfo = await _healthService.GetHealthInfoAsync();
                 return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
             }
             catch (Exception ex)
