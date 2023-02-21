@@ -20,7 +20,7 @@ namespace WebApiBox.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetHealthInfo")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<HealthInfoDto>> GetHealthInfoAsync()
