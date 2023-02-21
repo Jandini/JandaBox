@@ -26,8 +26,11 @@ builder.Host.UseSerilog(logger);
 // Add services to the container
 builder.Services.AddHealth();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddControllers();
 
+// Add controllers
+builder.Services.AddControllers()
+    // Suppress ProblemDetails schema
+    .ConfigureApiBehaviorOptions(o => o.SuppressMapClientErrors = true);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -37,13 +40,10 @@ builder.Services.AddSwaggerGen(
         ? type.Name[..^3]
         : type.Name));
 
-
 var app = builder.Build();
-
 
 //-:cnd:noEmit
 #if (DEBUG)
-
 // Assert mapper configuration 
 app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
 
