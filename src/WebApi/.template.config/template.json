@@ -32,6 +32,12 @@
     "sourceName": {
       "type": "parameter",
       "replaces": "WebApiBox"
+    },
+    "openApi": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Add latest packages for OpenApi code generator."
     }
-  }
+  } 
 }
