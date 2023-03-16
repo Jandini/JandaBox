@@ -18,7 +18,8 @@ var logger = new LoggerConfiguration()
 // Log service name and version
 var assembly = Assembly.GetExecutingAssembly();
 var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-logger.Information("Starting {name:l} {version:l}", assembly.GetName().Name, version);
+var name = assembly.GetName().Name;
+logger.Information("Starting {name:l} {version:l}", name, version);
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
@@ -47,7 +48,7 @@ var app = builder.Build();
 // Assert mapper configuration 
 app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
 
-// Log all environment variables
+// Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
 foreach (var key in variables.Keys.Cast<string>().Order())
     logger.ForContext(typeof(Environment)).Debug("{key:l}={value:l}", key, variables[key]);
@@ -56,11 +57,11 @@ foreach (var key in variables.Keys.Cast<string>().Order())
 //+:cnd:noEmit
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsProduction())
 {
     logger.Warning("Adding swagger");
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options => options.DocumentTitle = name);
 }
 
 app.UseHttpsRedirection();
