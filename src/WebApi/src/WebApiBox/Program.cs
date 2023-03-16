@@ -33,6 +33,10 @@ builder.Services.AddControllers()
     // Suppress ProblemDetails schema
     .ConfigureApiBehaviorOptions(o => o.SuppressMapClientErrors = true);
 
+
+// Add http client
+builder.Services.AddHttpClient();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
