@@ -17,6 +17,9 @@
 		<PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+		<!--#if (windowsService)-->
+	    	<PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
+		<!--#endif-->
 		<!--#if (openApi)-->
 		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.3">
 			<PrivateAssets>all</PrivateAssets>

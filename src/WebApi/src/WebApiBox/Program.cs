@@ -45,6 +45,11 @@ builder.Services.AddSwaggerGen(
         ? type.Name[..^3]
         : type.Name));
 
+#if (windowsService)
+// Add run as windows service
+builder.Services.AddWindowsService();
+#endif
+
 var app = builder.Build();
 
 //-:cnd:noEmit
