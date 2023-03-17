@@ -28,7 +28,7 @@ namespace WebApiBox.Controllers
             try
             {
                 _logger.LogDebug("Getting health info");
-                var healthInfo = await _healthService.GetHealthInfoAsync();
+                var healthInfo = await _healthService.GetHealthInfoAsync(Request);
                 return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
             }
             catch (Exception ex)
