@@ -9,10 +9,10 @@
 		<SelfContained>true</SelfContained>		
 		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
 		<!--#endif-->
+	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
-	</PropertyGroup>
 	</PropertyGroup>
 	<ItemGroup>
 		<!--#if (git)-->
