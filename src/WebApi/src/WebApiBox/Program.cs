@@ -2,6 +2,7 @@
 using AutoMapper;
 using Serilog;
 using WebApiBox.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,10 @@ var logger = new LoggerConfiguration()
     .ForContext<Program>();
 
 // Log service name and version
-var health = new HealthService().GetHealthInfo();
-logger.Information("Starting {name:l} {version:l}", health.ServiceName, health.ServiceVersion);
+var assembly = Assembly.GetExecutingAssembly();
+var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+var name = assembly.GetName().Name;
+logger.Information("Starting {name:l} {version:l}", name, version);
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
@@ -24,8 +27,15 @@ builder.Host.UseSerilog(logger);
 // Add services to the container
 builder.Services.AddHealth();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddControllers();
 
+// Add controllers
+builder.Services.AddControllers()
+    // Suppress ProblemDetails schema
+    .ConfigureApiBehaviorOptions(o => o.SuppressMapClientErrors = true);
+
+
+// Add http client
+builder.Services.AddHttpClient();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,17 +45,19 @@ builder.Services.AddSwaggerGen(
         ? type.Name[..^3]
         : type.Name));
 
+#if (windowsService)
+// Add run as windows service
+builder.Services.AddWindowsService();
+#endif
 
 var app = builder.Build();
 
-
 //-:cnd:noEmit
 #if (DEBUG)
-
 // Assert mapper configuration 
 app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigurationIsValid();
 
-// Log all environment variables
+// Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
 foreach (var key in variables.Keys.Cast<string>().Order())
     logger.ForContext(typeof(Environment)).Debug("{key:l}={value:l}", key, variables[key]);
@@ -54,11 +66,11 @@ foreach (var key in variables.Keys.Cast<string>().Order())
 //+:cnd:noEmit
 
 // Configure the HTTP request pipeline
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsProduction())
 {
     logger.Warning("Adding swagger");
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options => options.DocumentTitle = name);
 }
 
 app.UseHttpsRedirection();

@@ -185,6 +185,7 @@ The template provides:
 - Simple Health endpoint
 
   - Name and version of the service
+  - Host name the service is running on
 
 - AutoMapper
 
@@ -200,6 +201,14 @@ The template provides:
   - `appsettings.json` file
   - Environment variables
 
+- Run as Windows Service
+
+  - Optional parameter `--windowsService` add windows service startup
+
+- Open API
+
+  - Optional parameter `--openApi`  add latest packages for OpenApi code generator.  
+
 - Startup
 
   - Remove "Dto" postfix from DTOs class names for Swagger 
@@ -209,6 +218,8 @@ The template provides:
   - Validate AutoMapper profiles in `DEBUG` build
 
   - Log web service name and version
+
+  - Swagger website title is set to assembly name
 
     ​
 
@@ -266,3 +277,12 @@ internal static void AddFileLogger(this ILoggerFactory factory, FileInfo logFile
 
 * https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
 * https://github.com/dotnet/templating/wiki
+
+
+
+## TODOs
+
+* Add JandaBox Actions
+* Switch between .NET6 and .NET7 for JandaBox Console App
+* Add JandaBox Service to provide interface, class and extensions classes for a given service 
+* Add github nuget ready JandaBox ClassLib solution
