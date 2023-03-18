@@ -4,6 +4,15 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<BaseOutputPath>..\..\bin</BaseOutputPath>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<!--#if (single)-->
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>		
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<!--#endif-->
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
 	<ItemGroup>
 		<!--#if (git)-->

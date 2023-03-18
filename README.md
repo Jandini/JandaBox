@@ -77,6 +77,8 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 * `--async` Create asynchronous code.  Default value is `false`.
 
+* `--single` PPublish as single file, self contained, win-x64 console application.
+
 * `--git` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
 
   ```sh

@@ -72,6 +72,12 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Run main with async await."
+    },
+    "single": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Publish as single file, self contained, win-x64 console application."
     }
   }
 }
