@@ -117,6 +117,8 @@ The template provides:
   - Verbs and options parser
 - Asynchronous code
   - Run Main with `async` and `await`
+- Release build without debug symbols
+  - Conditional project parameters for `Release` configuration to suppress debug symbols 
 
 
 
@@ -183,47 +185,36 @@ The template provides:
   - Default `README.md` file 
   - Default `.gitignore` file
   - Default `launchSettings.json` file
-
 - Simple Health endpoint
 
   - Name and version of the service
   - Host name the service is running on
-
 - AutoMapper
 
   - DTO profiles and mapping
-
 - Logging
 
   - `Serilog` for web hosting
   - Serilog environment enrichers (Computer Name)
-
 - Configuration
 
   - `appsettings.json` file
   - Environment variables
-
 - Run as Windows Service
 
   - Optional parameter `--windowsService` add windows service startup
-
 - Open API
 
   - Optional parameter `--openApi`  add latest packages for OpenApi code generator.  
-
 - Startup
 
   - Remove "Dto" postfix from DTOs class names for Swagger 
-
   - Log all environment variables in `DEBUG` build
-
   - Validate AutoMapper profiles in `DEBUG` build
-
   - Log web service name and version
-
   - Swagger website title is set to assembly name
-
-    ​
+- Release build without debug symbols
+  - Conditional project parameters for `Release` configuration to suppress debug symbols 
 
 
 
