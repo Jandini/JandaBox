@@ -68,7 +68,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
-      "description": "Add appsetting singleton with option to override application name and version throgh environment variables."
+      "description": "Add appsetting singleton with option to override application name and version through environment variables."
     }
   } 
 }
