@@ -1,6 +1,9 @@
 // Created with JandaBox http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
+#if (exceptionMiddleware)
+using WebApiBox;
+#endif
 using WebApiBox.Services;
 using System.Reflection;
 
@@ -32,7 +35,6 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers()
     // Suppress ProblemDetails schema
     .ConfigureApiBehaviorOptions(o => o.SuppressMapClientErrors = true);
-
 
 // Add http client
 builder.Services.AddHttpClient();
@@ -72,6 +74,11 @@ if (!app.Environment.IsProduction())
     app.UseSwagger();
     app.UseSwaggerUI(options => options.DocumentTitle = name);
 }
+
+#if (exceptionMiddleware)
+// Unhandled exception middleware
+app.UseMiddleware<ExceptionMiddleware>();
+#endif
 
 app.UseHttpsRedirection();
 

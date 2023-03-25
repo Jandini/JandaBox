@@ -24,6 +24,12 @@
             "**/obj/**",
             "**/logs/**"
           ]
+        },
+        {
+          "condition": "(!exceptionMiddleware)",
+          "exclude": [
+            "src/WebApiBox/ExceptionMiddleware.cs"
+          ]
         }
       ]
     }
@@ -44,6 +50,12 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add run as windows service."
+    },
+    "exceptionMiddleware": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Add global exception handler middleware."
     }
   } 
 }
