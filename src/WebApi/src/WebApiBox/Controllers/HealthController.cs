@@ -27,13 +27,13 @@ namespace WebApiBox.Controllers
         {
 #if (exceptionMiddleware)
             _logger.LogDebug("Getting health info");
-            var healthInfo = await _healthService.GetHealthInfoAsync(Request);
+            var healthInfo = await _healthService.GetHealthInfoAsync();
             return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
 #else
             try
             {
                 _logger.LogDebug("Getting health info");
-                var healthInfo = await _healthService.GetHealthInfoAsync(Request);
+                var healthInfo = await _healthService.GetHealthInfoAsync();
                 return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
             }
             catch (Exception ex)
