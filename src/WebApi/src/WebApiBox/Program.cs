@@ -19,7 +19,7 @@ var logger = new LoggerConfiguration()
 var assembly = Assembly.GetExecutingAssembly();
 var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
 var name = assembly.GetName().Name;
-logger.Information("Starting {name:l} {version:l}", name, version);
+logger.Information("Starting {startAppName} {startAppVersion}", name, version);
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
@@ -60,7 +60,7 @@ app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigura
 // Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
 foreach (var key in variables.Keys.Cast<string>().Order())
-    logger.ForContext(typeof(Environment)).Debug("{key:l}={value:l}", key, variables[key]);
+    logger.ForContext(typeof(Environment)).Debug("{environmentVariableName}={environmentVariableValue}", key, variables[key]);
 
 #endif
 //+:cnd:noEmit
@@ -68,7 +68,7 @@ foreach (var key in variables.Keys.Cast<string>().Order())
 // Configure the HTTP request pipeline
 if (!app.Environment.IsProduction())
 {
-    logger.Warning("Adding swagger");
+    logger.Warning("Adding swagger UI");
     app.UseSwagger();
     app.UseSwaggerUI(options => options.DocumentTitle = name);
 }
