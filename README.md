@@ -69,7 +69,29 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 
 
-###### Options
+###### Template Options
+
+```sh
+  -s, --sourceName <sourceName>  Type: string
+                                 Default: ConsoleBox
+  -b, --basic                    Create basic console application.
+                                 Type: bool
+                                 Default: false
+  -se, --serilog                 Use Serilog logger.
+                                 Type: bool
+                                 Default: true
+  -g, --git                      Provide semantic versioning with GitVesion.
+                                 Type: bool
+                                 Default: false
+  -as, --async                   Run main with async await.
+                                 Type: bool
+                                 Default: false
+  -si, --single                  Publish as single file, self contained, win-x64 console application.
+                                 Type: bool
+                                 Default: true
+```
+
+
 
 * `--basic`  Create basic console application with minimal amount startup code. Default value is `false`.
 
@@ -92,7 +114,7 @@ ConsoleBox .NET template provides solution for console application with dependen
 
   ​
 
-The template provides: 
+###### Template features 
 
 - Repository Layout
   - The `src` and `bin` folders 
@@ -177,7 +199,28 @@ dotnet new webapibox -n MyWebService
 
 
 
-The template provides: 
+###### Template options
+
+```sh
+  -s, --sourceName <sourceName>  Type: string
+                                 Default: WebApiBox
+  -op, --openApi                 Add NuGet packages for OpenApi code generator.
+                                 Type: bool
+                                 Default: false
+  -w, --windowsService           Add run as windows service.
+                                 Type: bool
+                                 Default: false
+  -e, --exceptionMiddleware      Add global exception handler middleware.
+                                 Type: bool
+                                 Default: true
+  -ap, --appSettings             Add appsetting singleton with option to override application name and version throgh environment variables.
+                                 Type: bool
+                                 Default: true
+```
+
+
+
+###### Template features
 
 - Repository Layout
 
@@ -188,21 +231,21 @@ The template provides:
 - Simple Health endpoint
 
   - Name and version of the service
-  - Host name the service is running on
 - AutoMapper
 
   - DTO profiles and mapping
 - Logging
 
   - `Serilog` for web hosting
-  - Serilog environment enrichers (Computer Name)
+  - Serilog environment enrichers like computer name
 - Configuration
 
   - `appsettings.json` file
   - Environment variables
+  - Optional parameter `--appSettings` provides `AppSetting` singleton with option to override application name and version through environment variables.
 - Run as Windows Service
 
-  - Optional parameter `--windowsService` add windows service startup
+  - Optional parameter `--windowsService` add windows service startup.
 - Open API
 
   - Optional parameter `--openApi`  add latest packages for OpenApi code generator.  
@@ -211,15 +254,19 @@ The template provides:
   - Remove "Dto" postfix from DTOs class names for Swagger 
   - Log all environment variables in `DEBUG` build
   - Validate AutoMapper profiles in `DEBUG` build
-  - Log web service name and version
-  - Swagger website title is set to assembly name
+  - Log web service name and version.
+  - Swagger website title is set to assembly name.
 - Release build without debug symbols
-  - Conditional project parameters for `Release` configuration to suppress debug symbols 
+  - Conditional project parameters for `Release` configuration to suppress debug symbols. 
+- Unhandled exception handler through middleware
+  - Optional parameter `--exceptionMiddleware` provides unhandled exception middleware. 
 
 
 
 
 ## JandaBox Actions 
+
+> Todo
 
 Provides GitHub actions templates. 
 
@@ -227,7 +274,7 @@ Provides GitHub actions templates.
 dotnet new actionbox --build
 ````
 
-###### Options
+###### Template Options
 
 - `--build`  
 - `--nuget`  
@@ -270,6 +317,7 @@ internal static void AddFileLogger(this ILoggerFactory factory, FileInfo logFile
 
 * https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
 * https://github.com/dotnet/templating/wiki
+
 
 
 

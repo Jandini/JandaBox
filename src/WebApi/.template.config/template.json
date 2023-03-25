@@ -24,7 +24,20 @@
             "**/obj/**",
             "**/logs/**"
           ]
+        },
+        {
+          "condition": "(!exceptionMiddleware)",
+          "exclude": [
+            "src/WebApiBox/ExceptionMiddleware.cs"
+          ]
+        },
+        {
+          "condition": "(!appSettings)",
+          "exclude": [
+            "src/WebApiBox/AppSettings.cs"
+          ]
         }
+         
       ]
     }
   ],
@@ -37,13 +50,25 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Add latest packages for OpenApi code generator."
+      "description": "Add NuGet packages for OpenApi code generator."
     },
     "windowsService": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add run as windows service."
+    },
+    "exceptionMiddleware": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Add global exception handler middleware."
+    },
+    "appSettings": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Add appsetting singleton with option to override application name and version through environment variables."
     }
   } 
 }

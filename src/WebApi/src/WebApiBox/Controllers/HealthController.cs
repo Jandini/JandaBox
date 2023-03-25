@@ -25,16 +25,22 @@ namespace WebApiBox.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<HealthInfoDto>> GetHealthInfoAsync()
         {
+#if (exceptionMiddleware)
+            _logger.LogDebug("Getting health info");
+            var healthInfo = await _healthService.GetHealthInfoAsync();
+            return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
+#else
             try
             {
                 _logger.LogDebug("Getting health info");
-                var healthInfo = await _healthService.GetHealthInfoAsync(Request);
+                var healthInfo = await _healthService.GetHealthInfoAsync();
                 return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
+#endif
         }
     }
 }

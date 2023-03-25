@@ -1,8 +1,12 @@
 // Created with JandaBox http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
+#if (exceptionMiddleware)
+using WebApiBox;
+#endif
 using WebApiBox.Services;
 using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +19,19 @@ var logger = new LoggerConfiguration()
     .CreateLogger()
     .ForContext<Program>();
 
-// Log service name and version
-var assembly = Assembly.GetExecutingAssembly();
-var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-var name = assembly.GetName().Name;
-logger.Information("Starting {name:l} {version:l}", name, version);
+#if (appSettings)
+// Get application settings
+var appSettings = builder.Configuration.Get<AppSettings>()!;
+builder.Services.AddSingleton(appSettings);
+
+// Log application name and version
+var appName = appSettings.ApplicationName ?? builder.Environment.ApplicationName;
+#else
+// Log application name and version
+var appName = builder.Environment.ApplicationName;
+#endif
+var appVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+logger.Information($"Starting {appName} {appVersion}");
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
@@ -33,17 +45,24 @@ builder.Services.AddControllers()
     // Suppress ProblemDetails schema
     .ConfigureApiBehaviorOptions(o => o.SuppressMapClientErrors = true);
 
-
 // Add http client
 builder.Services.AddHttpClient();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(
+builder.Services.AddSwaggerGen(options =>
+{
     // Get rid of Dto postfix 
-    options => options.CustomSchemaIds((type) => type.Name.EndsWith("Dto")
+    options.CustomSchemaIds((type) => type.Name.EndsWith("Dto")
         ? type.Name[..^3]
-        : type.Name));
+        : type.Name);
+
+    // Update application title on Swagger UI web page for v1
+    options.SwaggerDoc("v1", new OpenApiInfo()
+    {
+        Title = appName
+    });
+});
 
 #if (windowsService)
 // Add run as windows service
@@ -60,7 +79,7 @@ app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigura
 // Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
 foreach (var key in variables.Keys.Cast<string>().Order())
-    logger.ForContext(typeof(Environment)).Debug("{key:l}={value:l}", key, variables[key]);
+    logger.ForContext(typeof(Environment)).Debug($"{key}={variables[key]}");
 
 #endif
 //+:cnd:noEmit
@@ -68,10 +87,16 @@ foreach (var key in variables.Keys.Cast<string>().Order())
 // Configure the HTTP request pipeline
 if (!app.Environment.IsProduction())
 {
-    logger.Warning("Adding swagger");
+    logger.Warning("Adding swagger UI");
     app.UseSwagger();
-    app.UseSwaggerUI(options => options.DocumentTitle = name);
+    // Update html document title in swagger UI
+    app.UseSwaggerUI(options => options.DocumentTitle = appName);
 }
+
+#if (exceptionMiddleware)
+// Unhandled exception middleware
+app.UseMiddleware<ExceptionMiddleware>();
+#endif
 
 app.UseHttpsRedirection();
 
