@@ -6,6 +6,7 @@ using WebApiBox;
 #endif
 using WebApiBox.Services;
 using System.Reflection;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +19,19 @@ var logger = new LoggerConfiguration()
     .CreateLogger()
     .ForContext<Program>();
 
-// Log service name and version
-var assembly = Assembly.GetExecutingAssembly();
-var version = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
-var name = assembly.GetName().Name;
-logger.Information("Starting {startAppName} {startAppVersion}", name, version);
+#if (appSettings)
+// Get application settings
+var appSettings = builder.Configuration.Get<AppSettings>()!;
+builder.Services.AddSingleton(appSettings);
+
+// Log application name and version
+var appName = appSettings.ApplicationName ?? builder.Environment.ApplicationName;
+#else
+// Log application name and version
+var appName = builder.Environment.ApplicationName;
+#endif
+var appVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+logger.Information($"Starting {appName} {appVersion}");
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
@@ -41,11 +50,19 @@ builder.Services.AddHttpClient();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(
+builder.Services.AddSwaggerGen(options =>
+{
     // Get rid of Dto postfix 
-    options => options.CustomSchemaIds((type) => type.Name.EndsWith("Dto")
+    options.CustomSchemaIds((type) => type.Name.EndsWith("Dto")
         ? type.Name[..^3]
-        : type.Name));
+        : type.Name);
+
+    // Update application title on Swagger UI web page for v1
+    options.SwaggerDoc("v1", new OpenApiInfo()
+    {
+        Title = appName
+    });
+});
 
 #if (windowsService)
 // Add run as windows service
@@ -62,7 +79,7 @@ app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigura
 // Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
 foreach (var key in variables.Keys.Cast<string>().Order())
-    logger.ForContext(typeof(Environment)).Debug("{environmentVariableName}={environmentVariableValue}", key, variables[key]);
+    logger.ForContext(typeof(Environment)).Debug($"{key}={variables[key]}");
 
 #endif
 //+:cnd:noEmit
@@ -72,7 +89,8 @@ if (!app.Environment.IsProduction())
 {
     logger.Warning("Adding swagger UI");
     app.UseSwagger();
-    app.UseSwaggerUI(options => options.DocumentTitle = name);
+    // Update html document title in swagger UI
+    app.UseSwaggerUI(options => options.DocumentTitle = appName);
 }
 
 #if (exceptionMiddleware)
