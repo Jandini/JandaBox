@@ -27,7 +27,7 @@ namespace WebApiBox.Services
 #else
             var info = new HealthInfo
             {
-                Service = new HealthDetails()
+                Service = new ServiceHealth()
                 {
                     Name = Assembly.GetExecutingAssembly().GetName().Name,
                     Version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
