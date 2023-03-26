@@ -1,7 +1,7 @@
 // Created with JandaBox http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
-#if (exceptionMiddleware || appSettings || elasticLog)
+#if (exceptionMiddleware || elasticLog)
 using WebApiBox;
 #endif
 using WebApiBox.Services;
@@ -18,26 +18,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Read configuration from environment variables
 builder.Configuration.AddEnvironmentVariables();
 
-#if (appSettings)
-// Get application settings
-var appSettings = builder.Configuration.Get<AppSettings>()!;
-builder.Services.AddSingleton(appSettings);
-
+#if (appOverride)
 // Log application name and version
-var appName = appSettings.ApplicationName ?? builder.Environment.ApplicationName;
+var appName = builder.Configuration.GetValue("APPLICATION_NAME", builder.Environment.ApplicationName);
+var appVersion = builder.Configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion);
 #else
 // Log application name and version
 var appName = builder.Environment.ApplicationName;
-#endif
 var appVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+#endif
 
 #if (elasticLog)
 // Create elasticserach logging options
-#if (appSettings)
-var elasticOptions = new ElasticsearchSinkOptions(appSettings.ElasticsearchUri)
-#else
 var elasticOptions = new ElasticsearchSinkOptions(builder.Configuration.GetValue<Uri>("ELASTICSEARCH_URI"))
-#endif
 {
     // Ensure index name meet the following criteria https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
     IndexFormat = Regex.Replace($"{appName}-logs-{builder.Environment.EnvironmentName}-{DateTime.UtcNow:yyyy-MM}".ToLower(), "[\\\\/\\*\\?\"<>\\|#., ]", "-"),

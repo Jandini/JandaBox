@@ -75,11 +75,11 @@
       "defaultValue": "true",
       "description": "Add global exception handler middleware."
     },
-    "appSettings": {
+    "appOverride": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Add appsetting singleton with option to override application name and version through environment variables."
+      "defaultValue": "false",
+      "description": "Add application name and version override option through appsettings or environment variables."
     },
     "elasticLog": {
       "type": "parameter",

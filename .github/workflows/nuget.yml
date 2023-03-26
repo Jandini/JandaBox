@@ -44,8 +44,8 @@ jobs:
     - name: WebApiBox
       working-directory: src/WebApi/src
       run: |
-        echo appSettings
-        dotnet build -nologo -c:Release /p:DefineConstants=appSettings
+        echo appOverride
+        dotnet build -nologo -c:Release /p:DefineConstants=appOverride
         echo openApi
         dotnet build -nologo -c:Release /p:DefineConstants=openApi
         echo windowsService
@@ -54,8 +54,8 @@ jobs:
         dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
         echo elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
-        echo appSettings elasticLog
-        dotnet build -nologo -c:Release /p:DefineConstants=appSettings%3BelasticLog
+        echo appOverride elasticLog
+        dotnet build -nologo -c:Release /p:DefineConstants=appOverride%3BelasticLog
         echo None
         dotnet build -nologo -c:Release 
 
