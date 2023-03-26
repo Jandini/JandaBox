@@ -49,7 +49,7 @@ var logger = new LoggerConfiguration()
 #if (elasticLog)
     .WriteTo.Elasticsearch(elasticOptions)
     .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
-    .Enrich.WithProperty("ApplicationName", appName)
+    .Enrich.WithProperty("ApplicationName", appName!)
     .Enrich.WithProperty("ApplicationVersion", appVersion!)
 #endif
     .ReadFrom.Configuration(builder.Configuration)
