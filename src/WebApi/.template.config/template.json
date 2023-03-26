@@ -36,7 +36,13 @@
           "exclude": [
             "src/WebApiBox/AppSettings.cs"
           ]
-        }         
+        },
+        {
+          "condition": "(!gitVersion)",
+          "exclude": [
+            "GitVersion.yml"
+          ]
+        }
       ]
     }
   ],
@@ -44,6 +50,12 @@
     "sourceName": {
       "type": "parameter",
       "replaces": "WebApiBox"
+    },
+    "gitVersion": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Provide semantic versioning with GitVesion."
     },
     "openApi": {
       "type": "parameter",
