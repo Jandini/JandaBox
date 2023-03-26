@@ -54,8 +54,8 @@ var logger = new LoggerConfiguration()
 #if (elasticLog)
     .WriteTo.Elasticsearch(elasticOptions)
     .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
-    .Enrich.WithProperty("AppName", appName)
-    .Enrich.WithProperty("AppVersion", appVersion!)
+    .Enrich.WithProperty("ApplicationName", appName)
+    .Enrich.WithProperty("ApplicationVersion", appVersion!)
 #endif
     .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger()
@@ -114,9 +114,7 @@ app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigura
 
 // Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
-foreach (var key in variables.Keys.Cast<string>().Order())
-    logger.ForContext(typeof(Environment)).Debug($"{key}={variables[key]}");
-
+logger.ForContext(typeof(Environment)).Debug(string.Join(Environment.NewLine, variables.Keys.Cast<string>().Order().Select(key => $"{key}={variables[key]}")));
 #endif
 //+:cnd:noEmit
 
