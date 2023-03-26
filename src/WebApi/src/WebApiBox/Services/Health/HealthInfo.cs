@@ -2,6 +2,6 @@
 {
     public class HealthInfo
     {
-        public WebApiHealthInfo? Service { get; set; }
+        public HealthDetails? Service { get; set; }
     }
 }

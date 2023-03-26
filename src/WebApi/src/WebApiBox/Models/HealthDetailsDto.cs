@@ -1,6 +1,6 @@
 ﻿namespace WebApiBox.Models
 {
-    public class WebApiHealthInfoDto
+    public class HealthDetailsDto
     {
         public string? Name { get; set; }
         public string? Version { get; set; }

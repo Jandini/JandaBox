@@ -6,7 +6,7 @@ namespace WebApiBox.Profiles
     {
         public HealthProfile()
         {
-            CreateMap<Services.WebApiHealthInfo, Models.WebApiHealthInfoDto>();
+            CreateMap<Services.HealthDetails, Models.HealthDetailsDto>();
             CreateMap<Services.HealthInfo, Models.HealthInfoDto>();
         }
     }
