@@ -18,7 +18,7 @@ namespace WebApiBox.Services
 #if (appOverride)
             var info = new HealthInfo
             {
-                Service = new HealthDetails()
+                Service = new ServiceDetails()
                 {
                     Name = _configuration.GetValue("APPLICATION_NAME", Assembly.GetExecutingAssembly().GetName().Name),
                     Version = _configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion)
@@ -27,7 +27,7 @@ namespace WebApiBox.Services
 #else
             var info = new HealthInfo
             {
-                Service = new ServiceHealth()
+                Service = new ServiceDetails()
                 {
                     Name = Assembly.GetExecutingAssembly().GetName().Name,
                     Version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
