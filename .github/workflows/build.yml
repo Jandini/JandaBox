@@ -42,13 +42,26 @@ jobs:
         dotnet build /p:DefineConstants=serilog%3Basync
         echo Async
         dotnet build /p:DefineConstants=async
-        echo Default
+        echo None
         dotnet build 
 
     - name: WebApiBox
       working-directory: src/WebApi/src
       run: |
-        dotnet build 
+        echo appSettings
+        dotnet build -nologo -c:Release /p:DefineConstants=appSettings
+        echo openApi
+        dotnet build -nologo -c:Release /p:DefineConstants=openApi
+        echo windowsService
+        dotnet build -nologo -c:Release /p:DefineConstants=windowsService
+        echo exceptionMiddleware
+        dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
+        echo elasticLog
+        dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
+        echo appSettings elasticLog
+        dotnet build -nologo -c:Release /p:DefineConstants=appSettings%3BelasticLog
+        echo None
+        dotnet build -nologo -c:Release 
 
     - name: Version
       run: |  
