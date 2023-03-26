@@ -36,8 +36,7 @@
           "exclude": [
             "src/WebApiBox/AppSettings.cs"
           ]
-        }
-         
+        }         
       ]
     }
   ],
@@ -69,6 +68,12 @@
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Add appsetting singleton with option to override application name and version through environment variables."
+    },
+    "elasticLog": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Add Elasticsearch Serilog sink and configuration."
     }
   } 
 }

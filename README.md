@@ -213,9 +213,12 @@ dotnet new webapibox -n MyWebService
   -e, --exceptionMiddleware      Add global exception handler middleware.
                                  Type: bool
                                  Default: true
-  -ap, --appSettings             Add appsetting singleton with option to override application name and version throgh environment variables.
+  -ap, --appSettings             Add appsetting singleton with option to override application name and version through environment variables.
                                  Type: bool
                                  Default: true
+  -el, --elasticLog              Add Elasticsearch Serilog sink and configuration.
+                                 Type: bool
+                                 Default: false
 ```
 
 
