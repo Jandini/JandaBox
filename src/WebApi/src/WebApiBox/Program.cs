@@ -1,7 +1,7 @@
 // Created with JandaBox http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
-#if (exceptionMiddleware || appSettings)
+#if (exceptionMiddleware || appSettings || elasticLog)
 using WebApiBox;
 #endif
 using WebApiBox.Services;
@@ -10,7 +10,6 @@ using Microsoft.OpenApi.Models;
 #if (elasticLog)
 using Serilog.Sinks.Elasticsearch;
 using System.Text.RegularExpressions;
-using WebApiBox;
 #endif
 var builder = WebApplication.CreateBuilder(args);
 
