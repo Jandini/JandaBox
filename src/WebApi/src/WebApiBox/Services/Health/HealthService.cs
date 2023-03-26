@@ -34,6 +34,7 @@ namespace WebApiBox.Services
                 }
             };
 #endif
+
             return await Task.FromResult(info);
         }
     }

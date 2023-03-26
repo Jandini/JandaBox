@@ -11,6 +11,8 @@ using Microsoft.OpenApi.Models;
 using Serilog.Sinks.Elasticsearch;
 using System.Text.RegularExpressions;
 #endif
+
+// Create web application builder
 var builder = WebApplication.CreateBuilder(args);
 
 // Read configuration from environment variables
@@ -37,7 +39,7 @@ var elasticOptions = new ElasticsearchSinkOptions(appSettings.ElasticsearchUri)
 var elasticOptions = new ElasticsearchSinkOptions(builder.Configuration.GetValue<Uri>("ELASTICSEARCH_URI"))
 #endif
 {
-    // https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
+    // Ensure index name meet the following criteria https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
     IndexFormat = Regex.Replace($"{appName}-logs-{builder.Environment.EnvironmentName}-{DateTime.UtcNow:yyyy-MM}".ToLower(), "[\\\\/\\*\\?\"<>\\|#., ]", "-"),
     AutoRegisterTemplate = true,
     // Set environemnt variable ELASTICSEARCH_DEBUG=true do debug elasticsearch logging
