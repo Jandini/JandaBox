@@ -36,7 +36,7 @@
           ]
         },
         {
-          "condition": "(!git)",
+          "condition": "(!gitVersion)",
           "exclude": [
             "GitVersion.yml"
           ]
@@ -61,7 +61,7 @@
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
-    "git": {
+    "gitVersion": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",

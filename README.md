@@ -69,7 +69,7 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 
 
-###### Template Options
+##### Template Options
 
 ```sh
   -s, --sourceName <sourceName>  Type: string
@@ -80,7 +80,7 @@ ConsoleBox .NET template provides solution for console application with dependen
   -se, --serilog                 Use Serilog logger.
                                  Type: bool
                                  Default: true
-  -g, --git                      Provide semantic versioning with GitVesion.
+  -g, --gitVersion               Provide semantic versioning with GitVesion.
                                  Type: bool
                                  Default: false
   -as, --async                   Run main with async await.
@@ -101,7 +101,7 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 * `--single` PPublish as single file, self contained, win-x64 console application.
 
-* `--git` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
+* `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
 
   ```sh
   dotnet new consolebox -n MyApp --git
@@ -114,7 +114,7 @@ ConsoleBox .NET template provides solution for console application with dependen
 
   ​
 
-###### Template features 
+##### Template features 
 
 - Repository Layout
   - The `src` and `bin` folders 
@@ -199,11 +199,14 @@ dotnet new webapibox -n MyWebService
 
 
 
-###### Template options
+##### Template options
 
 ```sh
   -s, --sourceName <sourceName>  Type: string
                                  Default: WebApiBox
+  -g, --gitVersion               Provide semantic versioning with GitVesion.
+                                 Type: bool
+                                 Default: false
   -op, --openApi                 Add NuGet packages for OpenApi code generator.
                                  Type: bool
                                  Default: false
@@ -223,7 +226,7 @@ dotnet new webapibox -n MyWebService
 
 
 
-###### Template features
+##### Template features
 
 - Repository Layout
 
@@ -231,8 +234,9 @@ dotnet new webapibox -n MyWebService
   - Default `README.md` file 
   - Default `.gitignore` file
   - Default `launchSettings.json` file
+- Semantic Versioning
+  - Optional parameter `--gitVersion` provides `GitVersion.MsBuild` package and `GitVersion.yml` configuration file.
 - Simple Health endpoint
-
   - Name and version of the service
 - AutoMapper
 

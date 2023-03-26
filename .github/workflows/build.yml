@@ -40,7 +40,9 @@ jobs:
         dotnet build /p:DefineConstants=serilog
         echo Serilog, Async
         dotnet build /p:DefineConstants=serilog%3Basync
-        echo Async
+        echo GitVersion
+        dotnet build /p:DefineConstants=GitVersion
+        echo None
         dotnet build /p:DefineConstants=async
         echo None
         dotnet build 
@@ -60,6 +62,8 @@ jobs:
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
         echo appSettings elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=appSettings%3BelasticLog
+        echo GitVersion
+        dotnet build /p:DefineConstants=GitVersion
         echo None
         dotnet build -nologo -c:Release 
 
