@@ -1,23 +1,22 @@
 // Created with JandaBox http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
-#if (exceptionMiddleware)
+#if (exceptionMiddleware || appSettings || elasticLog)
 using WebApiBox;
 #endif
 using WebApiBox.Services;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+#if (elasticLog)
+using Serilog.Sinks.Elasticsearch;
+using System.Text.RegularExpressions;
+#endif
 
+// Create web application builder
 var builder = WebApplication.CreateBuilder(args);
 
 // Read configuration from environment variables
 builder.Configuration.AddEnvironmentVariables();
-
-// Create serilog logger
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .CreateLogger()
-    .ForContext<Program>();
 
 #if (appSettings)
 // Get application settings
@@ -31,7 +30,46 @@ var appName = appSettings.ApplicationName ?? builder.Environment.ApplicationName
 var appName = builder.Environment.ApplicationName;
 #endif
 var appVersion = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+
+#if (elasticLog)
+// Create elasticserach logging options
+#if (appSettings)
+var elasticOptions = new ElasticsearchSinkOptions(appSettings.ElasticsearchUri)
+#else
+var elasticOptions = new ElasticsearchSinkOptions(builder.Configuration.GetValue<Uri>("ELASTICSEARCH_URI"))
+#endif
+{
+    // Ensure index name meet the following criteria https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html
+    IndexFormat = Regex.Replace($"{appName}-logs-{builder.Environment.EnvironmentName}-{DateTime.UtcNow:yyyy-MM}".ToLower(), "[\\\\/\\*\\?\"<>\\|#., ]", "-"),
+    AutoRegisterTemplate = true,
+    // Set environemnt variable ELASTICSEARCH_DEBUG=true do debug elasticsearch logging
+    ModifyConnectionSettings = !builder.Configuration.GetValue("ELASTICSEARCH_DEBUG", false) ? null : config => config.OnRequestCompleted(d => Console.WriteLine(d.DebugInformation))
+};
+
+// Elasticsearch index name must not be longer than 255 characters
+if (elasticOptions.IndexFormat.Length > 255)
+    throw new Exception("Elasticsearch index name exceeds 255 characters.");
+#endif
+
+// Create serilog logger
+var logger = new LoggerConfiguration()
+#if (elasticLog)
+    .WriteTo.Elasticsearch(elasticOptions)
+    .Enrich.WithProperty("Environment", builder.Environment.EnvironmentName)
+    .Enrich.WithProperty("ApplicationName", appName)
+    .Enrich.WithProperty("ApplicationVersion", appVersion!)
+#endif
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger()
+    .ForContext<Program>();
+
 logger.Information($"Starting {appName} {appVersion}");
+#if (elasticLog)
+logger.Debug($"Logging [{string.Join(",", elasticOptions.ConnectionPool.Nodes.Select(a => a.Uri))}] {elasticOptions.IndexFormat}");
+
+if (!elasticOptions.ConnectionPool.Nodes.Any())
+    logger.Warning("Elasticsearch Uri is not configured");
+#endif
 
 // Use serilog for web hosting
 builder.Host.UseSerilog(logger);
@@ -78,9 +116,7 @@ app.Services.GetRequiredService<IMapper>().ConfigurationProvider.AssertConfigura
 
 // Log all environment variables in DEBUG mode only
 var variables = Environment.GetEnvironmentVariables();
-foreach (var key in variables.Keys.Cast<string>().Order())
-    logger.ForContext(typeof(Environment)).Debug($"{key}={variables[key]}");
-
+logger.ForContext(typeof(Environment)).Debug(string.Join(Environment.NewLine, variables.Keys.Cast<string>().Order().Select(key => $"{key}={variables[key]}")));
 #endif
 //+:cnd:noEmit
 
