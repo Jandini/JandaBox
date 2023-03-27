@@ -75,7 +75,7 @@
       "defaultValue": "true",
       "description": "Add global exception handler middleware."
     },
-    "appOverride": {
+    "appName": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",

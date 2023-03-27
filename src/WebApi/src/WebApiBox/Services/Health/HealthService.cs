@@ -4,7 +4,7 @@ namespace WebApiBox.Services
 {
     public class HealthService : IHealthService
     {
-#if (appOverride)
+#if (appName)
         private readonly IConfiguration _configuration;
 
         public HealthService(IConfiguration configuration)
@@ -15,7 +15,7 @@ namespace WebApiBox.Services
 #endif
         public async Task<HealthInfo> GetHealthInfoAsync()
         {
-#if (appOverride)
+#if (appName)
             var info = new HealthInfo
             {
                 Service = new ServiceInfo()
