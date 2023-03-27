@@ -112,7 +112,7 @@ ConsoleBox .NET template provides solution for console application with dependen
   dotnet build src
   ```
 
-  ​
+  
 
 ##### Template features 
 
@@ -216,9 +216,9 @@ dotnet new webapibox -n MyWebService
   -e, --exceptionMiddleware      Add global exception handler middleware.
                                  Type: bool
                                  Default: true
-  -ap, --appSettings             Add appsetting singleton with option to override application name and version through environment variables.
+  -ap, --appOverride             Add application name and version override option through appsettings or environment variables.
                                  Type: bool
-                                 Default: true
+                                 Default: false
   -el, --elasticLog              Add Elasticsearch Serilog sink and configuration.
                                  Type: bool
                                  Default: false
@@ -248,15 +248,17 @@ dotnet new webapibox -n MyWebService
 - Configuration
 
   - `appsettings.json` file
-  - Environment variables
-  - Optional parameter `--appSettings` provides `AppSetting` singleton with option to override application name and version through environment variables.
+  - Override settings through environment variables
+- Application Name and Version Override
+  - Optional parameter `--appOverride` provides application name and version override through `appsettings.json`.
+
 - Run as Windows Service
 
-  - Optional parameter `--windowsService` add windows service startup.
+  - Optional parameter `--windowsService` add windows service start up.
 - Open API
 
   - Optional parameter `--openApi`  add latest packages for OpenApi code generator.  
-- Startup
+- Start up
 
   - Remove "Dto" postfix from DTOs class names for Swagger 
   - Log all environment variables in `DEBUG` build

@@ -28,44 +28,47 @@ jobs:
     - name: ConsoleBox
       working-directory: src/Console/src
       run: |
-        echo Basic, Serilog, Async
+        echo --basic --serilog -async
         dotnet build /p:DefineConstants=basic%3Bserilog%3Basync
-        echo Basic, Serilog
+        echo --basic --serilog
         dotnet build /p:DefineConstants=basic%3Bserilog
-        echo Basic
+        echo --basic
         dotnet build /p:DefineConstants=basic
-        echo Basic, Async
+        echo --basic --sync
         dotnet build /p:DefineConstants=basic%3Basync
-        echo Serilog
+        echo --serilog
         dotnet build /p:DefineConstants=serilog
-        echo Serilog, Async
+        echo --serilog --async
         dotnet build /p:DefineConstants=serilog%3Basync
-        echo GitVersion
+        echo --gitVersion
         dotnet build /p:DefineConstants=GitVersion
-        echo None
+        echo --async
         dotnet build /p:DefineConstants=async
-        echo None
+        echo none
         dotnet build 
 
     - name: WebApiBox
       working-directory: src/WebApi/src
       run: |
-        echo appSettings
-        dotnet build -nologo -c:Release /p:DefineConstants=appSettings
-        echo openApi
-        dotnet build -nologo -c:Release /p:DefineConstants=openApi
-        echo windowsService
-        dotnet build -nologo -c:Release /p:DefineConstants=windowsService
-        echo exceptionMiddleware
-        dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
-        echo elasticLog
-        dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
-        echo appSettings elasticLog
-        dotnet build -nologo -c:Release /p:DefineConstants=appSettings%3BelasticLog
-        echo GitVersion
-        dotnet build /p:DefineConstants=GitVersion
-        echo None
+        echo none
         dotnet build -nologo -c:Release 
+        echo --appName
+        dotnet build -nologo -c:Release /p:DefineConstants=appName
+        echo --openApi
+        dotnet build -nologo -c:Release /p:DefineConstants=openApi
+        echo --windowsService
+        dotnet build -nologo -c:Release /p:DefineConstants=windowsService
+        echo --exceptionMiddleware
+        dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
+        echo --elasticLog
+        dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
+        echo --gitVersion
+        dotnet build /p:DefineConstants=GitVersion
+        echo --appName --elasticLog
+        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog
+        echo --appName --elasticLog --exceptionMiddleware --windowsService --appName --openApi --gitVersion
+        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BappName%3BopenApi%3BgitVersion
+
 
     - name: Version
       run: |  

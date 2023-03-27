@@ -10,9 +10,6 @@
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-	  <DefineConstants>$(DefineConstants);elasticLog</DefineConstants>
-	</PropertyGroup>
 
 	<ItemGroup>
 		<!--#if (gitVersion)-->
