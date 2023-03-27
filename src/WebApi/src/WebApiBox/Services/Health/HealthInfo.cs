@@ -2,6 +2,6 @@
 {
     public class HealthInfo
     {
-        public ServiceDetails? Service { get; set; }
+        public ServiceInfo? Service { get; set; }
     }
 }
