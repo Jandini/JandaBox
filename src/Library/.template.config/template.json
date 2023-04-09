@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Janda",
+  "classifications": ["JandaBox/Library"],
+  "name": "JandaBox Class Library",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "JandaBox Library provides template for class library with build and publish nuget github actions.",
+  "groupIdentity": "classlibbox",
+  "precedence": "4000",
+  "identity": "JandaBox.Library",
+  "shortName": "classlibbox",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "LibraryBox",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/.vs/**",
+            "**/bin/**",
+            "**/obj/**"
+          ]
+        },
+        {
+          "condition": "(!gitHubActions)",
+          "exclude": [
+            ".github/workflows/build.yml",
+            ".github/workflows/nuget.yml"
+          ]
+        },
+        {
+          "condition": "(!gitVersion)",
+          "exclude": [
+            "GitVersion.yml"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "sourceName": {
+      "type": "parameter",
+      "replaces": "LibraryBox"
+    },
+    "gitHubUser": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "GITHUB_USER",
+      "defaultValue": "GITHUB_USER",
+      "description": "Provide GitHub user name for GitHub links in README.md and project file."
+    },
+    "gitHubActions": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Add GitHub actions to create nuget package and push to GitHub and to NuGet.org."
+    },   
+    "gitVersion": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Provide semantic versioning with GitVesion."
+    }
+  }
+}

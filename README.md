@@ -7,13 +7,15 @@ Out of the box .NET6 and .NET7 templates
 
 - Console App template with dependency injection, logging, configuration, [GitVersion](https://gitversion.net/docs/) and [CommandLineParser](https://github.com/commandlineparser/commandline).
 - ASP.NET Core Web API with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/). 
+- Class Library with nuget package github actions.
 - GitHub Actions Workflows provides docker, NuGet and simple build/test workflows.  
 
 ```
 Template Name                  Short Name  Language  Tags
 -----------------------------  ----------  --------  ----------------
-JandaBox ASP.NET Core Web API  webapibox   [C#]      JandaBox/WebApi
-JandaBox Console App           consolebox  [C#]      JandaBox/Console
+JandaBox ASP.NET Core Web API  webapibox    [C#]      JandaBox/WebApi
+JandaBox Class Library         classlibbox  [C#]      JandaBox/Library
+JandaBox Console App           consolebox   [C#]      JandaBox/Console
 ```
 
 
