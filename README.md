@@ -62,13 +62,11 @@ dotnet new webapibox -n MyWebService
 
 ### NuGet Class Library
 
-Create NuGet class library with GitHub Actions.
+Create NuGet ready class library with GitHub Actions.
 
 ```sh
 dotnet new nugetbox -n MyNuGet --actions --user Jandini
 ```
-
-
 
 Create simple class library without NuGet configuration.
 
@@ -76,7 +74,8 @@ Create simple class library without NuGet configuration.
 dotnet new nugetbox -n MyLibrary --nuget false
 ```
 
-
+How to create and push NuGet package to registry ?  
+Read more under "JandaBox NuGet Class Library" 
 
 
 
@@ -291,34 +290,86 @@ dotnet new webapibox -n MyWebService
 
 ## JandaBox NuGet Class Library
 
+Create NuGet package and push to GitHub/NuGet.org package registry registry. The most work is to create access tokens either or both GitHub and NuGet.org.
 
 
-Create NuGet package and push to GitHub/NuGet.org package registry registry.
+* Create new GitHub repository.
+* Create GitHub access tokens and/or API key in NuGet.org and save it as secrets in the new repository.
+* Create new Project from the template and push it to GitHub. 
+
+  ```sh
+  dotnet new nugetbox -n MyNuGet --actions --user Jandini --gitVersion
+  cd MyNuGet
+  git init -b main
+  git add .
+  git commit -m "First commit"
+  git remote add origin https://github.com/Jandini/MyNuGet.git
+  git push -u origin main
+  ```
+
+At this point GitHub actions will create NuGet package and push it to GitHub private package registry. The package is created and pushed only for main branch. 
+
+* A new tag will trigger NuGet pipeline which will create and push release package to GitHub or NuGet.org.  Use `--tagNugetOrg` parameter to push release package to nuget.org. Nuget.org API key is required in repos' secrets. 
+
+  ​
+
+### Step by step
+
 
 * Create new GitHub repository
-
   - Go to https://github.com/new and create public or private repository.
-
   - Do not add any files at this stage.
-
   - Your repository URL should look like https://github.com/Jandini/MyNuGet.git where `Jandini` is going to be your user name.
+    ​
+
+*Following step can be skipped if you have safely stored your PAT which can be re-used.*
+
+* Create Personal Access Token (PAT) with `write:packages` permissions. This will allow to push NuGet packages into GitHub package registry. 
+
+  * Go to https://github.com/settings/tokens and from drop down "Generate new token" select "Generate new token (classic)" or go directly to https://github.com/settings/tokens/new
+
+  * Set "Note" to anything you want. Usually it should reflect purpose of the token. 
+
+  * Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
+
+  * Click "Generate token"
+
+  * Copy the new token to clipboard. You need to add it to repository secretes. Note: you will see the token only once.
 
     ​
 
-* Create Personal Access Token (PAT) with `write:packages` permissions. This will allow to push NuGet packages into GitHub package registry. 
-  *This step can be skipped if you have safely stored your PAT.*
+*Following steps explains how create API key in https://www.nuget.org/. If you are planning to push your release packages to nuget.org then you must use `--tagNugetOrg` parameter when creating project from template and perform following steps.*
 
-  * Go to https://github.com/settings/tokens and from drop down "Generate new token" select "Generate new token (classic)" or go directly to https://github.com/settings/tokens/new
-  * Set "Note" to anything you want. Usually it should reflect purpose of the token. 
-  * Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
-  * Click "Generate token"
-  * Copy the new token to clipboard. You need to add it to repository secretes. Note: you will see the token only once.
+* Go to https://www.nuget.org/ and login to your account. 
 
-* Add Personal Access Token (PAT) to Secrets in GitHub repository.
+* Under "API Keys" create new token or go directly to https://www.nuget.org/account/apikeys
 
-  * Go To "Actions secrets and variables" https://github.com/Jandini/MyNuGet/settings/secrets/actions
-  * You must set secret's "Name" to  `PACKAGE_REGISTRY_TOKEN`. This name is used in `build.yml` and `nuget.yml` file.
+  * Specify "Key Name"
+
+  * You can specify pattern name for your NuGet package or use `*` to allow push for any package
+
+  * Click "Create"
+
+  * Copy the Key into clipboard
+
+    ​
+
+* Add NuGet API Key to Secrets in GitHub repository.
+
+  * Go To "Actions secrets and variables" 
+
+    * Open repository Setting 
+    * In the left hand side, under Security select Secrets and variables | Actions
+
+  * Click "New repository secret"
+
+  * Paste your NuGet API Key into "Secret*" field 
+
+  * Secret's "Name" must be set to  `NUGET_ORG_API_KEY`. This name is used in `nuget.yml` file.
+
   * Click "Add secret"
+
+    ​
 
 * Create new project from `nugetbox` template.
 
@@ -344,8 +395,9 @@ Create NuGet package and push to GitHub/NuGet.org package registry registry.
   git push -u origin main
   ```
 
-  ​
 
+
+That's all. Your NuGet package will be waiting in GitHub registry ! 
 
 
 
@@ -357,9 +409,12 @@ Create NuGet package and push to GitHub/NuGet.org package registry registry.
 ```sh
 -s, --sourceName <sourceName>  Type: string
                                Default: LibraryBox
--nu, --nuget                   Configure project for NugGet package.
+-nu, --nuget                   Add properties to project file required to build and push NuGet package.
                                Type: bool
                                Default: true
+-ta, --tagNugetOrg             Push tagged packages to NuGet.org.
+                               Type: bool
+                               Default: false
 -us, --user <user>             GitHub user name for GitHub actions badges in README.md and project configuration.
                                Type: string
                                Default: GITHUB_USER
@@ -374,21 +429,12 @@ Create NuGet package and push to GitHub/NuGet.org package registry registry.
 
 
 - `--nuget`  Add properties to project file required to build and push NuGet package. Default value is `true`. Use `false` to create simple class library.
-
 - `--user`  Specify GitHub user name to update links in project file properties and GitHub action badge links in README.md file. 
-
 - `--actions` Add GitHub Actions pipeline files for building and pushing NuGet packages. Build pipeline creates NuGet package and push it to private GitHub packages only form `main` branch. NuGet pipeline creates NuGet package and push it to NuGet.org package registry.  Default value is `false`.
+- `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.
 
-- `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
 
-  ```sh
-  dotnet new consolebox -n MyApp --git
-  cd MyApp
-  git init -b main
-  git add .
-  git commit -m "First commit"
-  dotnet build src
-  ```
+
 
 ##### Template features
 
@@ -397,9 +443,12 @@ Create NuGet package and push to GitHub/NuGet.org package registry registry.
   - Default `README.md` file 
   - Default `.gitignore` file
 - NuGet configuration
-  - Build NuGet with only `dotnet pack` 
+  - Build NuGet package with only `dotnet pack` 
 - GitHub Actions
-  - Build pipeline 
+  - Restore packages from private GitHub package registry. 
+  - Pack library into NuGet package.
+  - Push NuGet package created from main branch into NuGet package registry.
+  - Push Tagged package into NuGet.org or GitHub package registry.
 - Update links in project properties `RepositoryUrl`  `PackageProjectUrl`  and badge links in `README.md` files. 
 
 
@@ -415,6 +464,3 @@ Create NuGet package and push to GitHub/NuGet.org package registry registry.
 
 * https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
 * https://github.com/dotnet/templating/wiki
-
-
-
