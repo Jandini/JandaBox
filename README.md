@@ -311,7 +311,7 @@ At this point GitHub actions will create NuGet package and push it to GitHub pri
 
 * A new tag will trigger NuGet pipeline which will create and push release package to GitHub or NuGet.org.  Use `--tagNugetOrg` parameter to push release package to nuget.org. Nuget.org API key is required in repos' secrets. 
 
-  ​
+Read more on how to use GitHub NuGet registry in GitHub actions here https://docs.github.com/en/actions/security-guides/automatic-token-authentication
 
 ### Step by step
 
@@ -320,7 +320,7 @@ At this point GitHub actions will create NuGet package and push it to GitHub pri
   - Go to https://github.com/new and create public or private repository.
   - Do not add any files at this stage.
   - Your repository URL should look like https://github.com/Jandini/MyNuGet.git where `Jandini` is going to be your user name.
-    ​
+    
 
 *Following step can be skipped if you have safely stored your PAT which can be re-used.*
 
