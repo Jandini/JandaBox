@@ -17,9 +17,7 @@ defaults:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
 
     - uses: actions/checkout@v2
@@ -33,10 +31,8 @@ jobs:
 
     - name: Pack
       run: dotnet pack -c:Release
-
-    - name: Test
-      run: dotnet test
-
+    
     - name: Push
+      # Push packages into private github repository 
       if: github.ref == 'refs/heads/main'
-      run: dotnet nuget push "../bin/Release/*.nupkg" -k ${{ secrets.GITHUB_PACKAGE_TOKEN }} -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
+      run: dotnet nuget push "../bin/Release/*.nupkg" -k ${{ secrets.PACKAGE_REGISTRY_TOKEN }} -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate

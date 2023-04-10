@@ -1,14 +1,14 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/Library"],
-  "name": "JandaBox Class Library",
+  "classifications": ["JandaBox/NuGet"],
+  "name": "JandaBox NuGet Class Library",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Library provides NuGet ready class library template with github actions and semantic versioning.",
-  "groupIdentity": "classlibbox",
+  "description": "JandaBox NuGet Library provides NuGet ready class library template with github actions and semantic versioning.",
+  "groupIdentity": "nugetbox",
   "precedence": "4000",
   "identity": "JandaBox.Library",
-  "shortName": "classlibbox",
+  "shortName": "nugetbox",
   "tags": {
     "language": "C#",
     "type": "project"
@@ -55,21 +55,21 @@
     "nuget": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Configure project for ready to push NugGet package."
+      "defaultValue": "true",
+      "description": "Add properties to project file required to build and push NuGet package."
     },   
     "user": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "GITHUB_USER",
       "defaultValue": "GITHUB_USER",
-      "description": "GitHub user name for GitHub links in README.md and project file."
+      "description": "GitHub user name for GitHub actions badges in README.md and project configuration."
     },
     "actions": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Add GitHub actions to create nuget package and push it to GitHub and NuGet.org."
+      "description": "Add GitHub actions to create nuget package and push it to GitHub and NuGet package registry."
     },   
     "gitVersion": {
       "type": "parameter",

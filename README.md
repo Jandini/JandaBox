@@ -12,9 +12,9 @@ Out of the box .NET6 and .NET7 templates
 ```
 Template Name                  Short Name  Language  Tags
 -----------------------------  ----------  --------  ----------------
-JandaBox ASP.NET Core Web API  webapibox    [C#]      JandaBox/WebApi
-JandaBox Class Library         classlibbox  [C#]      JandaBox/Library
-JandaBox Console App           consolebox   [C#]      JandaBox/Console
+JandaBox ASP.NET Core Web API  webapibox   [C#]      JandaBox/WebApi
+JandaBox Console App           consolebox  [C#]      JandaBox/Console
+JandaBox NuGet Class Library   nugetbox    [C#]      JandaBox/NuGet
 ```
 
 
@@ -60,20 +60,20 @@ dotnet new webapibox -n MyWebService
 
 
 
-### Class Library
+### NuGet Class Library
 
-Create class library from `classlibbox` template.
+Create NuGet class library with GitHub Actions.
 
 ```sh
-dotnet new nugetbox -n MyClassLibrary --nuget false
+dotnet new nugetbox -n MyNuGet --actions --user Jandini
 ```
 
 
 
-Create NuGet package with GitHub Actions from `classlibbox` template.
+Create simple class library without NuGet configuration.
 
 ```sh
-dotnet new classlibbox -n MyNuget --nuget --actions --user Jandini
+dotnet new nugetbox -n MyLibrary --nuget false
 ```
 
 
@@ -89,23 +89,23 @@ ConsoleBox .NET template provides solution for console application with dependen
 ##### Template Options
 
 ```sh
-  -s, --sourceName <sourceName>  Type: string
-                                 Default: ConsoleBox
-  -b, --basic                    Create basic console application.
-                                 Type: bool
-                                 Default: false
-  -se, --serilog                 Use Serilog logger.
-                                 Type: bool
-                                 Default: true
-  -g, --gitVersion               Provide semantic versioning with GitVesion.
-                                 Type: bool
-                                 Default: false
-  -as, --async                   Run main with async await.
-                                 Type: bool
-                                 Default: false
-  -si, --single                  Publish as single file, self contained, win-x64 console application.
-                                 Type: bool
-                                 Default: true
+-s, --sourceName <sourceName>  Type: string
+                               Default: ConsoleBox
+-b, --basic                    Create basic console application.
+                               Type: bool
+                               Default: false
+-se, --serilog                 Use Serilog logger.
+                               Type: bool
+                               Default: true
+-g, --gitVersion               Provide semantic versioning with GitVesion.
+                               Type: bool
+                               Default: false
+-as, --async                   Run main with async await.
+                               Type: bool
+                               Default: false
+-si, --single                  Publish as single file, self contained, win-x64 console application.
+                               Type: bool
+                               Default: true
 ```
 
 
@@ -218,26 +218,26 @@ dotnet new webapibox -n MyWebService
 ##### Template options
 
 ```sh
-  -s, --sourceName <sourceName>  Type: string
-                                 Default: WebApiBox
-  -g, --gitVersion               Provide semantic versioning with GitVesion.
-                                 Type: bool
-                                 Default: false
-  -op, --openApi                 Add NuGet packages for OpenApi code generator.
-                                 Type: bool
-                                 Default: false
-  -w, --windowsService           Add run as windows service.
-                                 Type: bool
-                                 Default: false
-  -e, --exceptionMiddleware      Add global exception handler middleware.
-                                 Type: bool
-                                 Default: true
-  -ap, --appName                 Add application name and version override option through appsettings or environment variables.
-                                 Type: bool
-                                 Default: false
-  -el, --elasticLog              Add Elasticsearch Serilog sink and configuration.
-                                 Type: bool
-                                 Default: false
+-s, --sourceName <sourceName>  Type: string
+                               Default: WebApiBox
+-g, --gitVersion               Provide semantic versioning with GitVesion.
+                               Type: bool
+                               Default: false
+-op, --openApi                 Add NuGet packages for OpenApi code generator.
+                               Type: bool
+                               Default: false
+-w, --windowsService           Add run as windows service.
+                               Type: bool
+                               Default: false
+-e, --exceptionMiddleware      Add global exception handler middleware.
+                               Type: bool
+                               Default: true
+-ap, --appName                 Add application name and version override option through appsettings or environment variables.
+                               Type: bool
+                               Default: false
+-el, --elasticLog              Add Elasticsearch Serilog sink and configuration.
+                               Type: bool
+                               Default: false
 ```
 
 
@@ -289,7 +289,64 @@ dotnet new webapibox -n MyWebService
 
 
 
-## JandaBox Library
+## JandaBox NuGet Class Library
+
+
+
+Create NuGet package and push to GitHub/NuGet.org package registry registry.
+
+* Create new GitHub repository
+
+  - Go to https://github.com/new and create public or private repository.
+
+  - Do not add any files at this stage.
+
+  - Your repository URL should look like https://github.com/Jandini/MyNuGet.git where `Jandini` is going to be your user name.
+
+    ​
+
+* Create Personal Access Token (PAT) with `write:packages` permissions. This will allow to push NuGet packages into GitHub package registry. 
+  *This step can be skipped if you have safely stored your PAT.*
+
+  * Go to https://github.com/settings/tokens and from drop down "Generate new token" select "Generate new token (classic)" or go directly to https://github.com/settings/tokens/new
+  * Set "Note" to anything you want. Usually it should reflect purpose of the token. 
+  * Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
+  * Click "Generate token"
+  * Copy the new token to clipboard. You need to add it to repository secretes. Note: you will see the token only once.
+
+* Add Personal Access Token (PAT) to Secrets in GitHub repository.
+
+  * Go To "Actions secrets and variables" https://github.com/Jandini/MyNuGet/settings/secrets/actions
+  * You must set secret's "Name" to  `PACKAGE_REGISTRY_TOKEN`. This name is used in `build.yml` and `nuget.yml` file.
+  * Click "Add secret"
+
+* Create new project from `nugetbox` template.
+
+  * Give it a name `-n MyNuGet`
+  * Add GitHub Actions `--actions`
+  * Provide your GitHub user name `--user Jandini`
+  * Add versioning with GitVersoin `--gitVersion`
+
+  ```sh
+  dotnet new nugetbox -n MyNuGet --actions --user Jandini --gitVersion
+  ```
+
+  ​
+
+* Initialize local git repository and push it to GitHub
+
+  ```sh
+  cd MyNuGet
+  git init -b main
+  git add .
+  git commit -m "First commit"
+  git remote add origin https://github.com/Jandini/MyNuGet.git
+  git push -u origin main
+  ```
+
+  ​
+
+
 
 
 
@@ -298,21 +355,52 @@ dotnet new webapibox -n MyWebService
 ##### Template options
 
 ```sh
-  -s, --sourceName <sourceName>  Type: string
-                                 Default: LibraryBox
-  -nu, --nuget                   Configure project for ready to push NugGet package.
-                                 Type: bool
-                                 Default: false
-  -us, --user <user>             GitHub user name for GitHub links in README.md and project file.
-                                 Type: string
-                                 Default: GITHUB_USER
-  -ac, --actions                 Add GitHub actions to create nuget package and push it to GitHub and NuGet.org.
-                                 Type: bool
-                                 Default: false
-  -g, --gitVersion               Provide semantic versioning with GitVesion.
-                                 Type: bool
-                                 Default: false
+-s, --sourceName <sourceName>  Type: string
+                               Default: LibraryBox
+-nu, --nuget                   Configure project for NugGet package.
+                               Type: bool
+                               Default: true
+-us, --user <user>             GitHub user name for GitHub actions badges in README.md and project configuration.
+                               Type: string
+                               Default: GITHUB_USER
+-ac, --actions                 Add GitHub actions to create nuget package and push it to GitHub and NuGet package registry.
+                               Type: bool
+                               Default: false
+-g, --gitVersion               Provide semantic versioning with GitVesion.
+                               Type: bool
+                               Default: false
 ```
+
+
+
+- `--nuget`  Add properties to project file required to build and push NuGet package. Default value is `true`. Use `false` to create simple class library.
+
+- `--user`  Specify GitHub user name to update links in project file properties and GitHub action badge links in README.md file. 
+
+- `--actions` Add GitHub Actions pipeline files for building and pushing NuGet packages. Build pipeline creates NuGet package and push it to private GitHub packages only form `main` branch. NuGet pipeline creates NuGet package and push it to NuGet.org package registry.  Default value is `false`.
+
+- `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
+
+  ```sh
+  dotnet new consolebox -n MyApp --git
+  cd MyApp
+  git init -b main
+  git add .
+  git commit -m "First commit"
+  dotnet build src
+  ```
+
+##### Template features
+
+- Repository Layout
+  - The `src` and `bin` folders 
+  - Default `README.md` file 
+  - Default `.gitignore` file
+- NuGet configuration
+  - Build NuGet with only `dotnet pack` 
+- GitHub Actions
+  - Build pipeline 
+- Update links in project properties `RepositoryUrl`  `PackageProjectUrl`  and badge links in `README.md` files. 
 
 
 
