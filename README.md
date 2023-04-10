@@ -5,10 +5,9 @@
 
 Out of the box .NET6 and .NET7 templates
 
-- Console App template with dependency injection, logging, configuration, [GitVersion](https://gitversion.net/docs/) and [CommandLineParser](https://github.com/commandlineparser/commandline).
-- ASP.NET Core Web API with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/). 
-- Class Library with nuget package github actions.
-- GitHub Actions Workflows provides docker, NuGet and simple build/test workflows.  
+- Console App with dependency injection, logging, configuration, [GitVersion](https://gitversion.net/docs/) and [CommandLineParser](https://github.com/commandlineparser/commandline).
+- ASP.NET Core Web API with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/) and [GitVersion](https://gitversion.net/docs/)
+- NuGet ready Class Library with with GitHub Actions and [GitVersion](https://gitversion.net/docs/).
 
 ```
 Template Name                  Short Name  Language  Tags
@@ -37,20 +36,16 @@ or in earlier versions
 dotnet new -i JandaBox
 ```
 
+You are now ready to use the templates. 
+
 
 
 ### Console App
 
-Create default .NET6 console application from `consolebox` template.
+Create .NET6 console application with dependency injection, Serilog and configuration.
 
 ```sh
 dotnet new consolebox -n MyApp
-```
-
-The name parameter `-n` is optional.  
-
-```sh
-dotnet new consolebox
 ```
 
 
@@ -62,6 +57,26 @@ Create .NET7 web API  from `webapibox` template.
 ```sh
 dotnet new webapibox -n MyWebService
 ```
+
+
+
+### Class Library
+
+Create class library from `classlibbox` template.
+
+```sh
+dotnet new nugetbox -n MyClassLibrary --nuget false
+```
+
+
+
+Create NuGet package with GitHub Actions from `classlibbox` template.
+
+```sh
+dotnet new classlibbox -n MyNuget --nuget --actions --user Jandini
+```
+
+
 
 
 
@@ -101,7 +116,7 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 * `--async` Create asynchronous code.  Default value is `false`.
 
-* `--single` PPublish as single file, self contained, win-x64 console application.
+* `--single` Publish as single file, self contained, win-x64 console application.
 
 * `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
 
@@ -114,7 +129,6 @@ ConsoleBox .NET template provides solution for console application with dependen
   dotnet build src
   ```
 
-  
 
 ##### Template features 
 
@@ -275,47 +289,32 @@ dotnet new webapibox -n MyWebService
 
 
 
-## JandaBox Actions 
-
-> Todo
-
-Provides GitHub actions templates. 
-
-````
-dotnet new actionbox --build
-````
-
-###### Template Options
-
-- `--build`  
-- `--nuget`  
-- `--docker`
+## JandaBox Library
 
 
 
 
 
+##### Template options
 
-## Useful Extensions
-
-A few useful extensions that not necessarily have to belong to the template. 
-
-#### Add file logger
-
-This extension creates an extra log file in given location. You might need to log all the actions related to processing data in selected folder. 
-
-```c#
-internal static void AddFileLogger(this ILoggerFactory factory, FileInfo logFile)
-{        
-    factory
-        .AddSerilog(new LoggerConfiguration()
-        .Enrich.WithMachineName()
-        .WriteTo.File(
-            logFile.FullName, 
-            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u4}] [{MachineName}] [{SourceContext}] {Message}{NewLine}{Exception}")
-        .CreateLogger(), dispose: true);
-}
+```sh
+  -s, --sourceName <sourceName>  Type: string
+                                 Default: LibraryBox
+  -nu, --nuget                   Configure project for ready to push NugGet package.
+                                 Type: bool
+                                 Default: false
+  -us, --user <user>             GitHub user name for GitHub links in README.md and project file.
+                                 Type: string
+                                 Default: GITHUB_USER
+  -ac, --actions                 Add GitHub actions to create nuget package and push it to GitHub and NuGet.org.
+                                 Type: bool
+                                 Default: false
+  -g, --gitVersion               Provide semantic versioning with GitVesion.
+                                 Type: bool
+                                 Default: false
 ```
+
+
 
 
 
@@ -323,7 +322,7 @@ internal static void AddFileLogger(this ILoggerFactory factory, FileInfo logFile
 
 ## Resources
 
-* Box icon was downloaded from [Flaticon](https://www.flaticon.com/free-icon/open-box_869027?term=box&related_id=869027).
+* Box icon was downloaded from [Flaticon](https://www.flaticon.com/free-icon/open-box_869027?term=box&related_id=869027)
 
 
 * https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
@@ -331,10 +330,3 @@ internal static void AddFileLogger(this ILoggerFactory factory, FileInfo logFile
 
 
 
-
-## TODOs
-
-* Add JandaBox Actions
-* Switch between .NET6 and .NET7 for JandaBox Console App
-* Add JandaBox Service to provide interface, class and extensions classes for a given service 
-* Add github nuget ready JandaBox ClassLib solution
