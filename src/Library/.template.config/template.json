@@ -43,6 +43,12 @@
           "exclude": [
             "icon.png"
           ]
+        },
+        {
+          "condition": "(!license)",
+          "exclude": [
+            "LICENSE"
+          ]
         }
       ]
     }
@@ -64,6 +70,19 @@
       "defaultValue": "false",
       "description": "Push tagged packages to NuGet.org."
     },   
+    "license": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Add LICENSE file to the repository and nuget package."
+    },   
+    "authors": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "PACKAGE_AUTHORS",
+      "defaultValue": "PACKAGE_AUTHORS",
+      "description": "Update package authors property and LICENSE file."
+    },
     "user": {
       "type": "parameter",
       "datatype": "string",
@@ -83,7 +102,7 @@
       "defaultValue": "false",
       "description": "Provide semantic versioning with GitVesion."
     },
-    "UniqueProjectId":{
+    "uniqueProjectId":{
       "type": "generated",
       "generator": "guid",
       "replaces": "UNIQUE_PROJECT_GUID",
@@ -91,7 +110,7 @@
         "defaultFormat":"D"
       }
     },
-    "ProjectTypeId":{
+    "projectTypeId":{
       "type": "generated",
       "generator": "guid",
       "replaces": "PROJECT_TYPE_GUID",
@@ -99,13 +118,21 @@
         "defaultFormat":"D"
       }
     },
-    "SolutionId":{
+    "solutionId":{
       "type": "generated",
       "generator": "guid",
       "replaces": "SOLUTION_GUID",
       "parameters": {
         "defaultFormat":"D"
       }
-    }
+    },
+    "copyrightYear": {
+      "type": "generated",
+      "generator": "now",
+      "replaces": "1980",
+      "parameters": {
+        "format": "yyyy"
+      }
+    }    
   }
 }
