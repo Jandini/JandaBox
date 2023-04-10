@@ -290,8 +290,7 @@ dotnet new webapibox -n MyWebService
 
 ## JandaBox NuGet Class Library
 
-Create NuGet package and push to GitHub/NuGet.org package registry registry. The most work is to create access tokens either or both GitHub and NuGet.org.
-
+Create NuGet package and push to GitHub/NuGet.org package registry. 
 
 * Create new GitHub repository.
 * Create GitHub access tokens and/or API key in NuGet.org and save it as secrets in the new repository.
