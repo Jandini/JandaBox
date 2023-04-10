@@ -15,13 +15,18 @@
 	<!--#if (nuget)-->
 
 	<PropertyGroup>
-		<Authors>GITHUB_USER</Authors>
+		<Authors>PACKAGE_AUTHORS</Authors>
 		<PackageIcon>icon.png</PackageIcon>
+		<!--#if (license)-->
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<!--#endif-->
 		<PackageId>LibraryBox</PackageId>
 		<AssemblyName>LibraryBox</AssemblyName>
 		<RootNamespace>LibraryBox</RootNamespace>
 		<Description>LibraryBox</Description>
+		<!--#if (!license)-->
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<!--#endif-->
 		<PackageTags>LibraryBox</PackageTags>
 		<RepositoryUrl>https://github.com/GITHUB_USER/LibraryBox</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/GITHUB_USER/LibraryBox</PackageProjectUrl>
@@ -32,6 +37,12 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+		<!--#if (license)-->
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<!--#endif-->
 	</ItemGroup>
 	<!--#endif-->
 	<!--#if (gitVersion)-->
