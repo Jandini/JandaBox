@@ -69,6 +69,13 @@ jobs:
         echo --appName --elasticLog --exceptionMiddleware --windowsService --appName --openApi --gitVersion
         dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BappName%3BopenApi%3BgitVersion
 
+    - name: LibraryBox
+      working-directory: src/Library/src
+      run: |
+        echo build
+        dotnet build 
+        echo pack
+        dotnet pack
 
     - name: Version
       run: |  
