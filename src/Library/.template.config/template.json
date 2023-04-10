@@ -58,6 +58,12 @@
       "defaultValue": "true",
       "description": "Add properties to project file required to build and push NuGet package."
     },   
+    "tagNugetOrg": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Push tagged packages to NuGet.org."
+    },   
     "user": {
       "type": "parameter",
       "datatype": "string",
