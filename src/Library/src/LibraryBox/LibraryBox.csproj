@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<BaseOutputPath>..\..\bin</BaseOutputPath>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>10</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+	<!--#if (nuget)-->
+
+	<PropertyGroup>
+		<Authors>GITHUB_USER</Authors>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageId>LibraryBox</PackageId>
+		<AssemblyName>LibraryBox</AssemblyName>
+		<RootNamespace>LibraryBox</RootNamespace>
+		<Description>LibraryBox</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>LibraryBox</PackageTags>
+		<RepositoryUrl>https://github.com/GITHUB_USER/LibraryBox</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/GITHUB_USER/LibraryBox</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\..\icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+	<!--#endif-->
+	<!--#if (gitVersion)-->
+
+	<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<!--#endif-->
+</Project>

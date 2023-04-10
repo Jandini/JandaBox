@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Janda",
+  "classifications": ["JandaBox/NuGet"],
+  "name": "JandaBox NuGet Class Library",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "JandaBox NuGet Library provides NuGet ready class library template with github actions and semantic versioning.",
+  "groupIdentity": "nugetbox",
+  "precedence": "4000",
+  "identity": "JandaBox.Library",
+  "shortName": "nugetbox",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "LibraryBox",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/.vs/**",
+            "**/bin/**",
+            "**/obj/**"
+          ]
+        },
+        {
+          "condition": "(!actions)",
+          "exclude": [
+            ".github/workflows/build.yml",
+            ".github/workflows/nuget.yml"
+          ]
+        },
+        {
+          "condition": "(!gitVersion)",
+          "exclude": [
+            "GitVersion.yml"
+          ]
+        },
+        {
+          "condition": "(!nuget)",
+          "exclude": [
+            "icon.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "sourceName": {
+      "type": "parameter",
+      "replaces": "LibraryBox"
+    },
+    "nuget": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Add properties to project file required to build and push NuGet package."
+    },   
+    "tagNugetOrg": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Push tagged packages to NuGet.org."
+    },   
+    "user": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "GITHUB_USER",
+      "defaultValue": "GITHUB_USER",
+      "description": "GitHub user name for GitHub actions badges in README.md and project configuration."
+    },
+    "actions": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Add GitHub actions to create nuget package and push it to GitHub and NuGet package registry."
+    },   
+    "gitVersion": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Provide semantic versioning with GitVesion."
+    }
+  }
+}
