@@ -4,7 +4,7 @@
   "classifications": ["JandaBox/Library"],
   "name": "JandaBox Class Library",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Library provides template for class library with build and publish nuget github actions.",
+  "description": "JandaBox Library provides NuGet ready class library template with github actions and semantic versioning.",
   "groupIdentity": "classlibbox",
   "precedence": "4000",
   "identity": "JandaBox.Library",
@@ -26,7 +26,7 @@
           ]
         },
         {
-          "condition": "(!gitHubActions)",
+          "condition": "(!actions)",
           "exclude": [
             ".github/workflows/build.yml",
             ".github/workflows/nuget.yml"
@@ -37,6 +37,12 @@
           "exclude": [
             "GitVersion.yml"
           ]
+        },
+        {
+          "condition": "(!nuget)",
+          "exclude": [
+            "icon.png"
+          ]
         }
       ]
     }
@@ -46,18 +52,24 @@
       "type": "parameter",
       "replaces": "LibraryBox"
     },
-    "gitHubUser": {
+    "nuget": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Configure project for ready to push NugGet package."
+    },   
+    "user": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "GITHUB_USER",
       "defaultValue": "GITHUB_USER",
-      "description": "Provide GitHub user name for GitHub links in README.md and project file."
+      "description": "GitHub user name for GitHub links in README.md and project file."
     },
-    "gitHubActions": {
+    "actions": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Add GitHub actions to create nuget package and push to GitHub and to NuGet.org."
+      "description": "Add GitHub actions to create nuget package and push it to GitHub and NuGet.org."
     },   
     "gitVersion": {
       "type": "parameter",
