@@ -25,15 +25,10 @@ Install template and create console applications or web services.
 
 ### Install
 
-To install JandaBox templates use `dotnet` command. It will automatically download NuGet package from https://www.nuget.org/packages/JandaBox
+To install JandaBox templates use `dotnet` command.
 
 ```bash
 dotnet new install JandaBox
-```
-
-or in earlier versions 
-```bash
-dotnet new -i JandaBox
 ```
 
 You are now ready to use the templates. 
@@ -50,6 +45,8 @@ dotnet new consolebox -n MyApp
 
 
 
+
+
 ### Web API
 
 Create .NET7 web API  from `webapibox` template.
@@ -57,6 +54,8 @@ Create .NET7 web API  from `webapibox` template.
 ```sh
 dotnet new webapibox -n MyWebService
 ```
+
+
 
 
 
@@ -74,7 +73,8 @@ Create simple class library without NuGet configuration.
 dotnet new nugetbox -n MyLibrary --nuget false
 ```
 
-How to create and push NuGet package to registry ?  
+How to create and push NuGet package to registry ? 
+
 Read more under "JandaBox NuGet Class Library" 
 
 
@@ -117,7 +117,7 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 * `--single` Publish as single file, self contained, win-x64 console application.
 
-* `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.  
+* `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.  
 
   ```sh
   dotnet new consolebox -n MyApp --git
@@ -188,16 +188,6 @@ You can create console application with Microsoft console logger only.
 
 ```sh
 dotnet new consolebox -n MyApp --serilog false
-```
-
-
-
-### Help
-
-For more information about **ConsoleBox** template run 
-
-```
-dotnet new consolebox -h  
 ```
 
 
@@ -319,7 +309,7 @@ Read more on how to use GitHub NuGet registry in GitHub actions here https://doc
   - Go to https://github.com/new and create public or private repository.
   - Do not add any files at this stage.
   - Your repository URL should look like https://github.com/Jandini/MyNuGet.git where `Jandini` is going to be your user name.
-    
+
 
 *Following step can be skipped if you have safely stored your PAT which can be re-used.*
 
@@ -414,13 +404,19 @@ That's all. Your NuGet package will be waiting in GitHub registry !
 -ta, --tagNugetOrg             Push tagged packages to NuGet.org.
                                Type: bool
                                Default: false
--us, --user <user>             GitHub user name for GitHub actions badges in README.md and project configuration.
+-li, --license                 Add LICENSE file to the repository and nuget package.
+                               Type: bool
+                               Default: true
+-au, --authors <authors>       Update package authors property and LICENSE file.
+                               Type: string
+                               Default: PACKAGE_AUTHORS
+-us, --user <user>             GitHub user name.
                                Type: string
                                Default: GITHUB_USER
--ac, --actions                 Add GitHub actions to create nuget package and push it to GitHub and NuGet package registry.
+-ac, --actions                 Add GitHub actions that builds and push nuget to registry.
                                Type: bool
                                Default: false
--g, --gitVersion               Provide semantic versioning with GitVesion.
+-g, --gitVersion               Add semantic versioning with GitVesion.
                                Type: bool
                                Default: false
 ```
@@ -430,7 +426,10 @@ That's all. Your NuGet package will be waiting in GitHub registry !
 - `--nuget`  Add properties to project file required to build and push NuGet package. Default value is `true`. Use `false` to create simple class library.
 - `--user`  Specify GitHub user name to update links in project file properties and GitHub action badge links in README.md file. 
 - `--actions` Add GitHub Actions pipeline files for building and pushing NuGet packages. Build pipeline creates NuGet package and push it to private GitHub packages only form `main` branch. NuGet pipeline creates NuGet package and push it to NuGet.org package registry.  Default value is `false`.
-- `--gitVersion` Add semantic versioning with GitVersion. The code created with `--git` parameter can be only build from initialized git repository.
+- `--tagNugetOrg` Add GitHub action file to push tagged NuGet packages to NuGet.org registry. By default tagged packages are pushed into of GitHub package registry. 
+- `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.
+- `--license` Add MIT license file to the NuGet package with authors provided in `--authors` parameter.
+- `--authors` Add NuGet package authors. The authors will be written to package properties and license file.  
 
 
 
@@ -449,9 +448,10 @@ That's all. Your NuGet package will be waiting in GitHub registry !
   - Push NuGet package created from main branch into NuGet package registry.
   - Push Tagged package into NuGet.org or GitHub package registry.
 - Update links in project properties `RepositoryUrl`  `PackageProjectUrl`  and badge links in `README.md` files. 
-
-
-
+- Add files into the NuGet package
+  - README.md 
+  - MIT LICENSE with given authors
+  - Icon file
 
 
 

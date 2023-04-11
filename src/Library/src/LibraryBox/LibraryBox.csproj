@@ -15,23 +15,29 @@
 	<!--#if (nuget)-->
 
 	<PropertyGroup>
-		<Authors>GITHUB_USER</Authors>
+		<Authors>PACKAGE_AUTHORS</Authors>
 		<PackageIcon>icon.png</PackageIcon>
+		<!--#if (license)-->
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<!--#elseif-->
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>		
+		<!--#endif-->
+		<PackageReadmeFile>README.md</PackageReadmeFile>		
 		<PackageId>LibraryBox</PackageId>
 		<AssemblyName>LibraryBox</AssemblyName>
 		<RootNamespace>LibraryBox</RootNamespace>
 		<Description>LibraryBox</Description>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageTags>LibraryBox</PackageTags>
 		<RepositoryUrl>https://github.com/GITHUB_USER/LibraryBox</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/GITHUB_USER/LibraryBox</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\icon.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
+		<None Include="..\..\icon.png" Pack="true" PackagePath=""/>
+		<!--#if (license)-->
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+		<!--#endif-->
+		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	<!--#endif-->
 	<!--#if (gitVersion)-->

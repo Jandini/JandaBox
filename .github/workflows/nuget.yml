@@ -70,8 +70,7 @@ jobs:
       run: |
         echo build
         dotnet build 
-        echo pack
-        dotnet pack
+        # Cannot pack due to license properties in project file
 
     - name: Version
       run: |  
