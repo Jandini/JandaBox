@@ -6,7 +6,7 @@
     <title>JandaBox</title>
     <authors>Matt Janda</authors>
     <owners>Matt Janda</owners>
-    <license type="expression">MIT</license>
+    <license type="file">LICENSE.txt</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>dotnet template jandabox</tags>
     <description>Provides solution template for console application with dependency injection, logging, and configuration. 
@@ -18,5 +18,6 @@ Run `dotnet new install jandabox` to install the templates.</description>
   <files>
     <file src="src\**\*" target="content\src" exclude="src\**\obj\**;src\**\.vs\**;src\**\bin\**" />
     <file src="box.png" target="images\icon.png" />
+    <file src="LICENSE.txt" target="" />
   </files>
 </package>
