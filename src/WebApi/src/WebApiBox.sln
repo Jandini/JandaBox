@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{UNIQUE_PROJECT_GUID}") = "WebApiBox", "WebApiBox\WebApiBox.csproj", "{PROJECT_TYPE_GUID}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApiBox", "WebApiBox\WebApiBox.csproj", "{B737A9A7-FB49-43F5-B121-313E0CA88119}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{PROJECT_TYPE_GUID}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{PROJECT_TYPE_GUID}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{PROJECT_TYPE_GUID}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{PROJECT_TYPE_GUID}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B737A9A7-FB49-43F5-B121-313E0CA88119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B737A9A7-FB49-43F5-B121-313E0CA88119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B737A9A7-FB49-43F5-B121-313E0CA88119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B737A9A7-FB49-43F5-B121-313E0CA88119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
