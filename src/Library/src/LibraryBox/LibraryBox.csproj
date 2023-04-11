@@ -19,29 +19,22 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<!--#if (license)-->
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<!--#elseif-->
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>		
 		<!--#endif-->
 		<PackageId>LibraryBox</PackageId>
 		<AssemblyName>LibraryBox</AssemblyName>
 		<RootNamespace>LibraryBox</RootNamespace>
 		<Description>LibraryBox</Description>
-		<!--#if (!license)-->
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<!--#endif-->
 		<PackageTags>LibraryBox</PackageTags>
 		<RepositoryUrl>https://github.com/GITHUB_USER/LibraryBox</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/GITHUB_USER/LibraryBox</PackageProjectUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\..\icon.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
+		<None Include="..\..\icon.png" Pack="true" PackagePath=""/>
 		<!--#if (license)-->
-		<None Include="..\..\LICENSE">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
 		<!--#endif-->
 	</ItemGroup>
 	<!--#endif-->
