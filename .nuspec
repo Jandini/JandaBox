@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package>
   <metadata>
     <id>JandaBox</id>
     <version>$Version$</version>
@@ -8,16 +8,18 @@
     <owners>Matt Janda</owners>
     <license type="file">LICENSE.txt</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <tags>dotnet template jandabox</tags>
+    <tags>dotnet template jandabox console webapi nuget</tags>
     <description>Provides solution template for console application with dependency injection, logging, and configuration. 
 Run `dotnet new install jandabox` to install the templates.</description>
     <projectUrl>https://github.com/Jandini/JandaBox</projectUrl>
     <repository type="git" url="https://github.com/Jandini/JandaBox" />
     <icon>images\icon.png</icon>
+    <readme>docs\README.md</readme>
   </metadata>
   <files>
     <file src="src\**\*" target="content\src" exclude="src\**\obj\**;src\**\.vs\**;src\**\bin\**" />
     <file src="box.png" target="images\icon.png" />
     <file src="LICENSE.txt" target="" />
-  </files>
+    <file src="README.md" target="docs\README.md" />  
+</files>
 </package>
