@@ -87,7 +87,7 @@
       "defaultValue": "false",
       "description": "Add Elasticsearch Serilog sink and configuration."
     },
-    "UniqueProjectId":{
+    "uniqueProjectId":{
       "type": "generated",
       "generator": "guid",
       "replaces": "UNIQUE_PROJECT_GUID",
@@ -95,7 +95,7 @@
         "defaultFormat":"D"
       }
     },
-    "ProjectTypeId":{
+    "projectTypeId":{
       "type": "generated",
       "generator": "guid",
       "replaces": "PROJECT_TYPE_GUID",
@@ -103,7 +103,7 @@
         "defaultFormat":"D"
       }
     },
-    "SolutionId":{
+    "solutionId":{
       "type": "generated",
       "generator": "guid",
       "replaces": "SOLUTION_GUID",
