@@ -25,15 +25,10 @@ Install template and create console applications or web services.
 
 ### Install
 
-To install JandaBox templates use `dotnet` command. It will automatically download NuGet package from https://www.nuget.org/packages/JandaBox
+To install JandaBox templates use `dotnet` command.
 
 ```bash
 dotnet new install JandaBox
-```
-
-or in earlier versions 
-```bash
-dotnet new -i JandaBox
 ```
 
 You are now ready to use the templates. 
