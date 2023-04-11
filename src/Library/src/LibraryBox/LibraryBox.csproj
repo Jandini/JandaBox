@@ -22,6 +22,7 @@
 		<!--#elseif-->
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>		
 		<!--#endif-->
+		<PackageReadmeFile>README.md</PackageReadmeFile>		
 		<PackageId>LibraryBox</PackageId>
 		<AssemblyName>LibraryBox</AssemblyName>
 		<RootNamespace>LibraryBox</RootNamespace>
@@ -36,6 +37,7 @@
 		<!--#if (license)-->
 		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
 		<!--#endif-->
+		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	<!--#endif-->
 	<!--#if (gitVersion)-->
