@@ -68,13 +68,13 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Add GitHub action file to push tagged nuget packages to NuGet.org registry."
+      "description": "Add GitHub action for pushing tagged package to NuGet.org registry."
     },   
     "license": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
-      "description": "Add LICENSE file to the repository and nuget package."
+      "description": "Add MIT LICENSE file to the repository and nuget package."
     },   
     "authors": {
       "type": "parameter",
@@ -94,7 +94,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Add GitHub actions that builds and push nuget to registry."
+      "description": "Add GitHub actions for building and pushing package to the registry."
     },   
     "gitVersion": {
       "type": "parameter",

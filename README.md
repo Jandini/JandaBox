@@ -398,22 +398,22 @@ That's all. Your NuGet package will be waiting in GitHub registry !
 ```sh
 -s, --sourceName <sourceName>  Type: string
                                Default: LibraryBox
--nu, --nuget                   Add properties to project file required to build and push NuGet package.
+-nu, --nuget                   Add nuget package properties to project file.
                                Type: bool
                                Default: true
--ta, --tagNugetOrg             Push tagged packages to NuGet.org.
+-ta, --tagNugetOrg             Add GitHub action for pushing tagged package to NuGet.org registry.
                                Type: bool
                                Default: false
--li, --license                 Add LICENSE file to the repository and nuget package.
+-li, --license                 Add MIT LICENSE file to the repository and nuget package.
                                Type: bool
                                Default: true
--au, --authors <authors>       Update package authors property and LICENSE file.
+-au, --authors <authors>       Package authors.
                                Type: string
                                Default: PACKAGE_AUTHORS
 -us, --user <user>             GitHub user name.
                                Type: string
                                Default: GITHUB_USER
--ac, --actions                 Add GitHub actions that builds and push nuget to registry.
+-ac, --actions                 Add GitHub actions for building and pushing package to the registry.
                                Type: bool
                                Default: false
 -g, --gitVersion               Add semantic versioning with GitVesion.
