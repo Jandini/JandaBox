@@ -17,6 +17,9 @@ JandaBox Console App           consolebox  [C#]      JandaBox/Console
 JandaBox NuGet Class Library   nugetbox    [C#]      JandaBox/NuGet
 ```
 
+![jandabox](https://user-images.githubusercontent.com/19593367/234416369-79de817c-1510-4ad1-b492-0d1ab501f562.gif)
+
+
 
 
 ## Quick Start
