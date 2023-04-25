@@ -17,6 +17,8 @@ JandaBox Console App           consolebox  [C#]      JandaBox/Console
 JandaBox NuGet Class Library   nugetbox    [C#]      JandaBox/NuGet
 ```
 
+![helloworld](https://user-images.githubusercontent.com/19593367/234417753-44bf29db-064c-4d8a-af26-91afee97e6ca.gif)
+
 ## Quick Start
 
 Install template and create console applications or web services. 
@@ -44,10 +46,6 @@ dotnet new consolebox -n HelloWorld
 HelloWorld basic console app using command line interface
 
 ![jandabox](https://user-images.githubusercontent.com/19593367/234421169-106edabc-6288-4498-b6f0-252e8e96f62f.gif)
-
-HelloWorld console app using Visual Studio wizard
-
-![helloworld](https://user-images.githubusercontent.com/19593367/234417753-44bf29db-064c-4d8a-af26-91afee97e6ca.gif)
 
 
 
