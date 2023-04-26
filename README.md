@@ -81,15 +81,13 @@ Read more under "JandaBox NuGet Class Library"
 
 ConsoleBox .NET template provides solution for console application with dependency injection, logging, and configuration. Default logger is [Serilog](https://serilog.net). Use `--serilog false` parameter to switch to Microsoft console logger.
 
-
-
 ##### Template Options
 
-* `--basic`  Create basic console application with minimal amount startup code. Default value is `false`.
-* `--serilog`  Use Serilog. Default value is `true`. 
-* `--async` Create asynchronous code.  Default value is `false`.
-* `--single` Publish as single file, self contained, win-x64 console application.
-* `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.  
+- `--basic`  Create basic console application with minimal amount startup code. Default value is `false`.
+- `--serilog`  Use Serilog. Default value is `true`. 
+- `--async` Create asynchronous code.  Default value is `false`.
+- `--single` Publish as single file, self contained, win-x64 console application.
+- `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.  
 
   ```sh
   dotnet new consolebox -n MyApp --git
@@ -190,7 +188,6 @@ dotnet new webapibox -n MyWebService
 ##### Template features
 
 - Repository Layout
-
   - The `src` and `bin` folders 
   - Default `README.md` file 
   - Default `.gitignore` file
@@ -200,27 +197,20 @@ dotnet new webapibox -n MyWebService
 - Simple Health endpoint
   - Name and version of the service
 - AutoMapper
-
   - DTO profiles and mapping
 - Logging
-
   - `Serilog` for web hosting
   - Serilog environment enrichers like computer name
 - Configuration
-
   - `appsettings.json` file
   - Override settings through environment variables
 - Application Name and Version Override
   - Optional parameter `--appOverride` provides application name and version override through `appsettings.json`.
-
 - Run as Windows Service
-
   - Optional parameter `--windowsService` add windows service start up.
 - Open API
-
   - Optional parameter `--openApi`  add latest packages for OpenApi code generator.  
 - Start up
-
   - Remove "Dto" postfix from DTOs class names for Swagger 
   - Log all environment variables in `DEBUG` build
   - Validate AutoMapper profiles in `DEBUG` build
@@ -238,9 +228,9 @@ dotnet new webapibox -n MyWebService
 
 Create NuGet package and push to GitHub/NuGet.org package registry. 
 
-* Create new GitHub repository.
-* Create GitHub access tokens and/or API key in NuGet.org and save it as secrets in the new repository.
-* Create new Project from the template and push it to GitHub. 
+- Create new GitHub repository.
+- Create GitHub access tokens and/or API key in NuGet.org and save it as secrets in the new repository.
+- Create new Project from the template and push it to GitHub. 
 
   ```sh
   dotnet new nugetbox -n MyNuGet --actions --user Jandini --gitVersion
@@ -261,75 +251,52 @@ Read more on how to use GitHub NuGet registry in GitHub actions here https://doc
 ### Step by step
 
 
-* Create new GitHub repository
+- Create new GitHub repository
   - Go to https://github.com/new and create public or private repository.
   - Do not add any files at this stage.
   - Your repository URL should look like https://github.com/Jandini/MyNuGet.git where `Jandini` is going to be your user name.
 
-
 *Following step can be skipped if you have safely stored your PAT which can be re-used.*
 
-* Create Personal Access Token (PAT) with `write:packages` permissions. This will allow to push NuGet packages into GitHub package registry. 
-
-  * Go to https://github.com/settings/tokens and from drop down "Generate new token" select "Generate new token (classic)" or go directly to https://github.com/settings/tokens/new
-
-  * Set "Note" to anything you want. Usually it should reflect purpose of the token. 
-
-  * Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
-
-  * Click "Generate token"
-
-  * Copy the new token to clipboard. You need to add it to repository secretes. Note: you will see the token only once.
-
-    ​
+- Create Personal Access Token (PAT) with `write:packages` permissions. This will allow to push NuGet packages into GitHub package registry. 
+  - Go to https://github.com/settings/tokens and from drop down "Generate new token" select "Generate new token (classic)" or go directly to https://github.com/settings/tokens/new
+  - Set "Note" to anything you want. Usually it should reflect purpose of the token. 
+  - Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
+  - Click "Generate token"
+  - Copy the new token to clipboard. You need to add it to repository secretes. Note: you will see the token only once.
 
 *Following steps explains how create API key in https://www.nuget.org/. If you are planning to push your release packages to nuget.org then you must use `--tagNugetOrg` parameter when creating project from template and perform following steps.*
 
-* Go to https://www.nuget.org/ and login to your account. 
+- Go to https://www.nuget.org/ and login to your account. 
+- Under "API Keys" create new token or go directly to https://www.nuget.org/account/apikeys
+  - Specify "Key Name"
+  - You can specify pattern name for your NuGet package or use `*` to allow push for any package
+  - Click "Create"
+  - Copy the Key into clipboard
 
-* Under "API Keys" create new token or go directly to https://www.nuget.org/account/apikeys
+- Add NuGet API Key to Secrets in GitHub repository.
 
-  * Specify "Key Name"
+  - Go To "Actions secrets and variables" 
+    - Open repository Setting 
+    - In the left hand side, under Security select Secrets and variables | Actions
 
-  * You can specify pattern name for your NuGet package or use `*` to allow push for any package
+  - Click "New repository secret"
+  - Paste your NuGet API Key into "Secret*" field 
+  - Secret's "Name" must be set to  `NUGET_ORG_API_KEY`. This name is used in `nuget.yml` file.
+  - Click "Add secret"
 
-  * Click "Create"
+- Create new project from `nugetbox` template.
 
-  * Copy the Key into clipboard
-
-    ​
-
-* Add NuGet API Key to Secrets in GitHub repository.
-
-  * Go To "Actions secrets and variables" 
-
-    * Open repository Setting 
-    * In the left hand side, under Security select Secrets and variables | Actions
-
-  * Click "New repository secret"
-
-  * Paste your NuGet API Key into "Secret*" field 
-
-  * Secret's "Name" must be set to  `NUGET_ORG_API_KEY`. This name is used in `nuget.yml` file.
-
-  * Click "Add secret"
-
-    ​
-
-* Create new project from `nugetbox` template.
-
-  * Give it a name `-n MyNuGet`
-  * Add GitHub Actions `--actions`
-  * Provide your GitHub user name `--user Jandini`
-  * Add versioning with GitVersoin `--gitVersion`
+  - Give it a name `-n MyNuGet`
+  - Add GitHub Actions `--actions`
+  - Provide your GitHub user name `--user Jandini`
+  - Add versioning with GitVersoin `--gitVersion`
 
   ```sh
   dotnet new nugetbox -n MyNuGet --actions --user Jandini --gitVersion
   ```
 
-  ​
-
-* Initialize local git repository and push it to GitHub
+- Initialize local git repository and push it to GitHub
 
   ```sh
   cd MyNuGet
