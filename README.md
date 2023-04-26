@@ -1,7 +1,8 @@
 # JandaBox
 
-[![.NET](https://github.com/Jandini/JandaBox/actions/workflows/build.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/build.yml)
+[![Build](https://github.com/Jandini/JandaBox/actions/workflows/build.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/build.yml)
 [![NuGet](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml)
+[![NuGet Version](http://img.shields.io/nuget/v/JandaBox.svg?style=flat&label=Version)](https://www.nuget.org/packages/JandaBox/)
 
 Out of the box .NET6 and .NET7 templates
 
