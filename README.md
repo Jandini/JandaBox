@@ -352,8 +352,6 @@ That's all. Your NuGet package will be waiting in GitHub registry !
 
 ## Resources
 
-* Box icon was downloaded from [Flaticon](https://www.flaticon.com/free-icon/open-box_869027?term=box&related_id=869027)
-
-
-* https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
-* https://github.com/dotnet/templating/wiki
+- Box icon was downloaded from [Flaticon](https://www.flaticon.com/free-icon/open-box_869027?term=box&related_id=869027)
+- https://learn.microsoft.com/en-us/dotnet/core/tools/custom-templates
+- https://github.com/dotnet/templating/wiki
