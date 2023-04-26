@@ -85,36 +85,10 @@ ConsoleBox .NET template provides solution for console application with dependen
 
 ##### Template Options
 
-```sh
--s, --sourceName <sourceName>  Type: string
-                               Default: ConsoleBox
--b, --basic                    Create basic console application.
-                               Type: bool
-                               Default: false
--se, --serilog                 Use Serilog logger.
-                               Type: bool
-                               Default: true
--g, --gitVersion               Provide semantic versioning with GitVesion.
-                               Type: bool
-                               Default: false
--as, --async                   Run main with async await.
-                               Type: bool
-                               Default: false
--si, --single                  Publish as single file, self contained, win-x64 console application.
-                               Type: bool
-                               Default: true
-```
-
-
-
 * `--basic`  Create basic console application with minimal amount startup code. Default value is `false`.
-
 * `--serilog`  Use Serilog. Default value is `true`. 
-
 * `--async` Create asynchronous code.  Default value is `false`.
-
 * `--single` Publish as single file, self contained, win-x64 console application.
-
 * `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.  
 
   ```sh
@@ -204,29 +178,13 @@ dotnet new webapibox -n MyWebService
 
 ##### Template options
 
-```sh
--s, --sourceName <sourceName>  Type: string
-                               Default: WebApiBox
--g, --gitVersion               Provide semantic versioning with GitVesion.
-                               Type: bool
-                               Default: false
--op, --openApi                 Add NuGet packages for OpenApi code generator.
-                               Type: bool
-                               Default: false
--w, --windowsService           Add run as windows service.
-                               Type: bool
-                               Default: false
--e, --exceptionMiddleware      Add global exception handler middleware.
-                               Type: bool
-                               Default: true
--ap, --appName                 Add application name and version override option through appsettings or environment variables.
-                               Type: bool
-                               Default: false
--el, --elasticLog              Add Elasticsearch Serilog sink and configuration.
-                               Type: bool
-                               Default: false
-```
 
+- `--openApi`  Add NuGet packages for OpenApi code generator.
+- `--windowsService`  Add run as windows service.
+- `--exceptionMiddleware` Add global exception handler middleware.
+- `--appName` Add application name and version override option through appsettings or environment variables. 
+- `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.
+- `--elasticLog` Add Elasticsearch Serilog sink and configuration.
 
 
 ##### Template features
@@ -393,34 +351,6 @@ That's all. Your NuGet package will be waiting in GitHub registry !
 
 ##### Template options
 
-```sh
--s, --sourceName <sourceName>  Type: string
-                               Default: LibraryBox
--nu, --nuget                   Add nuget package properties to project file.
-                               Type: bool
-                               Default: true
--ta, --tagNugetOrg             Add GitHub action for pushing tagged package to NuGet.org registry.
-                               Type: bool
-                               Default: false
--li, --license                 Add MIT LICENSE file to the repository and nuget package.
-                               Type: bool
-                               Default: true
--au, --authors <authors>       Package authors.
-                               Type: string
-                               Default: PACKAGE_AUTHORS
--us, --user <user>             GitHub user name.
-                               Type: string
-                               Default: GITHUB_USER
--ac, --actions                 Add GitHub actions for building and pushing package to the registry.
-                               Type: bool
-                               Default: false
--g, --gitVersion               Add semantic versioning with GitVesion.
-                               Type: bool
-                               Default: false
-```
-
-
-
 - `--nuget`  Add properties to project file required to build and push NuGet package. Default value is `true`. Use `false` to create simple class library.
 - `--user`  Specify GitHub user name to update links in project file properties and GitHub action badge links in README.md file. 
 - `--actions` Add GitHub Actions pipeline files for building and pushing NuGet packages. Build pipeline creates NuGet package and push it to private GitHub packages only form `main` branch. NuGet pipeline creates NuGet package and push it to NuGet.org package registry.  Default value is `false`.
@@ -428,8 +358,6 @@ That's all. Your NuGet package will be waiting in GitHub registry !
 - `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.
 - `--license` Add MIT license file to the NuGet package with authors provided in `--authors` parameter.
 - `--authors` Add NuGet package authors. The authors will be written to package properties and license file.  
-
-
 
 
 ##### Template features
