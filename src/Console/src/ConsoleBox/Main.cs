@@ -44,7 +44,7 @@ internal class Main
 #endif
     {
         var dir = new DirectoryInfo(path);
-        _logger.LogInformation(_config.Bind<Settings>().Message, dir.Name, dir.GetFiles().Length);
+        _logger.LogInformation(_config.Bind<Settings>("ConsoleBox").Message, dir.Name, dir.GetFiles().Length);
 #if (async)
         await Task.CompletedTask;
 #endif
