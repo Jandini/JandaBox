@@ -6,3 +6,4 @@
 <!--#endif -->
 ---
 Created from [JandaBox](https://github.com/Jandini/JandaBox)
+Box icon created by [Freepik - Flaticon](https://www.flaticon.com/free-icons/box)
