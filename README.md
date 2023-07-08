@@ -264,7 +264,8 @@ Read more on how to use GitHub NuGet registry in GitHub actions here https://doc
   - Set "Note" to anything you want. Usually it should reflect purpose of the token. 
   - Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
   - Click "Generate token"
-  - Copy the new token to clipboard. You need to add it to repository secretes. Note: you will see the token only once.
+  - Copy the new token to clipboard. Note: you will see the token only once.
+  - Add token to repository secrets as PACKAGE_REGISTRY_TOKEN. 
 
 *Following steps explains how create API key in https://www.nuget.org/. If you are planning to push your release packages to nuget.org then you must use `--tagNugetOrg` parameter when creating project from template and perform following steps.*
 
