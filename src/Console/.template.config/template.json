@@ -37,6 +37,12 @@
           ]
         },
         {
+          "condition": "(!settings)",
+          "exclude": [
+            "src/ConsoleBox/Settings.cs"
+          ]
+        },
+        {
           "condition": "(!gitVersion)",
           "exclude": [
             "GitVersion.yml"
@@ -48,7 +54,7 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "ConsoleBox",
+      "replaces": "ConsoleBox"
     },
     "basic": {
       "type": "parameter",
@@ -62,6 +68,12 @@
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
+    "settings": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Use settings binders."
+    },
     "gitVersion": {
       "type": "parameter",
       "datatype": "bool",
@@ -73,7 +85,7 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Run main with async await."
-    },
+    },    
     "single": {
       "type": "parameter",
       "datatype": "bool",
