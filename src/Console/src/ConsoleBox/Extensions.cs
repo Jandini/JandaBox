@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ConsoleBox;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
@@ -9,12 +10,9 @@ using Serilog;
 
 internal static class Extensions
 {
-    internal static void LogVersion<T>(this IServiceProvider provider)
-    {
-        provider
-            .GetRequiredService<ILogger<T>>()
-            .LogInformation("ConsoleBox {version:l}", typeof(T).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion);
-    }
+    internal static void LogVersion<T>(this IServiceProvider provider) => provider
+        .GetRequiredService<ILogger<T>>()
+        .LogInformation(About.Program.ToString());
 
 
     internal static T Bind<T>(this IConfiguration configuration, string section)
