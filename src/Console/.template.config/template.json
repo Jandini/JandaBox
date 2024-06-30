@@ -83,7 +83,7 @@
     "async": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false",
+      "defaultValue": "true",
       "description": "Run main with async await."
     },    
     "single": {
