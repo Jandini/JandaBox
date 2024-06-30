@@ -1,5 +1,4 @@
-﻿using ConsoleBox;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
@@ -12,8 +11,7 @@ internal static class Extensions
 {
     internal static void LogVersion<T>(this IServiceProvider provider) => provider
         .GetRequiredService<ILogger<T>>()
-        .LogInformation(About.Program.ToString());
-
+        .LogInformation($"ConsoleBox {Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion}");
 
     internal static CancellationToken GetCancellationToken(this IServiceProvider provider)
     {
