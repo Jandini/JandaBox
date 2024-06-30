@@ -20,6 +20,12 @@ JandaBox NuGet Class Library             nugetbox    [C#]      JandaBox/NuGet
 JandaBox Service Classes and Extensions  servicebox  [C#]      JandaBox/Service
 ```
 
+
+
+Learn more about templates in the [wiki pages](https://github.com/Jandini/JandaBox/wiki).
+
+
+
 ## Quick Start
 
 To install JandaBox templates use `dotnet` command.
@@ -66,7 +72,9 @@ dotnet new servicebox -n DemoService --nameSpace MyApp.Services --logger
 
 
 
-### Add new service
+
+
+## Add a new service tutorial
 
 This tutorial demonstrates how to add simple service to the console application created with JandaBox.
 
@@ -147,7 +155,8 @@ namespace Demo.Services
 ```
 
 
-### Class Library into NuGet
+
+## Class Library into NuGet tutorial
 
 This tutorial demonstrates how to create a new library, push it to GitHub, and publish it on NuGet.org using the **JandaBox nugetbox** template. Additionally, this tutorial provides explanations on why and how to create PAT tokens and NuGet.org tokens.
 
