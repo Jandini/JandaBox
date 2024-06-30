@@ -46,10 +46,14 @@ internal class Main
         _config = config;
 #endif
     }
-#if (async)
+#if (async && settings)
     public async Task Run(string path, CancellationToken cancellationToken = default)
-#else
+#elif (async)
+    public async Task Run(CancellationToken cancellationToken = default)
+#elif (settings)
     public void Run(string path)
+#else
+    public void Run()
 #endif
     {
 #if (settings)

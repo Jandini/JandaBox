@@ -31,12 +31,12 @@ internal static class Extensions
         return cancellationTokenSource.Token;
     }
 
-
+#if(settings)
     internal static T Bind<T>(this IConfiguration configuration, string section)
     {
         return configuration.GetRequiredSection(section).Get<T>();
     }
-
+#endif
     internal static IConfigurationBuilder AddEmbeddedJsonFile(this IConfigurationBuilder builder, string name)
     {
         return builder
