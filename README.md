@@ -9,13 +9,15 @@ Out of the box .NET6 and .NET7 templates
 - Console App with dependency injection, logging, configuration, [GitVersion](https://gitversion.net/docs/) and [CommandLineParser](https://github.com/commandlineparser/commandline).
 - ASP.NET Core Web API with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/) and [GitVersion](https://gitversion.net/docs/)
 - NuGet ready Class Library with with GitHub Actions and [GitVersion](https://gitversion.net/docs/).
+- Service files: a service interface, an implementation, and an extension class.
 
 ```
-Template Name                  Short Name  Language  Tags
------------------------------  ----------  --------  ----------------
-JandaBox ASP.NET Core Web API  webapibox   [C#]      JandaBox/WebApi
-JandaBox Console App           consolebox  [C#]      JandaBox/Console
-JandaBox NuGet Class Library   nugetbox    [C#]      JandaBox/NuGet
+Template Name                            Short Name  Language  Tags
+---------------------------------------  ----------  --------  ----------------
+JandaBox ASP.NET Core Web API            webapibox   [C#]      JandaBox/WebApi
+JandaBox Console App                     consolebox  [C#]      JandaBox/Console
+JandaBox NuGet Class Library             nugetbox    [C#]      JandaBox/NuGet
+JandaBox Service Classes and Extensions  servicebox  [C#]      JandaBox/Service
 ```
 
 ## Quick Start
@@ -53,6 +55,101 @@ Create .NET7 web API  from `webapibox` template.
 ```sh
 dotnet new webapibox -n MyWebService
 ```
+
+
+
+
+
+### Service Files
+
+Add new service interface, implementation and extsions.
+
+```sh
+dotnet new servicebox -n DemoService --nameSpace MyApp.Services
+```
+
+
+
+#### Create console application and add a service
+
+Create demo console application.
+
+```sh
+C:\Demo>dotnet new consolebox
+The template "JandaBox Console App" was created successfully.
+```
+
+Go to the source folder and create Services directory.
+
+```
+C:\Demo>cd src\Demo
+C:\Demo\src\Demo>mkdir Services
+C:\Demo\src\Demo>cd Services
+C:\Demo\src\Demo\Services
+```
+
+Add demo service
+
+```sh
+dotnet new servicebox -n DemoService --nameSpace Demo.Services --logger
+The template "JandaBox Service Classes and Extensions" was created successfully.
+```
+
+The template provides following files: 
+
+###### IDemoService.cs
+
+```c#
+namespace Demo.Services
+{
+    public interface IDemoService
+    {
+
+    }
+}
+```
+
+
+
+###### DemoService.cs
+
+```c#
+using Microsoft.Extensions.Logging;
+
+namespace Demo.Services
+{
+    internal class DemoService : IDemoService
+    {
+        private readonly ILogger<DemoService> _logger;
+
+        public DemoService(ILogger<DemoService> logger) 
+        {
+            _logger = logger;
+        }
+    }
+}
+```
+
+
+
+###### DemoServiceExtensions.cs
+
+```c#
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Demo.Services
+{
+    public static class DemoServiceExtensions
+    {
+        public static IServiceCollection AddDemoService(this IServiceCollection services)
+        {
+            return services.AddTransient<IDemoService, DemoService>();
+        }
+    }
+}
+```
+
+
 
 
 
