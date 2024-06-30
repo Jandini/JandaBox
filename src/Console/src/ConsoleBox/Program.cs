@@ -24,7 +24,18 @@ using var provider = new ServiceCollection()
 try
 {
 #if (async)
-    await provider.GetRequiredService<Main>().Run();
+   var cancellationTokenSource = new CancellationTokenSource();
+
+    Console.CancelKeyPress += (sender, eventArgs) =>
+    {
+        provider.GetRequiredService<ILogger<Program>>()
+            .LogWarning("Ctrl+C pressed. Shutting down gracefully...");
+        
+        cancellationTokenSource.Cancel();
+        eventArgs.Cancel = true; 
+    };
+
+    await provider.GetRequiredService<Main>().Run(cancellationTokenSource.Token);
 #else
     provider.GetRequiredService<Main>().Run();
 #endif    
@@ -32,7 +43,7 @@ try
 catch (Exception ex)
 {
     provider.GetService<ILogger<Program>>()?
-        .LogCritical(ex, "Unhandled exception");
+        .LogCritical(ex, "Program failed.");
 }
 #else
 using Microsoft.Extensions.DependencyInjection;
@@ -61,13 +72,16 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
 
     try
     {
+#if (async)
+        var token = provider.GetCancellationToken();
+#endif
         var main = provider.GetRequiredService<Main>();
 
         switch (parameters)
         {
             case Options.Run options:
 #if (async)
-                await main.Run(options.Path);
+                await main.Run(options.Path, token);
 #else
                 main.Run(options.Path);
 #endif
@@ -77,7 +91,7 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
     catch (Exception ex)
     {
         provider.GetService<ILogger<Program>>()?
-            .LogCritical(ex, "Unhandled exception");
+            .LogCritical(ex, "Program failed.");
     }
 });
 #endif

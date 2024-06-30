@@ -15,6 +15,23 @@ internal static class Extensions
         .LogInformation(About.Program.ToString());
 
 
+    internal static CancellationToken GetCancellationToken(this IServiceProvider provider)
+    {
+        var cancellationTokenSource = new CancellationTokenSource();
+
+        Console.CancelKeyPress += (sender, eventArgs) =>
+        {
+            provider.GetRequiredService<ILogger<Program>>()
+                .LogWarning("Ctrl+C pressed. Shutting down gracefully...");
+
+            cancellationTokenSource.Cancel();
+            eventArgs.Cancel = true;
+        };
+
+        return cancellationTokenSource.Token;
+    }
+
+
     internal static T Bind<T>(this IConfiguration configuration, string section)
     {
         return configuration.GetRequiredSection(section).Get<T>();

@@ -11,10 +11,10 @@ internal class Main
     }
 
 #if (async)
-    public async Task Run()
+    public async Task Run(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Hello, World!");
-        await Task.CompletedTask; 
+        await Task.Delay(1000, cancellationToken); 
     }
 #else
     public void Run()
@@ -38,7 +38,7 @@ internal class Main
         _config = config;
     }
 #if (async)
-    public async Task Run(string path)
+    public async Task Run(string path, CancellationToken cancellationToken = default)
 #else
     public void Run(string path)
 #endif
@@ -46,7 +46,7 @@ internal class Main
         var dir = new DirectoryInfo(path);
         _logger.LogInformation(_config.Bind<Settings>("ConsoleBox").Message, dir.Name, dir.GetFiles().Length);
 #if (async)
-        await Task.CompletedTask;
+        await Task.Delay(1000, cancellationToken); 
 #endif
     }
 }
