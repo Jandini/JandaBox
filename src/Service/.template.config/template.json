@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Janda",
+  "classifications": [
+    "JandaBox/Service"
+  ],
+  "name": "JandaBox Service Classes and Extensions",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "JandaBox Service provides three files: a service interface, an implementation, and an extension class.",
+  "groupIdentity": "servicebox",
+  "precedence": "4000",
+  "identity": "JandaBox.Service",
+  "shortName": "servicebox",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "sourceName": "ServiceBoxService",
+  "preferNameDirectory": false,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/.vs/**",
+            "**/bin/**",
+            "**/obj/**"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "sourceName": {
+      "type": "parameter",
+      "replaces": "ServiceBoxService"
+    },
+    "logger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Add a logger to the service implementation."
+    },
+    "nameSpace": {
+      "type": "parameter",
+      "datatype": "string",
+      "replaces": "NAMESPACE_NAME",
+      "defaultValue": "Services",
+      "description": "Service namespace."
+    }
+  }
+}
