@@ -29,6 +29,7 @@
           "condition": "(basic)",
           "exclude": [
             "src/ConsoleBox/appsettings.json",
+            "src/ConsoleBox/About.cs",
             "src/ConsoleBox/Extensions.cs",
             "src/ConsoleBox/Options.cs",
             "src/ConsoleBox/Settings.cs",
