@@ -4,7 +4,7 @@
 [![NuGet](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml)
 [![NuGet Version](http://img.shields.io/nuget/v/JandaBox.svg?style=flat&label=Version)](https://www.nuget.org/packages/JandaBox/)
 
-Out of the box .NET6 and .NET7 templates
+Out of the box .NET8 templates
 
 - Console App with dependency injection, logging, configuration, [GitVersion](https://gitversion.net/docs/) and [CommandLineParser](https://github.com/commandlineparser/commandline).
 - ASP.NET Core Web API with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/) and [GitVersion](https://gitversion.net/docs/)
@@ -41,7 +41,7 @@ You are now ready to use the templates from command line or from Visual Studio.
 
 ### Console Application
 
-Create .NET6 console application with dependency injection, Serilog and configuration.
+Create .NET8 console application with dependency injection, Serilog and configuration.
 
 ```sh
 dotnet new consolebox -n HelloWorld
@@ -55,7 +55,7 @@ HelloWorld basic console app using command line interface
 
 ### Web API
 
-Create .NET7 web API  from `webapibox` template.
+Create .NET8 web API from `webapibox` template.
 
 ```sh
 dotnet new webapibox -n MyWebService
