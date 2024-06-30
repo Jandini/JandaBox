@@ -20,6 +20,12 @@ JandaBox NuGet Class Library             nugetbox    [C#]      JandaBox/NuGet
 JandaBox Service Classes and Extensions  servicebox  [C#]      JandaBox/Service
 ```
 
+
+
+Learn more about templates in the [wiki pages](https://github.com/Jandini/JandaBox/wiki).
+
+
+
 ## Quick Start
 
 To install JandaBox templates use `dotnet` command.
@@ -33,7 +39,7 @@ You are now ready to use the templates from command line or from Visual Studio.
 ![helloworld](https://user-images.githubusercontent.com/19593367/234417753-44bf29db-064c-4d8a-af26-91afee97e6ca.gif)
 
 
-### Console App
+### Console Application
 
 Create .NET6 console application with dependency injection, Serilog and configuration.
 
@@ -47,7 +53,6 @@ HelloWorld basic console app using command line interface
 
 
 
-
 ### Web API
 
 Create .NET7 web API  from `webapibox` template.
@@ -57,20 +62,21 @@ dotnet new webapibox -n MyWebService
 ```
 
 
-
-
-
 ### Service Files
 
 Add new service interface, implementation and extsions.
 
 ```sh
-dotnet new servicebox -n DemoService --nameSpace MyApp.Services
+dotnet new servicebox -n DemoService --nameSpace MyApp.Services --logger
 ```
 
 
 
-#### Create console application and add a service
+
+
+## Add a new service tutorial
+
+This tutorial demonstrates how to add simple service to the console application created with JandaBox.
 
 Create demo console application.
 
@@ -108,7 +114,6 @@ namespace Demo.Services
     }
 }
 ```
-
 
 
 ###### DemoService.cs
@@ -151,299 +156,171 @@ namespace Demo.Services
 
 
 
+## Class Library into NuGet tutorial
+
+This tutorial demonstrates how to create a new library, push it to GitHub, and publish it on NuGet.org using the **JandaBox nugetbox** template. Additionally, this tutorial provides explanations on why and how to create PAT tokens and NuGet.org tokens.
+
+Here's what we aim to accomplish:
+
+1. The library will be named **AnyoneDrive** and will be available under the **MIT license**.
+2. The package's author is **Matt Janda**.
+3. Semantic versioning, as provided by **GitVersion**, will be used for versioning the library.
+4. The package will be published on GitHub under the **Jandini** owner.
+5. Automatic building and publishing of the package will be handled by **GitHub actions**.
+6. The package will be published to a **private GitHub packages registry** for each branch and commit. This approach allows you to create NuGet packages and test them without the need to publish them to the public NuGet.org.
+7. The package will be published to **Nuget.org** only after a tag is created.
+
+*Please note that you should replace **Jandini** and **AnyoneDrive** with your GitHub owner and your repository name, respectively.*
 
 
 
+Let's get started!
 
-### NuGet Class Library
+* Create a new EMPTY repository in GitHub. 
 
-Create NuGet ready class library with GitHub Actions.
+  * Head over to [GitHub's repository creation page](https://github.com/new).
+  * Create a new repository, making sure **not** to add a `README.md`, `.gitignore`, or license file.
+  * Your repository will have a home at `https://github.com/Jandini/AnyoneDrive.git`.
 
-```sh
-dotnet new nugetbox -n MyNuGet --actions --user Jandini
-```
+* Open your command line or terminal and run the following command to create a new project:
 
-Create simple class library without NuGet configuration.
-
-```sh
-dotnet new nugetbox -n MyLibrary --nuget false
-```
-
-How to create and push NuGet package to registry ? 
-
-Read more under "JandaBox NuGet Class Library" 
-
-
-
-## JandaBox Console App
-
-ConsoleBox .NET template provides solution for console application with dependency injection, logging, and configuration. Default logger is [Serilog](https://serilog.net). Use `--serilog false` parameter to switch to Microsoft console logger.
-
-##### Template Options
-
-- `--basic`  Create basic console application with minimal amount startup code. Default value is `false`.
-- `--serilog`  Use Serilog. Default value is `true`. 
-- `--async` Create asynchronous code.  Default value is `false`.
-- `--single` Publish as single file, self contained, win-x64 console application.
-- `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.  
-
-  ```sh
-  dotnet new consolebox -n MyApp --git
-  cd MyApp
-  git init -b main
-  git add .
-  git commit -m "First commit"
-  dotnet build src
+  ```shell
+  dotnet new nugetbox -n AnyoneDrive --nuget --tagNugetOrg --license --authors "Matt Janda" --user Jandini --actions --gitVersion
   ```
 
+  This command will create a new project named "AnyoneDrive". Once created, navigate to the folder and list its contents:
 
-##### Template features 
-
-- Repository Layout
-  - The `src` and `bin` folders 
-  - Default `README.md` file 
-  - Default `.gitignore` file
-  - Default `launchSettings.json` file
-- Dependency Injection
-  - Main service with logging
-  - Dispose service provider 
-- Logging
-  - `Serilog` or `Microsoft` log providers  
-  - Serilog environment enrichers
-  - Unhandled exceptions logging
-- Configuration
-  - Embedded `appsettings.json` file
-  - Override embedded `appsettings.json` with a file
-  - Configuration binding
-- Semantic Versioning
-  - `GitVersion.MsBuild` package
-  - Configuration `GitVersion.yml` file
-- Command Line Parser
-  - Verbs and options parser
-- Asynchronous code
-  - Run Main with `async` and `await`
-- Release build without debug symbols
-  - Conditional project parameters for `Release` configuration to suppress debug symbols 
-
-
-
-
-### Basic console application
-
-Create basic console application with Microsoft console logger
-
-```sh
-dotnet new consolebox -n Basic --basic --serilog false	
-```
-
-or console application with Serilog.
-
-```sh
-dotnet new consolebox -n Basic --simple
-```
-
-
-
-### Default console application
-
-Create console application with Serilog to console and file. 
-
-```sh
-dotnet new consolebox -n MyApp
-```
-
-You can create console application with Microsoft console logger only.
-
-```sh
-dotnet new consolebox -n MyApp --serilog false
-```
-
-
-
-
-
-## JandaBox ASP.NET Core Web API
-
-Create web API service with [Serilog](https://serilog.net/), [AutoMapper](https://automapper.org/) and simple Health endpoint.
-
-```sh
-dotnet new webapibox -n MyWebService
-```
-
-
-
-##### Template options
-
-
-- `--openApi`  Add NuGet packages for OpenApi code generator.
-- `--windowsService`  Add run as windows service.
-- `--exceptionMiddleware` Add global exception handler middleware.
-- `--appName` Add application name and version override option through appsettings or environment variables. 
-- `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.
-- `--elasticLog` Add Elasticsearch Serilog sink and configuration.
-
-
-##### Template features
-
-- Repository Layout
-  - The `src` and `bin` folders 
-  - Default `README.md` file 
-  - Default `.gitignore` file
-  - Default `launchSettings.json` file
-- Semantic Versioning
-  - Optional parameter `--gitVersion` provides `GitVersion.MsBuild` package and `GitVersion.yml` configuration file.
-- Simple Health endpoint
-  - Name and version of the service
-- AutoMapper
-  - DTO profiles and mapping
-- Logging
-  - `Serilog` for web hosting
-  - Serilog environment enrichers like computer name
-- Configuration
-  - `appsettings.json` file
-  - Override settings through environment variables
-- Application Name and Version Override
-  - Optional parameter `--appOverride` provides application name and version override through `appsettings.json`.
-- Run as Windows Service
-  - Optional parameter `--windowsService` add windows service start up.
-- Open API
-  - Optional parameter `--openApi`  add latest packages for OpenApi code generator.  
-- Start up
-  - Remove "Dto" postfix from DTOs class names for Swagger 
-  - Log all environment variables in `DEBUG` build
-  - Validate AutoMapper profiles in `DEBUG` build
-  - Log web service name and version.
-  - Swagger website title is set to assembly name.
-- Release build without debug symbols
-  - Conditional project parameters for `Release` configuration to suppress debug symbols. 
-- Unhandled exception handler through middleware
-  - Optional parameter `--exceptionMiddleware` provides unhandled exception middleware. 
-
-
-
-
-## JandaBox NuGet Class Library
-
-Create NuGet package and push to GitHub/NuGet.org package registry. 
-
-- Create new GitHub repository.
-- Create GitHub access tokens and/or API key in NuGet.org and save it as secrets in the new repository.
-- Create new Project from the template and push it to GitHub. 
-
-  ```sh
-  dotnet new nugetbox -n MyNuGet --actions --user Jandini --gitVersion
-  cd MyNuGet
-  git init -b main
-  git add .
-  git commit -m "First commit"
-  git remote add origin https://github.com/Jandini/MyNuGet.git
-  git push -u origin main
+  ```cmd
+  cd AnyoneDrive
+  dir
   ```
 
-At this point GitHub actions will create NuGet package and push it to GitHub private package registry. The package is created and pushed only for main branch. 
+  The directory structure should resemble the following:
 
-* A new tag will trigger NuGet pipeline which will create and push release package to GitHub or NuGet.org.  Use `--tagNugetOrg` parameter to push release package to nuget.org. Nuget.org API key is required in repos' secrets. 
-
-Read more on how to use GitHub NuGet registry in GitHub actions here https://docs.github.com/en/actions/security-guides/automatic-token-authentication
-
-### Step by step
-
-
-- Create new GitHub repository
-  - Go to https://github.com/new and create public or private repository.
-  - Do not add any files at this stage.
-  - Your repository URL should look like https://github.com/Jandini/MyNuGet.git where `Jandini` is going to be your user name.
-
-*Following step can be skipped if you have safely stored your PAT which can be re-used.*
-
-- Create Personal Access Token (PAT) with `write:packages` permissions. This will allow to push NuGet packages into GitHub package registry. 
-  - Go to https://github.com/settings/tokens and from drop down "Generate new token" select "Generate new token (classic)" or go directly to https://github.com/settings/tokens/new
-  - Set "Note" to anything you want. Usually it should reflect purpose of the token. 
-  - Select checkbox "write:packages" to allow upload packages to GitHub Package Registry.
-  - Click "Generate token"
-  - Copy the new token to clipboard. Note: you will see the token only once.
-  - Add token to repository secrets as PACKAGE_REGISTRY_TOKEN. 
-
-*Following steps explains how create API key in https://www.nuget.org/. If you are planning to push your release packages to nuget.org then you must use `--tagNugetOrg` parameter when creating project from template and perform following steps.*
-
-- Go to https://www.nuget.org/ and login to your account. 
-- Under "API Keys" create new token or go directly to https://www.nuget.org/account/apikeys
-  - Specify "Key Name"
-  - You can specify pattern name for your NuGet package or use `*` to allow push for any package
-  - Click "Create"
-  - Copy the Key into clipboard
-
-- Add NuGet API Key to Secrets in GitHub repository.
-
-  - Go To "Actions secrets and variables" 
-    - Open repository Setting 
-    - In the left hand side, under Security select Secrets and variables | Actions
-
-  - Click "New repository secret"
-  - Paste your NuGet API Key into "Secret*" field 
-  - Secret's "Name" must be set to  `NUGET_ORG_API_KEY`. This name is used in `nuget.yml` file.
-  - Click "Add secret"
-
-- Create new project from `nugetbox` template.
-
-  - Give it a name `-n MyNuGet`
-  - Add GitHub Actions `--actions`
-  - Provide your GitHub user name `--user Jandini`
-  - Add versioning with GitVersoin `--gitVersion`
-
-  ```sh
-  dotnet new nugetbox -n MyNuGet --actions --user Jandini --gitVersion
+  ```cmd
+  06/10/2023  22:56    <DIR>          .github
+  06/10/2023  22:56    <DIR>          src
+  06/10/2023  22:56             6,001 .gitignore
+  06/10/2023  22:56               241 GitVersion.yml
+  06/10/2023  22:56             6,643 icon.png
+  06/10/2023  22:56             1,067 LICENSE
+  06/10/2023  22:56               476 README.md
   ```
 
-- Initialize local git repository and push it to GitHub
+* Add the project to GitHub repository. 
 
-  ```sh
-  cd MyNuGet
+  Initialize a local Git repository and simultaneously create a new branch:
+
+  ```shell
   git init -b main
+  ```
+
+  Add the remote origin to the local repository:
+
+  ```shell
+  git remote add origin https://github.com/Jandini/AnyoneDrive.git
+  ```
+
+  Stage all the files before creating the first commit:
+
+  ```shell
   git add .
+  ```
+
+  Create the initial commit:
+
+  ```c#
   git commit -m "First commit"
-  git remote add origin https://github.com/Jandini/MyNuGet.git
+  ```
+
+  Push the new branch to the remote GitHub repository, using `-u` to set the upstream branch that doesn't exist yet in the remote repository:
+
+  ```shell
   git push -u origin main
   ```
 
 
 
-That's all. Your NuGet package will be waiting in GitHub registry ! 
+You've successfully created a new project and made it available on GitHub. To view your repository, visit https://github.com/Jandini/AnyoneDrive 
+
+![image-20231006231234635](https://github.com/Jandini/JandaBox/assets/19593367/a65c23d7-9ff5-45d4-842b-7304fc6eb0c9)
+
+
+The GitHub Actions have started executing the "**Build**" action, which is currently **failing** as expected. To investigate further, go to GitHub Actions by navigating to https://github.com/Jandini/AnyoneDrive/actions and check the build details to understand why it's failing.
+
+The build is failing at the "Setup" step, and you'll see the following error message:
+
+```shell
+Error: The NUGET_AUTH_TOKEN environment variable was not provided. In this step, add the following: 
+env:
+  NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+```
+
+The `NUGET_AUTH_TOKEN` is an environment variable used in the context of the NuGet package manager, which is a package manager for .NET development. NuGet is used to manage and distribute libraries, frameworks, and tools for .NET applications.  
+
+This error occurs because the Setup step is attempting to configure `dotnet` to have access (`source-url`) to your private GitHub NuGet registry. You can find this configuration in your GitHub Actions workflow file at https://github.com/Jandini/AnyoneDrive/blob/main/.github/workflows/build.yml#L28:
+
+```yml
+- name: Setup
+  uses: actions/setup-dotnet@v1
+  with:
+    dotnet-version: 7.0.x
+    source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+```
+
+To resolve this issue, you should NOT follow the error's recommendation and use `NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}`. The `GITHUB_TOKEN` has read access only to your private GitHub NuGet registry, which will enable the Setup stage to proceed successfully.
+
+However, the "Push" step will fail due to insufficient permissions with the provided GITHUB_TOKEN.
+
+```yaml
+- name: Push
+  # Push packages into private github repository 
+  if: github.ref == 'refs/heads/main'
+  run: dotnet nuget push "../bin/Release/*.nupkg" -k ${{ secrets.PACKAGE_REGISTRY_TOKEN }} -s https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
+```
+
+In the workflow file (build.yml), the definition of `NUGET_AUTH_TOKEN` assigns the `PACKAGE_REGISTRY_TOKEN` secret string as follows:
+
+``` yaml
+env:
+    NUGET_AUTH_TOKEN: ${{ secrets.PACKAGE_REGISTRY_TOKEN }}
+```
+
+The build is currently failing because your repository does not have the secret string that contains the Personal Access Token (PAT) required for successful execution.
 
 
 
+Now, let's create a Personal Access Token (PAT) and add it to the secrets of your GitHub repository:
+
+1. **Generate a PAT:**
+
+   - Go to your **User Profile** > **Settings** > **Developer settings** > **Personal access tokens**. Alternatively, you can follow this link: [GitHub Token Settings](https://github.com/settings/tokens).
+   - Click on **Generate new token (classic)** and authenticate your user.
+   - In the **Note** field, enter a name for your token (it can be anything you prefer).
+   - Set the **Expiration** time according to your preference.
+   - Select the following scopes:
+     - **write:packages** - Allows you to upload packages to GitHub Package Registry.
+     - **read:packages** - Enables downloading packages from GitHub Package Registry.
+   - Click **Generate Token**.
+
+   Be sure to **copy** the generated token and keep it in a secure place. This token can be used in multiple repositories.
+
+2. **Add the Token to Repository Secrets:**
+
+   - Navigate to your **AnyoneDrive** repository on GitHub.
+   - Go to **Settings** > **Secrets and variables** > **Actions**. You can access it directly via this link: [Repository Secrets](https://github.com/Jandini/AnyoneDrive/settings/secrets/actions).
+   - Click on **New repository secret**.
+   - Set the **Name** to `PACKAGE_REGISTRY_TOKEN`, matching what's declared in your `build.yml`.
+   - Paste the PAT token you obtained earlier into the **Secret** text box.
+
+Now, the secret `PACKAGE_REGISTRY_TOKEN` is securely stored within your GitHub repository. Please note that you can update an existing secret if your PAT token expires. However, you won't be able to view the current value for security reasons.
+
+Return to GitHub Actions and re-run any previously failed jobs. You should now have a successful build, and the first NuGet package will be available in your GitHub private NuGet registry.
+
+![image-20231007001333416](https://github.com/Jandini/JandaBox/assets/19593367/192e8ae9-b94e-4085-8b34-b79896b5f620)
 
 
 
-##### Template options
-
-- `--nuget`  Add properties to project file required to build and push NuGet package. Default value is `true`. Use `false` to create simple class library.
-- `--user`  Specify GitHub user name to update links in project file properties and GitHub action badge links in README.md file. 
-- `--actions` Add GitHub Actions pipeline files for building and pushing NuGet packages. Build pipeline creates NuGet package and push it to private GitHub packages only form `main` branch. NuGet pipeline creates NuGet package and push it to NuGet.org package registry.  Default value is `false`.
-- `--tagNugetOrg` Add GitHub action file to push tagged NuGet packages to NuGet.org registry. By default tagged packages are pushed into of GitHub package registry. 
-- `--gitVersion` Add semantic versioning with GitVersion. The code created with this parameter can be only build from initialized git repository.
-- `--license` Add MIT license file to the NuGet package with authors provided in `--authors` parameter.
-- `--authors` Add NuGet package authors. The authors will be written to package properties and license file.  
-
-
-##### Template features
-
-- Repository Layout
-  - The `src` and `bin` folders 
-  - Default `README.md` file 
-  - Default `.gitignore` file
-- NuGet configuration
-  - Build NuGet package with only `dotnet pack` 
-- GitHub Actions
-  - Restore packages from private GitHub package registry. 
-  - Pack library into NuGet package.
-  - Push NuGet package created from main branch into NuGet package registry.
-  - Push Tagged package into NuGet.org or GitHub package registry.
-- Update links in project properties `RepositoryUrl`  `PackageProjectUrl`  and badge links in `README.md` files. 
-- Add files into the NuGet package
-  - README.md 
-  - MIT LICENSE with given authors
-  - Icon file
 
 
 
