@@ -135,11 +135,6 @@ namespace Demo.Services
 }
 ```
 
-You can do the same from the Visual Studio.
-
-![jandabox](https://github.com/Jandini/JandaBox/assets/19593367/55e1f23a-3574-4156-92df-2ba62f6e61b5)
-
-
 ###### DemoServiceExtensions.cs
 
 ```c#
@@ -157,6 +152,9 @@ namespace Demo.Services
 }
 ```
 
+You can do the same from the Visual Studio.
+
+![jandabox](https://github.com/Jandini/JandaBox/assets/19593367/55e1f23a-3574-4156-92df-2ba62f6e61b5)
 
 
 
