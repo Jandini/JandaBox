@@ -1,7 +1,6 @@
-﻿namespace WebApiBox.Services
+﻿namespace WebApiBox.Services;
+
+public class HealthInfo
 {
-    public class HealthInfo
-    {
-        public ServiceInfo? Service { get; set; }
-    }
+    public ServiceInfo? Service { get; set; }
 }

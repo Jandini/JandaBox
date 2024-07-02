@@ -1,10 +1,9 @@
-﻿namespace WebApiBox.Services
+﻿namespace WebApiBox.Services;
+
+public static class HealthExtensions
 {
-    public static class HealthExtensions
+    public static IServiceCollection AddHealth(this IServiceCollection services)
     {
-        public static IServiceCollection AddHealth(this IServiceCollection services)
-        {
-            return services.AddScoped<IHealthService, HealthService>();
-        }
+        return services.AddScoped<IHealthService, HealthService>();
     }
 }

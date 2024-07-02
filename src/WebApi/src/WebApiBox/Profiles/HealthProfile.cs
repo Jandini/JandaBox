@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
 
-namespace WebApiBox.Profiles
+namespace WebApiBox.Profiles;
+
+public class HealthProfile : Profile
 {
-    public class HealthProfile : Profile
+    public HealthProfile()
     {
-        public HealthProfile()
-        {
-            CreateMap<Services.ServiceInfo, Models.ServiceInfoDto>();
-            CreateMap<Services.HealthInfo, Models.HealthInfoDto>();
-        }
+        CreateMap<Services.ServiceInfo, Models.ServiceInfoDto>();
+        CreateMap<Services.HealthInfo, Models.HealthInfoDto>();
     }
 }
