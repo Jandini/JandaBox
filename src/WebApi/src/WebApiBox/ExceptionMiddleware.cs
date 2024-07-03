@@ -2,33 +2,32 @@
 using System.Net;
 using System.Net.Mime;
 
-namespace WebApiBox
+namespace WebApiBox;
+
+public class ExceptionMiddleware
 {
-    public class ExceptionMiddleware
+    private readonly RequestDelegate _next;
+    private readonly ILogger<ExceptionMiddleware> _logger;
+
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionMiddleware> _logger;
-
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+        _logger = logger;
+        _next = next;
+    }
+    public async Task InvokeAsync(HttpContext context)
+    {
+        try
         {
-            _logger = logger;
-            _next = next;
+            await _next(context);
         }
-        public async Task InvokeAsync(HttpContext context)
+        catch (Exception ex)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception ex)
-            {
-                var description = context.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>();
-                _logger.LogError(ex, "Unhandled exception in {UnhandledExceptionThrownBy}", description?.DisplayName);
+            var description = context.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>();
+            _logger.LogError(ex, "Unhandled exception in {UnhandledExceptionThrownBy}", description?.DisplayName);
 
-                context.Response.ContentType = MediaTypeNames.Text.Plain;
-                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                await context.Response.WriteAsync(ex.Message);
-            }
+            context.Response.ContentType = MediaTypeNames.Text.Plain;
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            await context.Response.WriteAsync(ex.Message);
         }
     }
 }

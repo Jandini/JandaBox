@@ -1,7 +1,6 @@
-﻿namespace NAMESPACE_NAME
-{
-    public interface IServiceBoxService
-    {
+﻿namespace NAMESPACE_NAME;
 
-    }
+public interface IServiceBoxService
+{
+
 }

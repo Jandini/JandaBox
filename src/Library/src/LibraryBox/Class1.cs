@@ -1,7 +1,6 @@
-﻿namespace LibraryBox
-{
-    public class Class1
-    {
+﻿namespace LibraryBox;
 
-    }
+public class Class1
+{
+
 }

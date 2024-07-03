@@ -1,7 +1,6 @@
-﻿namespace WebApiBox.Services
+﻿namespace WebApiBox.Services;
+
+public interface IHealthService
 {
-    public interface IHealthService
-    {
-        Task<HealthInfo> GetHealthInfoAsync();
-    }
+    Task<HealthInfo> GetHealthInfoAsync();
 }
