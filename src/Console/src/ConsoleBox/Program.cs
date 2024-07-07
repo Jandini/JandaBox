@@ -29,7 +29,7 @@ try
     Console.CancelKeyPress += (sender, eventArgs) =>
     {
         provider.GetRequiredService<ILogger<Program>>()
-            .LogWarning("Ctrl+C pressed. Shutting down gracefully...");
+            .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
         
         cancellationTokenSource.Cancel();
         eventArgs.Cancel = true; 
