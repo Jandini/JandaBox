@@ -7,7 +7,7 @@ using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 #endif
 
-using var provider = new ServiceCollection()
+using var serviceProvider = new ServiceCollection()
 #if (serilog)    
     .AddLogging(builder => builder.AddSerilog(new LoggerConfiguration()
         .Enrich.WithMachineName()
@@ -24,25 +24,25 @@ using var provider = new ServiceCollection()
 try
 {
 #if (async)
-    using var source = new CancellationTokenSource();
+    using var cancellationTokenSource = new CancellationTokenSource();
 
     Console.CancelKeyPress += (sender, eventArgs) =>
     {
-        provider.GetRequiredService<ILogger<Program>>()
+        serviceProvider.GetRequiredService<ILogger<Program>>()
             .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
         
-        source.Cancel();
+        cancellationTokenSource.Cancel();
         eventArgs.Cancel = true; 
     };
 
-    await provider.GetRequiredService<Main>().Run(source.Token);
+    await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
 #else
-    provider.GetRequiredService<Main>().Run();
+    serviceProvider.GetRequiredService<Main>().Run();
 #endif    
 }
 catch (Exception ex)
 {
-    provider.GetService<ILogger<Program>>()?
+    serviceProvider.GetService<ILogger<Program>>()?
         .LogCritical(ex, "Program failed.");
 }
 #else
@@ -62,28 +62,28 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
         .AddEmbeddedJsonFile("appsettings.json")
         .Build();
 
-    using var provider = new ServiceCollection()
+    using var serviceProvider = new ServiceCollection()
         .AddConfiguration(config)
         .AddLogging(config)
         .AddServices()
         .BuildServiceProvider();
 
-    provider.LogVersion<Program>();
+    serviceProvider.LogVersion<Program>();
 
     try
     {
 #if (async)
-        using var source = provider.GetCancellationTokenSource();
+        using var cancellationTokenSource = serviceProvider.GetCancellationTokenSource();
 #endif
-        var main = provider.GetRequiredService<Main>();
+        var main = serviceProvider.GetRequiredService<Main>();
 
         switch (parameters)
         {
             case Options.Run options:
 #if (async && settings)
-                await main.RunAsync(options.Path, source.Token);
+                await main.RunAsync(options.Path, cancellationTokenSource.Token);
 #elif (async)
-                await main.RunAsync(source.Token);
+                await main.RunAsync(cancellationTokenSource.Token);
 #elif (settings)
                 main.Run(options.Path);
 #else
@@ -94,7 +94,7 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
     }
     catch (Exception ex)
     {
-        provider.GetService<ILogger<Program>>()?
+        serviceProvider.GetService<ILogger<Program>>()?
             .LogCritical(ex, "Program failed.");
     }
 });
