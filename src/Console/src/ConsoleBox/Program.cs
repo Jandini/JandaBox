@@ -24,18 +24,18 @@ using var provider = new ServiceCollection()
 try
 {
 #if (async)
-   var cancellationTokenSource = new CancellationTokenSource();
+    using var source = new CancellationTokenSource();
 
     Console.CancelKeyPress += (sender, eventArgs) =>
     {
         provider.GetRequiredService<ILogger<Program>>()
             .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
         
-        cancellationTokenSource.Cancel();
+        source.Cancel();
         eventArgs.Cancel = true; 
     };
 
-    await provider.GetRequiredService<Main>().Run(cancellationTokenSource.Token);
+    await provider.GetRequiredService<Main>().Run(source.Token);
 #else
     provider.GetRequiredService<Main>().Run();
 #endif    
@@ -73,7 +73,7 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
     try
     {
 #if (async)
-        var token = provider.GetCancellationToken();
+        using var source = provider.GetCancellationTokenSource();
 #endif
         var main = provider.GetRequiredService<Main>();
 
@@ -81,9 +81,9 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
         {
             case Options.Run options:
 #if (async && settings)
-                await main.Run(options.Path, token);
+                await main.Run(options.Path, source.Token);
 #elif (async)
-                await main.Run(token);
+                await main.Run(source.Token);
 #elif (settings)
                 main.Run(options.Path);
 #else
