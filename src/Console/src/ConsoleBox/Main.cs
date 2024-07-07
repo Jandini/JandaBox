@@ -11,7 +11,7 @@ internal class Main
     }
 
 #if (async)
-    public async Task Run(CancellationToken cancellationToken)
+    public async Task RunAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Hello, World!");
         await Task.Delay(1000, cancellationToken); 
@@ -47,9 +47,9 @@ internal class Main
 #endif
     }
 #if (async && settings)
-    public async Task Run(string path, CancellationToken cancellationToken = default)
+    public async Task RunAsync(string path, CancellationToken cancellationToken = default)
 #elif (async)
-    public async Task Run(CancellationToken cancellationToken = default)
+    public async Task RunAsync(CancellationToken cancellationToken = default)
 #elif (settings)
     public void Run(string path)
 #else

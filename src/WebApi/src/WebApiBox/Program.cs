@@ -1,4 +1,4 @@
-// Created with JandaBox http://github.com/Jandini/JandaBox
+// Created with JandaBox 0.8.1 http://github.com/Jandini/JandaBox
 using AutoMapper;
 using Serilog;
 #if (exceptionMiddleware || elasticLog)

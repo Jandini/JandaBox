@@ -1,4 +1,4 @@
-﻿// Created with JandaBox http://github.com/Jandini/JandaBox
+﻿// Created with JandaBox 0.8.1 http://github.com/Jandini/JandaBox
 #if (basic)
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -7,7 +7,7 @@ using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 #endif
 
-using var provider = new ServiceCollection()
+using var serviceProvider = new ServiceCollection()
 #if (serilog)    
     .AddLogging(builder => builder.AddSerilog(new LoggerConfiguration()
         .Enrich.WithMachineName()
@@ -24,25 +24,25 @@ using var provider = new ServiceCollection()
 try
 {
 #if (async)
-   var cancellationTokenSource = new CancellationTokenSource();
+    using var cancellationTokenSource = new CancellationTokenSource();
 
     Console.CancelKeyPress += (sender, eventArgs) =>
     {
-        provider.GetRequiredService<ILogger<Program>>()
-            .LogWarning("Ctrl+C pressed. Shutting down gracefully...");
+        serviceProvider.GetRequiredService<ILogger<Program>>()
+            .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
         
         cancellationTokenSource.Cancel();
         eventArgs.Cancel = true; 
     };
 
-    await provider.GetRequiredService<Main>().Run(cancellationTokenSource.Token);
+    await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
 #else
-    provider.GetRequiredService<Main>().Run();
+    serviceProvider.GetRequiredService<Main>().Run();
 #endif    
 }
 catch (Exception ex)
 {
-    provider.GetService<ILogger<Program>>()?
+    serviceProvider.GetService<ILogger<Program>>()?
         .LogCritical(ex, "Program failed.");
 }
 #else
@@ -62,28 +62,28 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
         .AddEmbeddedJsonFile("appsettings.json")
         .Build();
 
-    using var provider = new ServiceCollection()
+    using var serviceProvider = new ServiceCollection()
         .AddConfiguration(config)
         .AddLogging(config)
         .AddServices()
         .BuildServiceProvider();
 
-    provider.LogVersion<Program>();
+    serviceProvider.LogVersion<Program>();
 
     try
     {
 #if (async)
-        var token = provider.GetCancellationToken();
+        using var cancellationTokenSource = serviceProvider.GetCancellationTokenSource();
 #endif
-        var main = provider.GetRequiredService<Main>();
+        var main = serviceProvider.GetRequiredService<Main>();
 
         switch (parameters)
         {
             case Options.Run options:
 #if (async && settings)
-                await main.Run(options.Path, token);
+                await main.RunAsync(options.Path, cancellationTokenSource.Token);
 #elif (async)
-                await main.Run(token);
+                await main.RunAsync(cancellationTokenSource.Token);
 #elif (settings)
                 main.Run(options.Path);
 #else
@@ -94,7 +94,7 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
     }
     catch (Exception ex)
     {
-        provider.GetService<ILogger<Program>>()?
+        serviceProvider.GetService<ILogger<Program>>()?
             .LogCritical(ex, "Program failed.");
     }
 });

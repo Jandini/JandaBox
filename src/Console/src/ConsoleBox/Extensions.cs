@@ -13,20 +13,20 @@ internal static class Extensions
         .GetRequiredService<ILogger<T>>()
         .LogInformation($"ConsoleBox {Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion}");
 
-    internal static CancellationToken GetCancellationToken(this IServiceProvider provider)
+    internal static CancellationTokenSource GetCancellationTokenSource(this IServiceProvider provider)
     {
         var cancellationTokenSource = new CancellationTokenSource();
 
         Console.CancelKeyPress += (sender, eventArgs) =>
         {
             provider.GetRequiredService<ILogger<Program>>()
-                .LogWarning("Ctrl+C pressed. Shutting down gracefully...");
+                .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
 
             cancellationTokenSource.Cancel();
             eventArgs.Cancel = true;
         };
 
-        return cancellationTokenSource.Token;
+        return cancellationTokenSource;
     }
 
 #if(settings)
