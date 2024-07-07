@@ -81,9 +81,9 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
         {
             case Options.Run options:
 #if (async && settings)
-                await main.Run(options.Path, source.Token);
+                await main.RunAsync(options.Path, source.Token);
 #elif (async)
-                await main.Run(source.Token);
+                await main.RunAsync(source.Token);
 #elif (settings)
                 main.Run(options.Path);
 #else
