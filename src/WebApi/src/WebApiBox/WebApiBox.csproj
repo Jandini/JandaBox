@@ -35,7 +35,7 @@
 	    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.1" />
 		<!--#endif-->
 		<!--#if (openApi)-->
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
 		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="8.0.6">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
