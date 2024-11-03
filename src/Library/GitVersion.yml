@@ -1,8 +1,8 @@
 mode: ContinuousDeployment
+workflow: GitFlow/v1
 assembly-versioning-scheme: MajorMinorPatch
 assembly-file-versioning-scheme: MajorMinorPatchTag
 assembly-informational-format: '{SemVer}'
-continuous-delivery-fallback-label: main
 
 branches:
   master:
