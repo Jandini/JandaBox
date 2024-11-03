@@ -32,7 +32,7 @@
 		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
 		<!--#endif-->
 		<!--#if (windowsService)-->
-	    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.0" />
+	    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.1" />
 		<!--#endif-->
 		<!--#if (openApi)-->
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
