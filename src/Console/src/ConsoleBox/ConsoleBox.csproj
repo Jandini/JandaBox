@@ -30,7 +30,7 @@
 		<PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
 		<!--#if (!basic)-->
 		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
-		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
 		<!--#endif-->
 		<!--#else-->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
