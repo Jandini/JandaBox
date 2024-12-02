@@ -3,6 +3,8 @@
 [![Build](https://github.com/Jandini/JandaBox/actions/workflows/build.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/build.yml)
 [![NuGet](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml/badge.svg)](https://github.com/Jandini/JandaBox/actions/workflows/nuget.yml)
 [![NuGet Version](http://img.shields.io/nuget/v/JandaBox.svg?style=flat&label=Version)](https://www.nuget.org/packages/JandaBox/)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/JandaBox.svg?style=flat&label=Downloads)](https://www.nuget.org/packages/Serilog.Enrichers.ClassName)
+
 
 Out of the box .NET8 templates
 
