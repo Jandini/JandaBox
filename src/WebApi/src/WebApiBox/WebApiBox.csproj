@@ -27,7 +27,7 @@
 		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.4" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
 		<!--#if (elasticLog)-->
-		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
+		<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
 		<!--#else-->
 		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
 		<!--#endif-->
