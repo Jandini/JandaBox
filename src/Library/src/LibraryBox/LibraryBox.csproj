@@ -43,7 +43,7 @@
 	<!--#if (gitVersion)-->
 
 	<ItemGroup>
-		<PackageReference Include="GitVersion.MsBuild" Version="6.0.4">
+		<PackageReference Include="GitVersion.MsBuild" Version="5.1.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
