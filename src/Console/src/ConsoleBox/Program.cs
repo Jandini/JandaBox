@@ -1,4 +1,4 @@
-﻿// Created with JandaBox 0.8.1 http://github.com/Jandini/JandaBox
+﻿// Created with JandaBox http://github.com/Jandini/JandaBox
 #if (basic)
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
