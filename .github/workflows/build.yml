@@ -82,5 +82,9 @@ jobs:
         dotnet gitversion /output buildserver 
         
     - name: Pack
-      run: nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_FullSemVer }}
+      run: | 
+        # Update version in Program.cs files
+        find . -type f -name "Program.cs" -exec sed -i "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +
+        # Create nuget package
+        nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_FullSemVer }}
  

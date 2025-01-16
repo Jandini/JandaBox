@@ -78,7 +78,11 @@ jobs:
         dotnet gitversion /output buildserver 
         
     - name: Pack
-      run: nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_SemVer }}
+      run: |
+        # Update version in Program.cs files
+        find . -type f -name "Program.cs" -exec sed -i "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +
+        # Create nuget package        
+        nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_SemVer }}
  
     - name: Push    
       run: dotnet nuget push "bin/*.nupkg" -k ${{ secrets.NUGET_ORG_API_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
