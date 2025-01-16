@@ -10,7 +10,7 @@ env:
 jobs:
   nuget:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
@@ -78,7 +78,9 @@ jobs:
         dotnet gitversion /output buildserver 
         
     - name: Update
-      run: find . -type f -name "Program.cs" -exec sed -i "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +        
+      run: |
+        find . -type f -name "Program.cs" -exec sed "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +
+        find . -type f -name "Program.cs" -exec sed -i "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +        
 
     - name: Pack
       run: nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_SemVer }}
