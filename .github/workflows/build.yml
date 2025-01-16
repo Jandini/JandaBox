@@ -76,15 +76,10 @@ jobs:
         dotnet build 
         # Cannot pack due to license properties in project file
 
-    - name: Version
-      run: |  
-        dotnet tool install --global GitVersion.Tool --version 6.0.4
-        dotnet gitversion /output buildserver 
-        
+    - name: Update
+      run: find . -type f -name "Program.cs" -exec sed -i "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +        
+  
     - name: Pack
-      run: | 
-        # Update version in Program.cs files
-        find . -type f -name "Program.cs" -exec sed -i "s/Created with JandaBox h*/Created with JandaBox ${{ env.GitVersion_FullSemVer }}/g" {} +
-        # Create nuget package
-        nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_FullSemVer }}
+      run: nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_SemVer }}
+  
  
