@@ -2,13 +2,13 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
   "classifications": ["JandaBox/Console"],
-  "name": "JandaBox Console App",
+  "name": "JandaBox Console App Project",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Console provides solution template for console application with dependency injection, logging, and configuration.",
-  "groupIdentity": "consolebox",
+  "description": "JandaBox Console provides project for console application with dependency injection, logging, and configuration.",
+  "groupIdentity": "consoleprj",
   "precedence": "4000",
-  "identity": "JandaBox.Console",
-  "shortName": "consolebox",
+  "identity": "JandaBox.Console.Project",
+  "shortName": "consoleprj",
   "tags": {
     "language": "C#",
     "type": "project"
@@ -28,25 +28,17 @@
         {
           "condition": "(basic)",
           "exclude": [
-            "src/ConsoleBox/appsettings.json",
-            "src/ConsoleBox/Extensions.cs",
-            "src/ConsoleBox/Options.cs",
-            "src/ConsoleBox/Settings.cs",
-            "src/ConsoleBox/Properties/*"
-          ]
-        },
-        {
-          "condition": "(projectOnly)",
-          "exclude": [            
-            "src/ConsoleBox.sln",
-            "README.md",
-            ".gitignore"
+            "appsettings.json",
+            "Extensions.cs",
+            "Options.cs",
+            "Settings.cs",
+            "Properties/*"
           ]
         },
         {
           "condition": "(!settings)",
           "exclude": [
-            "src/ConsoleBox/Settings.cs"
+            "Settings.cs"
           ]
         },
         {
@@ -78,8 +70,9 @@
     "projectOnly": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Create project only."
+      "defaultValue": "true",
+      "description": "Create project only.",
+      "isEnabled": false
     },
     "serilog": {
       "type": "parameter",
