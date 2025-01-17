@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if ! command -v dotnet-gitversion &> /dev/null; then
+  echo "GitVersion tool is not installed. Installing..."
+  DOTNET_NOLOGO=1
+  dotnet tool install --global GitVersion.Tool --version 5.*
+else
+  echo "GitVersion tool is already installed."
+fi
+
 # Check and install Mono if not present
 if ! command -v mono &> /dev/null; then
   echo "Mono is not installed. Installing..."
