@@ -47,6 +47,20 @@
             },
         },
         {
+            "name": "Try ServiceBox",
+            "type": "node-terminal",            
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf MyConsole;dotnet new consoleprj --linux -n MyConsole;cd MyConsole;dotnet new servicebox -n MyService --nameSpace Krowa; dotnet run",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
+        },
+
+        {
             "name": "Try ConsoleBox Project",
             "type": "node-terminal",            
             "request": "launch",
