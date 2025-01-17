@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{UNIQUE_PROJECT_GUID}") = "LibraryBox", "LibraryBox\LibraryBox.csproj", "{PROJECT_TYPE_GUID}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryBox", "LibraryBox\LibraryBox.csproj", "{PROJECT_INSTANCE_GUID}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{PROJECT_TYPE_GUID}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{PROJECT_TYPE_GUID}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{PROJECT_TYPE_GUID}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{PROJECT_TYPE_GUID}.Release|Any CPU.Build.0 = Release|Any CPU
+		{PROJECT_INSTANCE_GUID}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{PROJECT_INSTANCE_GUID}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{PROJECT_INSTANCE_GUID}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{PROJECT_INSTANCE_GUID}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

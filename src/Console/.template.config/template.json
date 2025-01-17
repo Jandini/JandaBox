@@ -110,19 +110,11 @@
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Publish as single file, self contained, win-x64 console application."
-    },
-    "uniqueProjectId":{
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "UNIQUE_PROJECT_GUID",
-      "parameters": {
-        "defaultFormat":"D"
-      }
-    },
+    },   
     "projectTypeId":{
       "type": "generated",
       "generator": "guid",
-      "replaces": "PROJECT_TYPE_GUID",
+      "replaces": "PROJECT_INSTANCE_GUID",
       "parameters": {
         "defaultFormat":"D"
       }
