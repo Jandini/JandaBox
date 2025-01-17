@@ -24,6 +24,14 @@
             "preLaunchTask": "Install JandaBox",
         },
         {
+            "name": "Try ConsoleBox Project",
+            "type": "node-terminal",            
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf MyConsole;dotnet new consolebox --basic --projectOnly --linux -n MyConsole;cd MyConsole/src;dotnet run --project MyConsole",
+            "preLaunchTask": "Install JandaBox",
+        },
+        {
             "name": "Try WebApiBox",
             "type": "node-terminal",            
             "request": "launch",

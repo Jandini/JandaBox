@@ -67,6 +67,12 @@
       "defaultValue": "false",
       "description": "Set runtime identifier to linux-x64."
     },
+    "projectOnly": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create project only."
+    },
     "serilog": {
       "type": "parameter",
       "datatype": "bool",
