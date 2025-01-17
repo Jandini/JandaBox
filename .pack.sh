@@ -19,9 +19,17 @@ fi
 
 # Get GitVersion
 GIT_VERSION=$(dotnet gitversion /showvariable SemVer)
+HEADER="Created with JandaBox"
+REPLACEMENT="$HEADER $GIT_VERSION"
+
+echo Updating version in Program.cs files.
+find . -type f -name "Program.cs" -exec sed -i "s/$HEADER/$REPLACEMENT/g" {} +
 
 # Pack the NuGet package using Mono
 mono /usr/local/bin/nuget.exe pack .nuspec -OutputDirectory bin/Release -NoDefaultExcludes -Version $GIT_VERSION
+
+echo Reverting version change in Program.cs files.
+find . -type f -name "Program.cs" -exec sed -i "s/$REPLACEMENT/$HEADER/g" {} +
 
 # Uninstall and reinstall the NuGet package
 dotnet new uninstall JandaBox > /dev/null
