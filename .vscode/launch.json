@@ -31,6 +31,21 @@
             "command": "rm -rf MyWebApi;dotnet new webapibox -n MyWebApi;cd MyWebApi/src;dotnet run MyWebApi --project MyWebApi",
             "preLaunchTask": "Install JandaBox",
         },
-
+        {
+            "name": "Try ConsoleBox Project",
+            "type": "node-terminal",            
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf MyConsole;dotnet new consoleprj --linux --serilog true -n MyConsole;cd MyConsole;dotnet run",
+            "preLaunchTask": "Install JandaBox",
+        },
+        {
+            "name": "Try WebApiBox Project",
+            "type": "node-terminal",            
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf MyWebApi;dotnet new webapiprj -n MyWebApi;cd MyWebApi;dotnet run",
+            "preLaunchTask": "Install JandaBox",
+        },
     ]
 }

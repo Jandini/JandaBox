@@ -2,7 +2,9 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net8.0</TargetFramework>
+		<!--#if (!projectOnly)-->
 		<BaseOutputPath>..\..\bin</BaseOutputPath>
+		<!--#endif-->
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--#if (single)-->
 		<PublishSingleFile>true</PublishSingleFile>
