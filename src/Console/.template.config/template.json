@@ -36,11 +36,9 @@
           ]
         },
         {
-          "condition": "(projectOnly)",
+          "condition": "(!vscode)",
           "exclude": [            
-            "src/ConsoleBox.sln",
-            "README.md",
-            ".gitignore"
+            ".vscode/**"
           ]
         },
         {
@@ -74,6 +72,12 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Set runtime identifier to linux-x64."
+    },
+    "vscode": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create launch.json for Visual Studio Code."
     },
     "projectOnly": {
       "type": "parameter",
