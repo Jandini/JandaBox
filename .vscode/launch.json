@@ -28,7 +28,7 @@
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf MyConsole;dotnet new consoleprj --linux -n MyConsole;cd MyConsole;dotnet run",
+            "command": "rm -rf MyConsole;dotnet new consoleprj --linux --serilog true -n MyConsole;cd MyConsole;dotnet run",
             "preLaunchTask": "Install JandaBox",
         },
         {
