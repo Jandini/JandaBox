@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Install JandaBox",
+            "type": "node-terminal",            
+            "request": "launch",
+            "command": "exit",
+            "preLaunchTask": "Install JandaBox",
+        },
+        {
+            "name": "Uninstall JandaBox",
+            "type": "node-terminal",
+            "request": "launch",            
+            "command": "exit",
+            "preLaunchTask": "Uninstall JandaBox",
+        }
+    ]
+}
