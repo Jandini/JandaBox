@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "command": "chmod +x ./.pack.sh;./.pack.sh",
+            "name": "Install JandaBox",
+            "request": "launch",
+            "type": "node-terminal",
+        },
+        {
+            "command": "dotnet new uninstall JandaBox",
+            "name": "Uninstall JandaBox",
+            "request": "launch",
+            "type": "node-terminal",
+        }
+    ]
+}
