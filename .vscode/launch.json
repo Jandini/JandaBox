@@ -2,16 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "command": "chmod +x ./.pack.sh;./.pack.sh",
             "name": "Install JandaBox",
+            "type": "node-terminal",            
             "request": "launch",
-            "type": "node-terminal",
+            "command": "exit",
+            "preLaunchTask": "Install JandaBox",
         },
         {
-            "command": "dotnet new uninstall JandaBox",
             "name": "Uninstall JandaBox",
-            "request": "launch",
             "type": "node-terminal",
+            "request": "launch",            
+            "command": "exit",
+            "preLaunchTask": "Uninstall JandaBox",
         }
     ]
 }
