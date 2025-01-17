@@ -14,8 +14,8 @@
         {
             "label": "install_windows",
             "type": "shell",
-            "command": "powershell",
-            "args": ["-ExecutionPolicy", "Bypass", "-File", ".\\.pack1.ps1"],
+            "command": ".\\.pack.ps1",
+            "args": [""],
             "presentation": {
                 "reveal": "always",
                 "panel": "shared"
