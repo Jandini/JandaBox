@@ -5,15 +5,20 @@
             "name": "Install JandaBox",
             "type": "node-terminal",            
             "request": "launch",
-            "command": "exit",
-            "preLaunchTask": "Install JandaBox",
+            "command": "dotnet new list JandaBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
         },
         {
             "name": "Uninstall JandaBox",
             "type": "node-terminal",
             "request": "launch",            
             "command": "exit",
-            "preLaunchTask": "Uninstall JandaBox",
+            "preLaunchTask": "uninstall_jandabox",
         },
         {
             "name": "Try ConsoleBox",
@@ -21,7 +26,12 @@
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf MyConsole;dotnet new consolebox --linux -n MyConsole;cd MyConsole/src;dotnet run --project MyConsole",
-            "preLaunchTask": "Install JandaBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
         },
         {
             "name": "Try WebApiBox",
@@ -29,15 +39,39 @@
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf MyWebApi;dotnet new webapibox -n MyWebApi;cd MyWebApi/src;dotnet run MyWebApi --project MyWebApi",
-            "preLaunchTask": "Install JandaBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
         },
+        {
+            "name": "Try ServiceBox",
+            "type": "node-terminal",            
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf MyConsole;dotnet new consoleprj --linux -n MyConsole;cd MyConsole;dotnet new servicebox -n MyService --nameSpace Krowa; dotnet run",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
+        },
+
         {
             "name": "Try ConsoleBox Project",
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf MyConsole;dotnet new consoleprj --linux --serilog true -n MyConsole;cd MyConsole;dotnet run",
-            "preLaunchTask": "Install JandaBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
         },
         {
             "name": "Try WebApiBox Project",
@@ -45,7 +79,12 @@
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf MyWebApi;dotnet new webapiprj -n MyWebApi;cd MyWebApi;dotnet run",
-            "preLaunchTask": "Install JandaBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
         },
     ]
 }

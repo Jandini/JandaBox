@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Install JandaBox",
+            "label": "install_linux",
             "type": "shell",
             "command": "chmod +x ./.pack.sh && ./.pack.sh",
             "presentation": {
@@ -12,7 +12,18 @@
             "problemMatcher": []
         },
         {
-            "label": "Uninstall JandaBox",
+            "label": "install_windows",
+            "type": "shell",
+            "command": ".\\.pack.ps1",
+            "args": [""],
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "uninstall_jandabox",
             "type": "shell",
             "command": "dotnet new uninstall JandaBox",
             "presentation": {
