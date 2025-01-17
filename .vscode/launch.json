@@ -14,6 +14,14 @@
             "request": "launch",            
             "command": "exit",
             "preLaunchTask": "Uninstall JandaBox",
-        }
+        },
+        {
+            "name": "Try ConsoleBox",
+            "type": "node-terminal",            
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf MyConsole;dotnet new consolebox --linux -n MyConsole;cd MyConsole/src;dotnet run --project MyConsole",
+            "preLaunchTask": "Install JandaBox",
+        },
     ]
 }

@@ -61,6 +61,12 @@
       "defaultValue": "false",
       "description": "Create basic console application."
     },
+    "linux": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Set runtime identifier to linux-x64."
+    },
     "serilog": {
       "type": "parameter",
       "datatype": "bool",
