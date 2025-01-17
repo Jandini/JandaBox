@@ -14,14 +14,15 @@ Out of the box .NET8 templates
 - Service files: a service interface, an implementation, and an extension class.
 
 ```
-Template Name                            Short Name  Language  Tags
+Template Name                            Short Name  Language  Tags            
 ---------------------------------------  ----------  --------  ----------------
-JandaBox ASP.NET Core Web API            webapibox   [C#]      JandaBox/WebApi
+JandaBox ASP.NET Core Web API            webapibox   [C#]      JandaBox/WebApi 
+JandaBox ASP.NET Core Web API Project    webapiprj   [C#]      JandaBox/WebApi 
 JandaBox Console App                     consolebox  [C#]      JandaBox/Console
-JandaBox NuGet Class Library             nugetbox    [C#]      JandaBox/NuGet
+JandaBox Console App Project             consoleprj  [C#]      JandaBox/Console
+JandaBox NuGet Class Library             nugetbox    [C#]      JandaBox/NuGet  
 JandaBox Service Classes and Extensions  servicebox  [C#]      JandaBox/Service
 ```
-
 
 
 Learn more about templates in the [wiki pages](https://github.com/Jandini/JandaBox/wiki).
@@ -54,6 +55,16 @@ HelloWorld basic console app using command line interface
 ![jandabox](https://user-images.githubusercontent.com/19593367/234421169-106edabc-6288-4498-b6f0-252e8e96f62f.gif)
 
 
+### Console Application Project
+
+Create .NET8 console application project with dependency injection, Serilog and configuration. 
+
+```sh
+dotnet new consoleprj -n HelloWorld
+```
+
+This is project only, without solution files etc. 
+
 
 ### Web API
 
@@ -62,6 +73,18 @@ Create .NET8 web API from `webapibox` template.
 ```sh
 dotnet new webapibox -n MyWebService
 ```
+
+The template provides solution file and the API project.
+
+### Web API Project
+
+Create .NET8 web API project only from `webapiprj` template.
+
+```sh
+dotnet new webapiprj -n MyWebService
+```
+
+This template provides project folder only.
 
 
 ### Service Files
