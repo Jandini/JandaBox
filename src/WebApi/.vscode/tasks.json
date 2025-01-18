@@ -2,6 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "build_WebApiBox",
 			"type": "dotnet",
 			"task": "build",
 			"group": {
@@ -9,7 +10,6 @@
 				"isDefault": true
 			},
 			"problemMatcher": [],
-			"label": "build"
 		}
 	]
 }

@@ -5,7 +5,7 @@
             "name": "WebApiBox (Debug)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build_WebApiBox",
             "program": "${workspaceFolder}/src/WebApiBox/bin/Debug/net8.0/WebApiBox.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/WebApiBox",

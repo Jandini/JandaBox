@@ -59,13 +59,12 @@
                 "preLaunchTask": "install_linux",
             },
         },
-
         {
             "name": "Try ConsoleBox Project",
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf ConsoleBox;dotnet new consoleprj --linux --serilog true -n ConsoleBox;cd ConsoleBox;dotnet run",
+            "command": "rm -rf ConsoleBox;dotnet new consoleprj -vs -n ConsoleBox;cd ConsoleBox;dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
