@@ -3,9 +3,18 @@
     "configurations": [
         {
             "name": "ConsoleBox (Debug)",
-            "type": "dotnet",
-            "request": "launch",            
-            "projectPath": "${workspaceFolder}/ConsoleBox.csproj"
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "",
+            "windows": {
+                "program": "${workspaceFolder}/bin/Debug/net8.0/win-x64/ConsoleBox.dll"
+            },
+            "linux": {
+                "program": "${workspaceFolder}/bin/Debug/net8.0/linux-x64/ConsoleBox.dll"
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
         }
     ]
 }
