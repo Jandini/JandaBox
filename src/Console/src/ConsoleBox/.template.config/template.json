@@ -40,6 +40,12 @@
           "exclude": [
             "Settings.cs"
           ]
+        },
+        {
+          "condition": "(!vscode)",
+          "exclude": [            
+            ".vscode/**"
+          ]
         }
       ]
     }
@@ -48,6 +54,12 @@
     "sourceName": {
       "type": "parameter",
       "replaces": "ConsoleBox"
+    },
+    "vscode": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create launch and tasks files for Visual Studio Code."
     },
     "basic": {
       "type": "parameter",
