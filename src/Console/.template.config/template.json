@@ -22,7 +22,8 @@
           "exclude": [
             "**/.vs/**",
             "**/bin/**",
-            "**/obj/**"
+            "**/obj/**",
+            "src/ConsoleBox/.vscode/**"
           ]
         },
         {
@@ -61,6 +62,12 @@
       "type": "parameter",
       "replaces": "ConsoleBox"
     },
+    "vscode": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create launch and tasks files for Visual Studio Code."
+    },
     "basic": {
       "type": "parameter",
       "datatype": "bool",
@@ -73,17 +80,12 @@
       "defaultValue": "false",
       "description": "Set runtime identifier to linux-x64."
     },
-    "vscode": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Create launch.json for Visual Studio Code."
-    },
     "projectOnly": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Create project only."
+      "description": "Create project only.",
+      "isEnabled": false
     },
     "serilog": {
       "type": "parameter",

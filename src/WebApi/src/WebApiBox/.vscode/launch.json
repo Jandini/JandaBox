@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_WebApiBox",
-            "program": "${workspaceFolder}/src/WebApiBox/bin/Debug/net8.0/WebApiBox.dll",
+            "program": "${workspaceFolder}/bin/Debug/net8.0/WebApiBox.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/src/WebApiBox",
+            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
