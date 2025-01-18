@@ -4,8 +4,7 @@
         {
             "name": "ConsoleBox (Debug)",
             "type": "dotnet",
-            "request": "launch",
-            "preLaunchTask": "build",
+            "request": "launch",            
             "projectPath": "${workspaceFolder}/src/ConsoleBox/ConsoleBox.csproj"
         }
     ]
