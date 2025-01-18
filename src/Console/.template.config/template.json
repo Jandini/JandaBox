@@ -77,7 +77,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Create launch.json for Visual Studio Code."
+      "description": "Create launch and tasks files for Visual Studio Code."
     },
     "projectOnly": {
       "type": "parameter",
