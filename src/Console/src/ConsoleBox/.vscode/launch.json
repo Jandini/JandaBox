@@ -8,13 +8,14 @@
             "preLaunchTask": "build_ConsoleBox",
             "program": "",
             "windows": {
-                "program": "${workspaceFolder}/bin/Debug/net8.0/win-x64/ConsoleBox.dll"
+                "program": "${workspaceFolder}/bin/Debug/net8.0/win-x64/ConsoleBox.dll",
+                "cwd": "${workspaceFolder}/bin/Debug/net8.0/win-x64",
             },
             "linux": {
-                "program": "${workspaceFolder}/bin/Debug/net8.0/linux-x64/ConsoleBox.dll"
+                "program": "${workspaceFolder}/bin/Debug/net8.0/linux-x64/ConsoleBox.dll",
+                "cwd": "${workspaceFolder}/bin/Debug/net8.0/linux-x64",
             },
-            "args": [],
-            "cwd": "${workspaceFolder}",
+            "args": []            
         }
     ]
 }
