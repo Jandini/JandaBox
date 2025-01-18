@@ -25,7 +25,7 @@
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf MyConsole;dotnet new consolebox --linux -n MyConsole;cd MyConsole/src;dotnet run --project MyConsole",
+            "command": "rm -rf ConsoleBox;dotnet new consolebox -vs --linux -n ConsoleBox;cd ConsoleBox/src;dotnet run --project ConsoleBox",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -38,7 +38,7 @@
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf MyWebApi;dotnet new webapibox -n MyWebApi;cd MyWebApi/src;dotnet run MyWebApi --project MyWebApi",
+            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox -vs;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -51,7 +51,7 @@
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf MyConsole;dotnet new consoleprj --linux -n MyConsole;cd MyConsole;dotnet new servicebox -n MyService --nameSpace Krowa; dotnet run",
+            "command": "rm -rf ConsoleBox;dotnet new consoleprj --linux -n ConsoleBox;cd ConsoleBox;dotnet new servicebox -n MyService --nameSpace ConsoleBox; dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -65,7 +65,7 @@
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf MyConsole;dotnet new consoleprj --linux --serilog true -n MyConsole;cd MyConsole;dotnet run",
+            "command": "rm -rf ConsoleBox;dotnet new consoleprj --linux --serilog true -n ConsoleBox;cd ConsoleBox;dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -78,7 +78,7 @@
             "type": "node-terminal",            
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf MyWebApi;dotnet new webapiprj -n MyWebApi;cd MyWebApi;dotnet run",
+            "command": "rm -rf WebApiBox;dotnet new webapiprj -n WebApiBox -vs;cd WebApiBox;dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
