@@ -1,7 +1,9 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/WebApi"],
+  "classifications": [
+    "JandaBox/WebApi"
+  ],
   "name": "JandaBox ASP.NET Core Web API",
   "generatorVersions": "[1.0.0.0-*)",
   "description": "JandaBox WebApi provides solution template for web api with AutoMapper, Serilog and Health endpoint.",
@@ -22,7 +24,8 @@
           "exclude": [
             "**/bin/**",
             "**/obj/**",
-            "**/logs/**"
+            "**/logs/**",
+            "src/WebApiBox/.vscode/**"
           ]
         },
         {
@@ -42,6 +45,12 @@
           "exclude": [
             "GitVersion.yml"
           ]
+        },
+        {
+          "condition": "(!vscode)",
+          "exclude": [
+            ".vscode/**"
+          ]
         }
       ]
     }
@@ -50,6 +59,12 @@
     "sourceName": {
       "type": "parameter",
       "replaces": "WebApiBox"
+    },
+    "vscode": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create launch and tasks files for Visual Studio Code."
     },
     "gitVersion": {
       "type": "parameter",
@@ -87,21 +102,21 @@
       "defaultValue": "false",
       "description": "Add Elasticsearch Serilog sink and configuration."
     },
-    "projectTypeId":{
+    "projectTypeId": {
       "type": "generated",
       "generator": "guid",
       "replaces": "PROJECT_INSTANCE_GUID",
       "parameters": {
-        "defaultFormat":"D"
+        "defaultFormat": "D"
       }
     },
-    "solutionId":{
+    "solutionId": {
       "type": "generated",
       "generator": "guid",
       "replaces": "SOLUTION_GUID",
       "parameters": {
-        "defaultFormat":"D"
+        "defaultFormat": "D"
       }
     }
-  } 
+  }
 }
