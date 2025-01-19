@@ -34,7 +34,7 @@
             },
         },
         {
-            "name": "Try ConsoleBox with WebApiPrj",
+            "name": "Try ConsoleBox + WebApiPrj",
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
@@ -60,7 +60,7 @@
             },
         },
         {
-            "name": "Try WebApiBox with ConsolePrj",
+            "name": "Try WebApiBox + ConsolePrj",
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
@@ -90,7 +90,7 @@
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf ConsoleBox;dotnet new consoleprj -vs --path src -n ConsoleBox;cd ConsoleBox;dotnet run",
+            "command": "rm -rf ConsoleBox;dotnet new consoleprj -vs -n ConsoleBox;cd ConsoleBox;dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -103,7 +103,7 @@
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf WebApiBox;dotnet new webapiprj -n WebApiBox -vs;cd WebApiBox;dotnet run",
+            "command": "rm -rf WebApiBox;dotnet new webapiprj -vs -n WebApiBox;cd WebApiBox;dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
