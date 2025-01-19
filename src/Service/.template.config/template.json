@@ -33,7 +33,8 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "ServiceBoxService"
+      "replaces": "ServiceBoxService",
+      "isEnabled": false
     },
     "logger": {
       "type": "parameter",

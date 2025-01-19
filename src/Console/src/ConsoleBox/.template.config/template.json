@@ -53,7 +53,8 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "ConsoleBox"
+      "replaces": "ConsoleBox",
+      "isEnabled": false
     },
     "vscode": {
       "type": "parameter",
