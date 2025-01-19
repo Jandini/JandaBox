@@ -6,8 +6,13 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_ConsoleBox",
+//#if (path == "")
             "program": "${workspaceFolder}/bin/Debug/net8.0/ConsoleBox.dll",
             "cwd": "${workspaceFolder}/bin/Debug/net8.0",
+//#else
+            "program": "${workspaceFolder}/VS_PATH/ConsoleBox/bin/Debug/net8.0/ConsoleBox.dll",
+            "cwd": "${workspaceFolder}/VS_PATH/ConsoleBox/bin/Debug/net8.0",
+//#endif
             "args": []            
         }
     ]

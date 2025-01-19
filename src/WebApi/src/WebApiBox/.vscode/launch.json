@@ -6,9 +6,14 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_WebApiBox",
+//#if (path == "")
             "program": "${workspaceFolder}/bin/Debug/net8.0/WebApiBox.dll",
+            "cwd": "${workspaceFolder}/bin/Debug/net8.0",
+//#else
+            "program": "${workspaceFolder}/VS_PATH/WebApiBox/bin/Debug/net8.0/WebApiBox.dll",
+            "cwd": "${workspaceFolder}/VS_PATH/WebApiBox/bin/Debug/net8.0",
+//#endif
             "args": [],
-            "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
