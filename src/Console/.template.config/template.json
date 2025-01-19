@@ -74,12 +74,6 @@
       "defaultValue": "false",
       "description": "Create basic console application."
     },
-    "linux": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Set runtime identifier to linux-x64."
-    },
     "serilog": {
       "type": "parameter",
       "datatype": "bool",
@@ -104,12 +98,6 @@
       "defaultValue": "true",
       "description": "Run main with async await."
     },    
-    "single": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Publish as single file, self contained, win-x64 console application."
-    },   
     "projectTypeId":{
       "type": "generated",
       "generator": "guid",

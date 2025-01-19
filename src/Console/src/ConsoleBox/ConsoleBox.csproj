@@ -3,15 +3,6 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<!--#if (single)-->
-		<PublishSingleFile>true</PublishSingleFile>
-		<SelfContained>true</SelfContained>
-		<!--#if (linux)-->
-		<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-		<!--#else-->
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<!--#endif-->
-		<!--#endif-->
 		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
