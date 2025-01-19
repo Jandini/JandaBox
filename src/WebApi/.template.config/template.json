@@ -58,7 +58,8 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "WebApiBox"
+      "replaces": "WebApiBox",
+      "isEnabled": false
     },
     "vscode": {
       "type": "parameter",

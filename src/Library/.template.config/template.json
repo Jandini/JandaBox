@@ -56,7 +56,8 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "LibraryBox"
+      "replaces": "LibraryBox",
+      "isEnabled": false
     },
     "nuget": {
       "type": "parameter",
