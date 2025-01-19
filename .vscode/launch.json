@@ -86,7 +86,7 @@
             },
         },
         {
-            "name": "Try ConsoleBox Project",
+            "name": "Try ConsolePrj",
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
@@ -99,7 +99,7 @@
             },
         },
         {
-            "name": "Try WebApiBox Project",
+            "name": "Try WebApiPrj",
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
