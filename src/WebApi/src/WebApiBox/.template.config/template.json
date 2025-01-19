@@ -58,7 +58,7 @@
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Create launch and tasks files for Visual Studio Code."
+      "description": "Create launch.json and tasks.json files for Visual Studio Code."
     },
     "openApi": {
       "type": "parameter",

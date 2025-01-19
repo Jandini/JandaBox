@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Install JandaBox",
-            "type": "node-terminal",            
+            "type": "node-terminal",
             "request": "launch",
             "command": "dotnet new list JandaBox",
             "windows": {
@@ -16,13 +16,13 @@
         {
             "name": "Uninstall JandaBox",
             "type": "node-terminal",
-            "request": "launch",            
+            "request": "launch",
             "command": "exit",
             "preLaunchTask": "uninstall_jandabox",
         },
         {
             "name": "Try ConsoleBox",
-            "type": "node-terminal",            
+            "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf ConsoleBox;dotnet new consolebox -vs -n ConsoleBox;cd ConsoleBox/src;dotnet run --project ConsoleBox",
@@ -35,7 +35,7 @@
         },
         {
             "name": "Try WebApiBox",
-            "type": "node-terminal",            
+            "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox -vs;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
@@ -47,8 +47,21 @@
             },
         },
         {
+            "name": "Try WebApiBox with ConsolePrj",
+            "type": "node-terminal",
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox -vs;cd WebApiBox/src;dotnet new consoleprj -n ConsoleBox -vs --path src; cd ..;dotnet run WebApiBox --project src/WebApiBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
+        },
+        {
             "name": "Try ServiceBox",
-            "type": "node-terminal",            
+            "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf ConsoleBox;dotnet new consoleprj -n ConsoleBox;cd ConsoleBox;dotnet new servicebox -n MyService --nameSpace ConsoleBox; dotnet run",
@@ -61,10 +74,10 @@
         },
         {
             "name": "Try ConsoleBox Project",
-            "type": "node-terminal",            
+            "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf ConsoleBox;dotnet new consoleprj -vs -n ConsoleBox;cd ConsoleBox;dotnet run",
+            "command": "rm -rf ConsoleBox;dotnet new consoleprj -vs --path src -n ConsoleBox;cd ConsoleBox;dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -74,7 +87,7 @@
         },
         {
             "name": "Try WebApiBox Project",
-            "type": "node-terminal",            
+            "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
             "command": "rm -rf WebApiBox;dotnet new webapiprj -n WebApiBox -vs;cd WebApiBox;dotnet run",

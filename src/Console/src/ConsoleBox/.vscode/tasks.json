@@ -7,7 +7,11 @@
             "type": "process",
             "args": [
                 "build",
+//#if (path == "")
                 "${workspaceFolder}/ConsoleBox.csproj"
+//#else
+                "${workspaceFolder}/VS_PATH/ConsoleBox/ConsoleBox.csproj"
+//#endif
             ],
             "problemMatcher": "$msCompile"
         }
