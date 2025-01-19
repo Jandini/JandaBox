@@ -6,17 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_ConsoleBox",
-            "program": "",
-            "windows": {
-                "program": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/win-x64/ConsoleBox.dll",
-                "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/win-x64",
-            },
-            "linux": {
-                "program": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/linux-x64/ConsoleBox.dll",
-                "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/linux-x64",
-            },
-            "args": [],
-            
+            "program": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/ConsoleBox.dll",
+            "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0",
+            "args": [],            
         }
     ]
 }
