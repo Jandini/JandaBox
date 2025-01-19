@@ -34,6 +34,19 @@
             },
         },
         {
+            "name": "Try ConsoleBox with WebApiPrj",
+            "type": "node-terminal",
+            "request": "launch",
+            "cwd": "/tmp",
+            "command": "rm -rf ConsoleBox;dotnet new consolebox -vs -n ConsoleBox;cd ConsoleBox/src;dotnet new webapiprj -n WebApiBox -vs --path src;cd ..;dotnet run --project src/ConsoleBox",
+            "windows": {
+                "preLaunchTask": "install_windows",
+            },
+            "linux": {
+                "preLaunchTask": "install_linux",
+            },
+        },
+        {
             "name": "Try WebApiBox",
             "type": "node-terminal",
             "request": "launch",

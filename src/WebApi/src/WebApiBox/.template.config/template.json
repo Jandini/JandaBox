@@ -60,6 +60,13 @@
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
     },
+    "path": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "replaces": "VS_PATH",
+      "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
+    },
     "openApi": {
       "type": "parameter",
       "datatype": "bool",
