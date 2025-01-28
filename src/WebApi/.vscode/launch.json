@@ -2,7 +2,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "WebApiBox (Debug)",
+            "name": "WebApiBox Solution (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_Solution",
+            "program": "${workspaceFolder}/src/WebApiBox/bin/Debug/net8.0/WebApiBox.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/WebApiBox",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+\"(https?://\\S+)\"",
+                "uriFormat": "%s/swagger"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "WebApiBox Project (Debug)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_WebApiBox",

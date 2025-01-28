@@ -2,7 +2,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ConsoleBox (Debug)",
+            "name": "ConsoleBox Solution (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_Solution",
+            "program": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/ConsoleBox.dll",
+            "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0",
+            "args": [],            
+        },
+        {
+            "name": "ConsoleBox Project (Debug)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_ConsoleBox",
@@ -10,5 +19,5 @@
             "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0",
             "args": [],            
         }
-    ]
+     ]
 }
