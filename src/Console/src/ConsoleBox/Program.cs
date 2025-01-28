@@ -28,11 +28,13 @@ try
 
     Console.CancelKeyPress += (sender, eventArgs) =>
     {
-        serviceProvider.GetRequiredService<ILogger<Program>>()
-            .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
+        if (!cancellationTokenSource.IsCancellationRequested) {
+            serviceProvider.GetRequiredService<ILogger<Program>>()
+                .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
         
-        cancellationTokenSource.Cancel();
-        eventArgs.Cancel = true; 
+            cancellationTokenSource.Cancel();
+            eventArgs.Cancel = true; 
+        }
     };
 
     await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
