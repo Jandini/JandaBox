@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "WebApiBox (Debug)",
+            "name": "WebApiBox Project (Debug)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_WebApiBox",

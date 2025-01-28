@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "WebApiBox Project (Debug)",
+            "name": "WebApiBox Solution (Debug)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build_WebApiBox",
+            "preLaunchTask": "build_Solution",
             "program": "${workspaceFolder}/src/WebApiBox/bin/Debug/net8.0/WebApiBox.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/WebApiBox",
@@ -20,10 +20,10 @@
             }
         },
         {
-            "name": "WebApiBox Solution (Debug)",
+            "name": "WebApiBox Project (Debug)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build_Solution",
+            "preLaunchTask": "build_WebApiBox",
             "program": "${workspaceFolder}/src/WebApiBox/bin/Debug/net8.0/WebApiBox.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/WebApiBox",
