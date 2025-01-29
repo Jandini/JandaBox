@@ -49,7 +49,7 @@
           ]
         },
         {
-          "condition": "(!gitVersion)",
+          "condition": "(!git-version)",
           "exclude": [
             "GitVersion.yml"
           ]
@@ -87,7 +87,7 @@
       "defaultValue": "false",
       "description": "Use settings binders."
     },
-    "gitVersion": {
+    "git-version": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",

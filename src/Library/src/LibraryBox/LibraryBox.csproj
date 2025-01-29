@@ -39,7 +39,7 @@
 		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 	<!--#endif-->
-	<!--#if (gitVersion)-->
+	<!--#if (git-version)-->
 
 	<ItemGroup>
 		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">

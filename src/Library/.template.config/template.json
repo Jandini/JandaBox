@@ -33,7 +33,7 @@
           ]
         },
         {
-          "condition": "(!gitVersion)",
+          "condition": "(!git-version)",
           "exclude": [
             "GitVersion.yml"
           ]
@@ -97,7 +97,7 @@
       "defaultValue": "false",
       "description": "Add GitHub actions for building and pushing package to the registry."
     },   
-    "gitVersion": {
+    "git-version": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",

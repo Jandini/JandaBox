@@ -41,7 +41,7 @@
           ]
         },
         {
-          "condition": "(!gitVersion)",
+          "condition": "(!git-version)",
           "exclude": [
             "GitVersion.yml"
           ]
@@ -67,7 +67,7 @@
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
     },
-    "gitVersion": {
+    "git-version": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
