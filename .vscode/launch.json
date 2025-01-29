@@ -51,7 +51,7 @@
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox -vs;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
+            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox --vscode --appName --elasticLog --exceptionMiddleware --windows-service --open-api;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
             "windows": {
                 "preLaunchTask": "install_windows",
             },

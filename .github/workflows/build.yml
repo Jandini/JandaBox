@@ -66,6 +66,7 @@ jobs:
         dotnet build /p:DefineConstants=git-version
         echo --appName --elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog
+
         echo --appName --elasticLog --exceptionMiddleware --windows-service --open-api --git-version
         dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3Bwindows-service%3BappName%3Bopen-api%3Bgit-version
 
