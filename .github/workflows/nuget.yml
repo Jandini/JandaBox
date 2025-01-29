@@ -36,8 +36,6 @@ jobs:
         dotnet build /p:DefineConstants=serilog
         echo --serilog --async
         dotnet build /p:DefineConstants=serilog%3Basync
-        echo --git-version
-        dotnet build /p:DefineConstants=git-version
         echo --async
         dotnet build /p:DefineConstants=async
         echo none
@@ -50,20 +48,16 @@ jobs:
         dotnet build -nologo -c:Release 
         echo --appName
         dotnet build -nologo -c:Release /p:DefineConstants=appName
-        echo --open-api
-        dotnet build -nologo -c:Release /p:DefineConstants=open-api
         echo --windows-service
         dotnet build -nologo -c:Release /p:DefineConstants=windowsService
         echo --exceptionMiddleware
         dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
         echo --elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
-        echo --git-version
-        dotnet build /p:DefineConstants=git-version
         echo --appName --elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog
-        echo --appName --elasticLog --exceptionMiddleware --windows-service --appName --open-api --git-version
-        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BappName%3Bopen-api%3Bgit-version
+        echo --appName --elasticLog --exceptionMiddleware --windows-service --appName
+        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BappName%3B
 
     - name: LibraryBox
       working-directory: src/Library/src
