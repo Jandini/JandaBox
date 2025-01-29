@@ -95,11 +95,16 @@
       "datatype": "bool",      
       "value": "exception-middleware"
     },
-    "appName": {
+    "name-override": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add application name and version override option through appsettings or environment variables."
+    },
+    "nameOverride": {
+      "type": "computed",
+      "datatype": "bool",
+      "value": "name-override"
     },
     "elasticLog": {
       "type": "parameter",

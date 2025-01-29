@@ -46,18 +46,18 @@ jobs:
       run: |
         echo none
         dotnet build -nologo -c:Release 
-        echo --appName
-        dotnet build -nologo -c:Release /p:DefineConstants=appName
+        echo --name-override
+        dotnet build -nologo -c:Release /p:DefineConstants=nameOverride
         echo --windows-service
         dotnet build -nologo -c:Release /p:DefineConstants=windowsService
         echo --exceptionMiddleware
         dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
         echo --elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
-        echo --appName --elasticLog
-        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog
-        echo --appName --elasticLog --exceptionMiddleware --windows-service --appName
-        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BappName%3B
+        echo --name-override --elasticLog
+        dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog
+        echo --nameOverride --elasticLog --exceptionMiddleware --windows-service --name-override
+        dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BnameOverride%3B
 
     - name: LibraryBox
       working-directory: src/Library/src
