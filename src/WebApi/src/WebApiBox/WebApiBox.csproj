@@ -34,7 +34,7 @@
 		<!--#if (windowsService)-->
 	    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.1" />
 		<!--#endif-->
-		<!--#if (openApi)-->
+		<!--#if (open-api)-->
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
 		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="8.0.11">
 			<PrivateAssets>all</PrivateAssets>

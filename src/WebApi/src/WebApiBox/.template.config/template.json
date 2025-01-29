@@ -67,7 +67,7 @@
       "replaces": "VS_PATH",
       "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
     },
-    "openApi": {
+    "open-api": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",

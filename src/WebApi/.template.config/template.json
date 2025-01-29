@@ -73,7 +73,7 @@
       "defaultValue": "false",
       "description": "Provide semantic versioning with GitVesion."
     },
-    "openApi": {
+    "open-api": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
