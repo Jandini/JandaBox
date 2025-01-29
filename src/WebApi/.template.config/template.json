@@ -85,11 +85,16 @@
       "defaultValue": "false",
       "description": "Add run as windows service."
     },
-    "exceptionMiddleware": {
+    "exception-middleware": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "true",
+      "defaultValue": "false",
       "description": "Add global exception handler middleware."
+    },
+    "exceptionMiddleware": {
+      "type": "computed",
+      "datatype": "bool",      
+      "value": "exception-middleware"
     },
     "appName": {
       "type": "parameter",
