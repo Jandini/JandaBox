@@ -67,35 +67,55 @@
       "replaces": "VS_PATH",
       "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
     },
-    "openApi": {
+    "open-api": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add NuGet packages for OpenApi code generator."
     },
-    "windowsService": {
+    "windows-service": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add run as windows service."
     },
-    "exceptionMiddleware": {
+    "windowsService": {
+      "type": "computed",
+      "datatype": "bool",
+      "value": "windows-service"
+    },
+    "exception-middleware": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "true",
+      "defaultValue": "false",
       "description": "Add global exception handler middleware."
     },
-    "appName": {
+    "exceptionMiddleware": {
+      "type": "computed",
+      "datatype": "bool",      
+      "value": "exception-middleware"
+    },
+    "name-override": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add application name and version override option through appsettings or environment variables."
     },
-    "elasticLog": {
+    "nameOverride": {
+      "type": "computed",
+      "datatype": "bool",
+      "value": "name-override"
+    },
+    "elastic-logging": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add Elasticsearch Serilog sink and configuration."
+    },
+    "elasticLog": {
+      "type": "computed",
+      "datatype": "bool",
+      "value": "elastic-logging"
     }
   }
 }

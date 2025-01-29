@@ -92,7 +92,7 @@ This template provides project folder only.
 Add new service interface, implementation and extsions.
 
 ```sh
-dotnet new servicebox -n DemoService --nameSpace MyApp.Services --logger
+dotnet new servicebox -n DemoService --name-space MyApp.Services --logger
 ```
 
 
@@ -122,7 +122,7 @@ C:\Demo\src\Demo\Services
 Add demo service
 
 ```sh
-dotnet new servicebox -n DemoService --nameSpace Demo.Services --logger
+dotnet new servicebox -n DemoService --name-space Demo.Services --logger
 The template "JandaBox Service Classes and Extensions" was created successfully.
 ```
 
@@ -212,7 +212,7 @@ Let's get started!
 * Open your command line or terminal and run the following command to create a new project:
 
   ```shell
-  dotnet new nugetbox -n AnyoneDrive --nuget --tagNugetOrg --license --authors "Matt Janda" --user Jandini --actions --gitVersion
+  dotnet new nugetbox -n AnyoneDrive --nuget --tagNugetOrg --license --authors "Matt Janda" --user Jandini --actions --gitversioin
   ```
 
   This command will create a new project named "AnyoneDrive". Once created, navigate to the folder and list its contents:

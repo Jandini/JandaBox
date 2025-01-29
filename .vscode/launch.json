@@ -51,7 +51,7 @@
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox -vs;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
+            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox --vscode --name-override --elasticLog --exception-middleware --windows-service --open-api;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
             "windows": {
                 "preLaunchTask": "install_windows",
             },
@@ -77,7 +77,7 @@
             "type": "node-terminal",
             "request": "launch",
             "cwd": "/tmp",
-            "command": "rm -rf ConsoleBox;dotnet new consoleprj -n ConsoleBox;cd ConsoleBox;dotnet new servicebox -n MyService --nameSpace ConsoleBox; dotnet run",
+            "command": "rm -rf ConsoleBox;dotnet new consoleprj -n ConsoleBox;cd ConsoleBox;dotnet new servicebox -n MyService --name-space ConsoleBox; dotnet run",
             "windows": {
                 "preLaunchTask": "install_windows",
             },

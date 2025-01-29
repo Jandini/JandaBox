@@ -42,7 +42,7 @@
       "defaultValue": "false",
       "description": "Add a logger to the service implementation."
     },
-    "nameSpace": {
+    "name-space": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "NAMESPACE_NAME",

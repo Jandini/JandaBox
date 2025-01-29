@@ -18,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Read configuration from environment variables
 builder.Configuration.AddEnvironmentVariables();
 
-#if (appName)
+#if (nameOverride)
 // Log application name and version
 var appName = builder.Configuration.GetValue("APPLICATION_NAME", builder.Environment.ApplicationName);
 var appVersion = builder.Configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion);
@@ -95,6 +95,7 @@ builder.Services.AddSwaggerGen(options =>
         Version = "1.0"
     });
 });
+
 
 #if (windowsService)
 // Add run as windows service
