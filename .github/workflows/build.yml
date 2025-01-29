@@ -56,12 +56,12 @@ jobs:
         dotnet build -nologo -c:Release /p:DefineConstants=windowsService
         echo --exceptionMiddleware
         dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
-        echo --elasticLog
+        echo --elastic-logging
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
-        echo --name-override --elasticLog
+        echo --name-override --elastic-logging
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog
 
-        echo --name-override --elasticLog --exception-middleware --windows-service 
+        echo --name-override --elastic-logging --exception-middleware --windows-service 
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BnameOverride%3B
 
     - name: LibraryBox

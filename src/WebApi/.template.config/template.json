@@ -112,11 +112,16 @@
       "datatype": "bool",
       "value": "name-override"
     },
-    "elasticLog": {
+    "elastic-logging": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Add Elasticsearch Serilog sink and configuration."
+    },
+    "elasticLog": {
+      "type": "computed",
+      "datatype": "bool",
+      "value": "elastic-logging"
     },
     "projectTypeId": {
       "type": "generated",
