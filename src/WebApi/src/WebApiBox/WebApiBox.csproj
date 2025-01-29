@@ -31,7 +31,7 @@
 		<!--#else-->
 		<PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
 		<!--#endif-->
-		<!--#if (windows-service)-->
+		<!--#if (windowsService)-->
 	    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.1" />
 		<!--#endif-->
 		<!--#if (open-api)-->

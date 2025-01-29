@@ -97,10 +97,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 
-//#if (windows-service)
+#if (windowsService)
 // Add run as windows service
 builder.Services.AddWindowsService();
-//#endif
+#endif
 
 var app = builder.Build();
 

@@ -85,6 +85,11 @@
       "defaultValue": "false",
       "description": "Add run as windows service."
     },
+    "windowsService": {
+      "type": "computed",
+      "datatype": "bool",
+      "value": "windows-service"
+    },
     "exception-middleware": {
       "type": "parameter",
       "datatype": "bool",

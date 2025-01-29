@@ -53,7 +53,7 @@ jobs:
         echo --open-api
         dotnet build -nologo -c:Release /p:DefineConstants=open-api
         echo --windows-service
-        dotnet build -nologo -c:Release /p:DefineConstants=windows-service
+        dotnet build -nologo -c:Release /p:DefineConstants=windowsService
         echo --exceptionMiddleware
         dotnet build -nologo -c:Release /p:DefineConstants=exceptionMiddleware
         echo --elasticLog
@@ -63,7 +63,7 @@ jobs:
         echo --appName --elasticLog
         dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog
         echo --appName --elasticLog --exceptionMiddleware --windows-service --appName --open-api --git-version
-        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3Bwindows-service%3BappName%3Bopen-api%3Bgit-version
+        dotnet build -nologo -c:Release /p:DefineConstants=appName%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BappName%3Bopen-api%3Bgit-version
 
     - name: LibraryBox
       working-directory: src/Library/src
