@@ -92,7 +92,7 @@ This template provides project folder only.
 Add new service interface, implementation and extsions.
 
 ```sh
-dotnet new servicebox -n DemoService --nameSpace MyApp.Services --logger
+dotnet new servicebox -n DemoService --namespace MyApp.Services --logger
 ```
 
 
@@ -122,7 +122,7 @@ C:\Demo\src\Demo\Services
 Add demo service
 
 ```sh
-dotnet new servicebox -n DemoService --nameSpace Demo.Services --logger
+dotnet new servicebox -n DemoService --namespace Demo.Services --logger
 The template "JandaBox Service Classes and Extensions" was created successfully.
 ```
 
