@@ -13,6 +13,8 @@ public class HealthService : IHealthService
     }
 
 #endif
+    private static DateTime _startedAt = DateTime.UtcNow;
+
     public async Task<HealthInfo> GetHealthInfoAsync()
     {
 #if (appName)
@@ -21,7 +23,9 @@ public class HealthService : IHealthService
             Service = new ServiceInfo()
             {
                 Name = _configuration.GetValue("APPLICATION_NAME", Assembly.GetExecutingAssembly().GetName().Name),
-                Version = _configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion)
+                Version = _configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion),
+                StartedOn = _startedAt,
+                UpTime = new TimeSpan(DateTime.UtcNow.Ticks - _startedAt.Ticks)
             }
         };
 #else
@@ -30,7 +34,9 @@ public class HealthService : IHealthService
             Service = new ServiceInfo()
             {
                 Name = Assembly.GetExecutingAssembly().GetName().Name,
-                Version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
+                Version = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion,
+                StartedOn = _startedAt,
+                UpTime = new TimeSpan(DateTime.UtcNow.Ticks - _startedAt.Ticks)
             }
         };
 #endif
