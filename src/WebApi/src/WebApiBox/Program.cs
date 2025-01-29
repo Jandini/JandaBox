@@ -96,7 +96,7 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-#if (windowsService)
+#if (windows-service)
 // Add run as windows service
 builder.Services.AddWindowsService();
 #endif

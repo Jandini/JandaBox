@@ -73,7 +73,7 @@
       "defaultValue": "false",
       "description": "Add NuGet packages for OpenApi code generator."
     },
-    "windowsService": {
+    "windows-service": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
