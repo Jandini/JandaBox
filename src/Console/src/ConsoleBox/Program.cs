@@ -61,7 +61,7 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
 {
     var config = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
-        .AddEmbeddedJsonFile("appsettings.json")
+        .AddApplicationSettings()
         .Build();
 
     using var serviceProvider = new ServiceCollection()
