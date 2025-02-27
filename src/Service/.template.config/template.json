@@ -42,6 +42,12 @@
       "defaultValue": "false",
       "description": "Add a logger to the service implementation."
     },
+    "primary": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Use primary constructor."
+    },
     "name-space": {
       "type": "parameter",
       "datatype": "string",
