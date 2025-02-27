@@ -7,34 +7,23 @@ namespace WebApiBox.Controllers;
 
 [ApiController]
 [Route("api/health")]
-public class HealthController : ControllerBase
+public class HealthController(ILogger<HealthController> logger, IHealthService healthService, IMapper mapper) : ControllerBase
 {
-    private readonly ILogger<HealthController> _logger;
-    private readonly IHealthService _healthService;
-    private readonly IMapper _mapper;
-
-    public HealthController(ILogger<HealthController> logger, IHealthService healthService, IMapper mapper)
-    {
-        _logger = logger;
-        _healthService = healthService;
-        _mapper = mapper;
-    }
-
     [HttpGet(Name = "GetHealthInfo")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<HealthInfoDto>> GetHealthInfoAsync()
     {
 #if (exceptionMiddleware)
-        _logger.LogDebug("Getting health info");
-        var healthInfo = await _healthService.GetHealthInfoAsync();
-        return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
+        logger.LogDebug("Getting health info");
+        var healthInfo = await healthService.GetHealthInfoAsync();
+        return Ok(mapper.Map<HealthInfoDto>(healthInfo));
 #else
         try
         {
-            _logger.LogDebug("Getting health info");
-            var healthInfo = await _healthService.GetHealthInfoAsync();
-            return Ok(_mapper.Map<HealthInfoDto>(healthInfo));
+            logger.LogDebug("Getting health info");
+            var healthInfo = await healthService.GetHealthInfoAsync();
+            return Ok(mapper.Map<HealthInfoDto>(healthInfo));
         }
         catch (Exception ex)
         {

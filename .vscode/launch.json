@@ -52,12 +52,14 @@
             "name": "Try WebApiBox",
             "type": "node-terminal",
             "request": "launch",
-            "cwd": "/tmp",
-            "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox --vscode --name-override --elasticLog --exception-middleware --windows-service --open-api;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
+            "command": "dotnet new webapibox --force -n WebApiBox --vscode --name-override --elastic-logging --exception-middleware --windows-service --open-api;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
             "windows": {
+                "cwd": "C:\\",
                 "preLaunchTask": "install_windows",
             },
             "linux": {
+                "cwd": "/tmp",
+                "command": "rm -rf WebApiBox;dotnet new webapibox -n WebApiBox --vscode --name-override --elastic-logging --exception-middleware --windows-service --open-api;cd WebApiBox/src;dotnet run WebApiBox --project WebApiBox",
                 "preLaunchTask": "install_linux",
             },
         },

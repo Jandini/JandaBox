@@ -4,26 +4,18 @@ using System.Net.Mime;
 
 namespace WebApiBox;
 
-public class ExceptionMiddleware
+public class ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger<ExceptionMiddleware> _logger;
-
-    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
-    {
-        _logger = logger;
-        _next = next;
-    }
     public async Task InvokeAsync(HttpContext context)
     {
         try
         {
-            await _next(context);
+            await next(context);
         }
         catch (Exception ex)
         {
             var description = context.GetEndpoint()?.Metadata.GetMetadata<ControllerActionDescriptor>();
-            _logger.LogError(ex, "Unhandled exception in {UnhandledExceptionThrownBy}", description?.DisplayName);
+            logger.LogError(ex, "Unhandled exception in {UnhandledExceptionThrownBy}", description?.DisplayName);
 
             context.Response.ContentType = MediaTypeNames.Text.Plain;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
