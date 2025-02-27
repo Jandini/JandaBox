@@ -32,11 +32,24 @@ internal static class Extensions
         return cancellationTokenSource;
     }
 
+     internal static IConfigurationBuilder AddApplicationSettings(this IConfigurationBuilder builder)
+    {
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+
+        return builder
+            .AddEmbeddedJsonFile("appsettings.json")
+            .AddEmbeddedJsonFile($"appsettings.{environment}.json");
+    }
+
     internal static IConfigurationBuilder AddEmbeddedJsonFile(this IConfigurationBuilder builder, string name)
     {
-        return builder
-            .AddJsonStream(new EmbeddedFileProvider(Assembly.GetExecutingAssembly()).GetFileInfo(name).CreateReadStream())
-            .AddJsonFile(name, true);
+        var fileProvider = new EmbeddedFileProvider(Assembly.GetExecutingAssembly());
+        var fileInfo = fileProvider.GetFileInfo(name);
+
+        if (fileInfo.Exists)
+            builder.AddJsonStream(fileInfo.CreateReadStream());
+
+        return builder.AddJsonFile(name, true);
     }
 
     internal static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
