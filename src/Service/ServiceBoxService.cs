@@ -4,6 +4,19 @@ using Microsoft.Extensions.Logging;
 #endif
 namespace NAMESPACE_NAME;
 
+#if (primary)
+#if (logger)
+internal class ServiceBoxService(ILogger<ServiceBoxService> logger) : IServiceBoxService
+{
+
+}
+#else
+internal class ServiceBoxService : IServiceBoxService
+{
+    
+}
+#endif
+#else
 internal class ServiceBoxService : IServiceBoxService
 {
 #if (logger)
@@ -17,3 +30,4 @@ internal class ServiceBoxService : IServiceBoxService
 
 #endif
 }
+#endif

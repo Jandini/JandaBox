@@ -19,22 +19,19 @@ internal static class Extensions
 
         Console.CancelKeyPress += (sender, eventArgs) =>
         {
-            provider.GetRequiredService<ILogger<Program>>()
-                .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
+            if (!cancellationTokenSource.IsCancellationRequested)
+            {
+                provider.GetRequiredService<ILogger<Program>>()
+                    .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
 
-            cancellationTokenSource.Cancel();
-            eventArgs.Cancel = true;
+                cancellationTokenSource.Cancel();
+                eventArgs.Cancel = true;
+            }
         };
 
         return cancellationTokenSource;
     }
 
-#if(settings)
-    internal static T Bind<T>(this IConfiguration configuration, string section)
-    {
-        return configuration.GetRequiredSection(section).Get<T>();
-    }
-#endif
     internal static IConfigurationBuilder AddEmbeddedJsonFile(this IConfigurationBuilder builder, string name)
     {
         return builder
@@ -44,7 +41,12 @@ internal static class Extensions
 
     internal static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
+#if (settings)
+        return services.AddSingleton(configuration)
+            .Configure<Settings>(settings => configuration.GetRequiredSection("ConsoleBox").Bind(settings));
+#else
         return services.AddSingleton(configuration);
+#endif
     }
 
     internal static IServiceCollection AddLogging(this IServiceCollection services, IConfiguration configuration)

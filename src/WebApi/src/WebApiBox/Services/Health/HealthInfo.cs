@@ -1,6 +1,6 @@
 ﻿namespace WebApiBox.Services;
 
-public class HealthInfo
+public record HealthInfo
 {
     public ServiceInfo? Service { get; set; }
 }

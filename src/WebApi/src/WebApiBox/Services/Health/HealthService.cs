@@ -2,17 +2,13 @@
 
 namespace WebApiBox.Services;
 
-public class HealthService : IHealthService
-{
+
 #if (nameOverride)
-    private readonly IConfiguration _configuration;
-
-    public HealthService(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
-
+public class HealthService(IConfiguration configuration) : IHealthService
+#else
+public class HealthService : IHealthService
 #endif
+{
     private static DateTime _startedAt = DateTime.UtcNow;
 
     public async Task<HealthInfo> GetHealthInfoAsync()
@@ -22,8 +18,8 @@ public class HealthService : IHealthService
         {
             Service = new ServiceInfo()
             {
-                Name = _configuration.GetValue("APPLICATION_NAME", Assembly.GetExecutingAssembly().GetName().Name),
-                Version = _configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion),
+                Name = configuration.GetValue("APPLICATION_NAME", Assembly.GetExecutingAssembly().GetName().Name),
+                Version = configuration.GetValue("APPLICATION_VERSION", Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion),
                 StartedOn = _startedAt,
                 UpTime = new TimeSpan(DateTime.UtcNow.Ticks - _startedAt.Ticks)
             }
