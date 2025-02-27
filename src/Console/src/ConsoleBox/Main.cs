@@ -19,27 +19,16 @@ internal class Main(ILogger<Main> logger)
 }
 #else
 #if (settings)
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 #endif
 using Microsoft.Extensions.Logging;
 
-internal class Main
-{
-    private readonly ILogger<Main> _logger;
 #if (settings)
-    private readonly IConfiguration _config;
-#endif
-#if (settings)
-    public Main(ILogger<Main> logger, IConfiguration config)
+internal class Main(ILogger<Main> logger, IOptions<Settings> settings)
 #else
-    public Main(ILogger<Main> logger)
+internal class Main(ILogger<Main> logger) 
 #endif
-    {
-        _logger = logger;
-#if (settings)
-        _config = config;
-#endif
-    }
+{
 #if (async && settings)
     public async Task RunAsync(string path, CancellationToken cancellationToken = default)
 #elif (async)
@@ -52,9 +41,9 @@ internal class Main
     {
 #if (settings)
         var dir = new DirectoryInfo(path);
-        _logger.LogInformation(_config.Bind<Settings>("ConsoleBox").Message, dir.Name, dir.GetFiles().Length);
+        logger.LogInformation(settings.Value.Message, dir.Name, dir.GetFiles().Length);
 #else
-        _logger.LogInformation("Hello World!");
+        logger.LogInformation("Hello World!");
 #endif
 #if (async)
         await Task.CompletedTask;
