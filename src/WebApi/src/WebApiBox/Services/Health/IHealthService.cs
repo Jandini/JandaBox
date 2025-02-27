@@ -1,4 +1,4 @@
-﻿namespace WebApiBox.Services;
+﻿namespace WebApiBox.Services.Health;
 
 public interface IHealthService
 {

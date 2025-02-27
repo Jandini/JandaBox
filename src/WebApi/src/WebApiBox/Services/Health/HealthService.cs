@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace WebApiBox.Services;
+namespace WebApiBox.Services.Health;
 
 
 #if (nameOverride)
