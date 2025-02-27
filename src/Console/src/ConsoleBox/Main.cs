@@ -1,25 +1,19 @@
 ﻿#if (basic)
 using Microsoft.Extensions.Logging;
 
-internal class Main
+internal class Main(ILogger<Main> logger)
 {
-    private readonly ILogger<Main> _logger;
-
-    public Main(ILogger<Main> logger)
-    {
-        _logger = logger;
-    }
 
 #if (async)
     public async Task RunAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Hello, World!");
-        await Task.Delay(1000, cancellationToken); 
+        logger.LogInformation("Hello, World!");
+        await Task.CompletedTask;
     }
 #else
     public void Run()
     {
-        _logger.LogInformation("Hello, World!");
+        logger.LogInformation("Hello, World!");
     }
 #endif
 }
@@ -63,7 +57,7 @@ internal class Main
         _logger.LogInformation("Hello World!");
 #endif
 #if (async)
-        await Task.Delay(1000, cancellationToken); 
+        await Task.CompletedTask;
 #endif
     }
 }
