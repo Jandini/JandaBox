@@ -39,7 +39,7 @@
     "logger": {
       "type": "parameter",
       "datatype": "bool",
-      "defaultValue": "false",
+      "defaultValue": "true",
       "description": "Add a logger to the service implementation."
     },
     "primary": {
