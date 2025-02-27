@@ -23,13 +23,15 @@
         {
             "name": "Try ConsoleBox",
             "type": "node-terminal",
-            "request": "launch",
-            "cwd": "/tmp",
-            "command": "rm -rf ConsoleBox;dotnet new consolebox -vs -n ConsoleBox;cd ConsoleBox/src;dotnet run --project ConsoleBox",
+            "request": "launch",            
+            "command": "dotnet new consolebox --force -vs -n ConsoleBox --settings;cd ConsoleBox/src;dotnet run --project ConsoleBox",
             "windows": {
+                "cwd": "C:\\",
                 "preLaunchTask": "install_windows",
             },
             "linux": {
+                "command": "rm -rf ConsoleBox;dotnet new consolebox -vs -n ConsoleBox;cd ConsoleBox/src;dotnet run --project ConsoleBox",
+                "cwd": "/tmp",
                 "preLaunchTask": "install_linux",
             },
         },
