@@ -6,7 +6,7 @@ public class HealthProfile : Profile
 {
     public HealthProfile()
     {
-        CreateMap<Services.ServiceInfo, Models.ServiceInfoDto>();
-        CreateMap<Services.HealthInfo, Models.HealthInfoDto>();
+        CreateMap<Services.Health.ServiceInfo, Models.ServiceInfoDto>();
+        CreateMap<Services.Health.HealthInfo, Models.HealthInfoDto>();
     }
 }

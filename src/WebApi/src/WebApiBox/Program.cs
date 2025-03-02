@@ -4,7 +4,7 @@ using Serilog;
 #if (exceptionMiddleware || elasticLog)
 using WebApiBox;
 #endif
-using WebApiBox.Services;
+using WebApiBox.Services.Health;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 #if (elasticLog)
