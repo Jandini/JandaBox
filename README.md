@@ -42,6 +42,15 @@ You are now ready to use the templates from command line or from Visual Studio.
 ![helloworld](https://user-images.githubusercontent.com/19593367/234417753-44bf29db-064c-4d8a-af26-91afee97e6ca.gif)
 
 
+
+To upgarde JandaBox templates to the latest version use following commands: 
+
+```
+dotnet new uninstall JandaBox
+dotnet new install JandaBox
+```
+
+
 ### Console Application
 
 Create .NET8 console application with dependency injection, Serilog and configuration.
