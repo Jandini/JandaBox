@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApiBox.Models;
-using WebApiBox.Services;
+using WebApiBox.Services.Health;
 
 namespace WebApiBox.Controllers;
 
