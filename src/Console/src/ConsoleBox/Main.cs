@@ -22,9 +22,16 @@ internal class Main(ILogger<Main> logger)
 using Microsoft.Extensions.Options;
 #endif
 using Microsoft.Extensions.Logging;
+#if (nswag)
+using ConsoleBox;
+#endif
 
 #if (settings)
 internal class Main(ILogger<Main> logger, IOptions<Settings> settings)
+#elif (settings && nswag)
+internal class Main(ILogger<Main> logger, IOptions<Settings> settings, IAPI_CLIENT client)
+#elif (nswag)
+internal class Main(ILogger<Main> logger, IAPI_CLIENT client) 
 #else
 internal class Main(ILogger<Main> logger) 
 #endif
