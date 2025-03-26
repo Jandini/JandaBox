@@ -28,7 +28,7 @@ jobs:
     - name: ConsoleBox
       working-directory: src/Console/src
       run: |
-        sed -i '/<Target Name="NSwag"/,/<\/Target>/d' ConsoleBox.csproj
+        sed -i '/<Target Name="NSwag"/,/<\/Target>/d' ConsoleBox/ConsoleBox.csproj
         echo --basic --serilog -async
         dotnet build /p:DefineConstants=basic%3Bserilog%3Basync
         echo --basic --serilog
