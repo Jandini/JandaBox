@@ -57,7 +57,7 @@
         {
           "condition": "(!nswag)",
           "exclude": [
-            "nswag.json"
+            "src/ConsoleBox/nswag.json"
           ]
         }
       ]
