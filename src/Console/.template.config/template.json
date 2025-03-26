@@ -55,7 +55,7 @@
           ]
         },
         {
-          "condition": "(nswag == '')",
+          "condition": "(!nswag)",
           "exclude": [
             "nswag.json"
           ]
@@ -106,6 +106,12 @@
       "description": "Run main with async await."
     },    
     "nswag": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Add Web API client generator."
+    },
+    "class": {
       "type": "parameter",
       "datatype": "string",
       "replaces": "API_CLIENT",

@@ -37,7 +37,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.10" />
 		<!--#endif-->
-		<!--#if (nswag != "")-->
+		<!--#if (nswag)-->
 		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<!--#endif-->
@@ -52,7 +52,7 @@
 		<None Remove="appsettings.json" />
 	</ItemGroup>
 	<!--#endif-->
-	<!--#if (nswag != "")-->
+	<!--#if (nswag)-->	
 	<Target Name="NSwag" BeforeTargets="BeforeBuild" Condition="!Exists('API_CLIENT.cs')">
 		<PropertyGroup>
 			<Url Condition="Exists('swagger.json')">swagger.json</Url>

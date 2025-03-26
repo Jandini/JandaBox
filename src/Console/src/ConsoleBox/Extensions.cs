@@ -6,7 +6,7 @@ using System.Reflection;
 #if (serilog)
 using Serilog;
 #endif
-#if (nswag != "")
+#if (nswag)
 using ConsoleBox;
 #endif
 internal static class Extensions
@@ -34,7 +34,7 @@ internal static class Extensions
         return cancellationTokenSource;
     }
 
-     internal static IConfigurationBuilder AddApplicationSettings(this IConfigurationBuilder builder)
+    internal static IConfigurationBuilder AddApplicationSettings(this IConfigurationBuilder builder)
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
 
@@ -78,7 +78,7 @@ internal static class Extensions
 
     internal static IServiceCollection AddServices(this IServiceCollection services)
     {
-#if (nswag != "")
+#if (nswag)
         services.AddHttpClient<IAPI_CLIENT, API_CLIENT>((client) => new API_CLIENT("BASE_URL", client));
 
 #endif
