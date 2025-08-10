@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "Run": {
+      "commandName": "Project",
+      //#if (settings)
+      "commandLineArgs": "--path ."
+      //#else
+      "commandLineArgs": "run"
+      //#endif
+    },
+    "Help": {
+      "commandName": "Project",
+      "commandLineArgs": "--help"
+    }
+  }
+}

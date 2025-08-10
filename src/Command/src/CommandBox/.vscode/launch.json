@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "CommandBox Project (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_CommandBox",
+//#if (path == "")
+            "program": "${workspaceFolder}/bin/Debug/net8.0/CommandBox.dll",
+            "cwd": "${workspaceFolder}/bin/Debug/net8.0",
+//#else
+            "program": "${workspaceFolder}/VS_PATH/CommandBox/bin/Debug/net8.0/CommandBox.dll",
+            "cwd": "${workspaceFolder}/VS_PATH/CommandBox/bin/Debug/net8.0",
+//#endif
+            "args": []            
+        }
+    ]
+}
