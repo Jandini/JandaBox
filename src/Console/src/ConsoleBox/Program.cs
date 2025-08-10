@@ -92,12 +92,15 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
                 main.Run();
 #endif
                 break;
-        };
+        }
+        ;
     }
     catch (Exception ex)
     {
         serviceProvider.GetService<ILogger<Program>>()?
             .LogCritical(ex, "Program failed.");
+            
+        return -1
     }
 });
 #endif
