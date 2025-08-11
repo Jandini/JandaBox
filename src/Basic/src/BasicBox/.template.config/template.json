@@ -1,19 +1,19 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/Command"],
-  "name": "JandaBox Command Line Interface",
+  "classifications": ["JandaBox/Basic"],
+  "name": "JandaBox Basic Console Project",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Command Line Interface template provides console application with command line interface, dependency injection, logging, and configuration.",
-  "groupIdentity": "commandbox",
+  "description": "JandaBox Basic provides basic console application project with dependency injection, logging, and configuration.",
+  "groupIdentity": "basicprj",
   "precedence": "4000",
-  "identity": "JandaBox.Command",
-  "shortName": "commandbox",
+  "identity": "JandaBox.Basic.Project",
+  "shortName": "basicprj",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "CommandBox",
+  "sourceName": "BasicBox",
   "preferNameDirectory": true,
   "sources": [
     {
@@ -22,43 +22,36 @@
           "exclude": [
             "**/.vs/**",
             "**/bin/**",
-            "**/obj/**",
-            "src/CommandBox/.vscode/**"
+            "**/obj/**"
           ]
         },
         {
           "condition": "(basic)",
           "exclude": [
-            "src/CommandBox/appsettings.json",
-            "src/CommandBox/Extensions.cs",
-            "src/CommandBox/Options.cs",
-            "src/CommandBox/Settings.cs",
-            "src/CommandBox/Properties/*",
-            "src/CommandBox/Options/*"
+            "appsettings.json",
+            "Extensions.cs",
+            "Options.cs",
+            "Settings.cs",
+            "Properties/*",
+            "Options/*"
+          ]
+        },
+        {
+          "condition": "(!options)",
+          "exclude": [
+            "Options/SettingsOptions.cs"
+          ]
+        },
+        {
+          "condition": "(!nswag)",
+          "exclude": [
+            "nswag.json"
           ]
         },
         {
           "condition": "(!vscode)",
           "exclude": [            
             ".vscode/**"
-          ]
-        },
-        {
-          "condition": "(!options)",
-          "exclude": [
-            "src/CommandBox/Options/SettingsOptions.cs"
-          ]
-        },
-        {
-          "condition": "(!git-version)",
-          "exclude": [
-            "GitVersion.yml"
-          ]
-        },
-        {
-          "condition": "(!nswag)",
-          "exclude": [
-            "src/CommandBox/nswag.json"
           ]
         }
       ]
@@ -67,7 +60,7 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "CommandBox",
+      "replaces": "BasicBox",
       "isEnabled": false
     },
     "vscode": {
@@ -75,6 +68,13 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
+    },
+    "path": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "replaces": "VS_PATH",
+      "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
     },
     "basic": {
       "type": "parameter",
@@ -94,18 +94,12 @@
       "defaultValue": "false",
       "description": "Use IOptions pattern."
     },
-    "git-version": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Provide semantic versioning with GitVesion."
-    },
     "async": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Run main with async await."
-    },    
+    },
     "nswag": {
       "type": "parameter",
       "datatype": "bool",
@@ -132,22 +126,6 @@
       "replaces": "BASE_URL",
       "defaultValue": "https://localhost:8080",
       "description": "Web API client base url."
-    },
-    "projectTypeId":{
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "PROJECT_INSTANCE_GUID",
-      "parameters": {
-        "defaultFormat":"D"
-      }
-    },
-    "solutionId":{
-      "type": "generated",
-      "generator": "guid",
-      "replaces": "SOLUTION_GUID",
-      "parameters": {
-        "defaultFormat":"D"
-      }
     }
   }
 }

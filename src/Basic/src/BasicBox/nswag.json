@@ -1,0 +1,17 @@
+{
+    "runtime": "Net90",
+    "documentGenerator": {
+      "fromDocument": {
+        "url": "$(Url)",
+        "output": "swagger.json"
+      }
+    },
+    "codeGenerators": {
+      "openApiToCSharpClient": {
+        "output": "$(OutputFile)",
+        "namespace": "$(NameSpace)",
+        "className": "$(ClassName)",
+        "generateClientInterfaces": true
+      }
+    }
+  }

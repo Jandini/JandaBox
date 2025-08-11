@@ -1,0 +1,122 @@
+﻿// Created with JandaBox http://github.com/Jandini/JandaBox
+#if (basic)
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+#if (serilog)
+using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
+#endif
+
+try 
+{
+    using var serviceProvider = new ServiceCollection()
+    #if (serilog)    
+        .AddLogging(builder => builder.AddSerilog(new LoggerConfiguration()
+            .Enrich.WithMachineName()
+            .WriteTo.Console(
+                theme: AnsiConsoleTheme.Code,
+                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u4}] [{MachineName}] [{SourceContext}] {Message}{NewLine}{Exception}")
+            .CreateLogger()))
+    #else
+        .AddLogging(builder => builder.AddConsole())
+    #endif
+        .AddTransient<Main>()
+        .BuildServiceProvider();
+
+    try
+    {
+    #if (async)
+        using var cancellationTokenSource = new CancellationTokenSource();
+
+        Console.CancelKeyPress += (sender, eventArgs) =>
+        {
+            if (!cancellationTokenSource.IsCancellationRequested) {
+                serviceProvider.GetRequiredService<ILogger<Program>>()
+                    .LogWarning("User break (Ctrl+C) detected. Shutting down gracefully...");
+            
+                cancellationTokenSource.Cancel();
+                eventArgs.Cancel = true; 
+            }
+        };
+
+        await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
+    #else
+        serviceProvider.GetRequiredService<Main>().Run();
+    #endif
+        return 0;
+    }
+    catch (Exception ex)
+    {
+        serviceProvider.GetService<ILogger<Program>>()?
+            .LogCritical(ex, "Program failed.");
+
+        return -1;
+    }
+}
+catch (Exception ex) 
+{
+    Console.WriteLine(ex.Message);
+    return -1;
+}
+#else
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using CommandLine;
+
+
+#if (async)
+await Parser.Default.ParseArguments<Options.Run>(args).WithParsedAsync(async (parameters) =>
+#else
+Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
+#endif    
+{
+    try
+    {
+        var config = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddApplicationSettings()
+            .Build();
+
+        using var serviceProvider = new ServiceCollection()
+            .AddConfiguration(config)
+            .AddLogging(config)
+            .AddServices()
+            .BuildServiceProvider();
+
+        serviceProvider.LogVersion<Program>();
+
+        try
+        {
+#if (async)
+            using var cancellationTokenSource = serviceProvider.GetCancellationTokenSource();
+#endif
+            var main = serviceProvider.GetRequiredService<Main>();
+
+            switch (parameters)
+            {
+                case Options.Run options:
+#if (async && options)
+                    await main.RunAsync(options.Path, cancellationTokenSource.Token);
+#elif (async)
+                    await main.RunAsync(cancellationTokenSource.Token);
+#elif (options)
+                    main.Run(options.Path);
+#else
+                    main.Run();
+#endif
+                    break;
+            };
+        }
+        catch (Exception ex)
+        {
+            serviceProvider.GetService<ILogger<Program>>()?
+                .LogCritical(ex, "Program failed.");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }    
+});
+#endif

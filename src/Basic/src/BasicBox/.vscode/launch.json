@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "BasicBox Project (Debug)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_BasicBox",
+//#if (path == "")
+            "program": "${workspaceFolder}/bin/Debug/net8.0/BasicBox.dll",
+            "cwd": "${workspaceFolder}/bin/Debug/net8.0",
+//#else
+            "program": "${workspaceFolder}/VS_PATH/BasicBox/bin/Debug/net8.0/BasicBox.dll",
+            "cwd": "${workspaceFolder}/VS_PATH/BasicBox/bin/Debug/net8.0",
+//#endif
+            "args": []            
+        }
+    ]
+}

@@ -1,19 +1,19 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/Command"],
-  "name": "JandaBox Command Line Interface",
+  "classifications": ["JandaBox/Basic"],
+  "name": "JandaBox Basic Console Application",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Command Line Interface template provides console application with command line interface, dependency injection, logging, and configuration.",
-  "groupIdentity": "commandbox",
+  "description": "JandaBox Basic template provides basic console application with dependency injection, logging, and configuration.",
+  "groupIdentity": "basicbox",
   "precedence": "4000",
-  "identity": "JandaBox.Command",
-  "shortName": "commandbox",
+  "identity": "JandaBox.Basic",
+  "shortName": "basicbox",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "CommandBox",
+  "sourceName": "BasicBox",
   "preferNameDirectory": true,
   "sources": [
     {
@@ -23,18 +23,18 @@
             "**/.vs/**",
             "**/bin/**",
             "**/obj/**",
-            "src/CommandBox/.vscode/**"
+            "src/BasicBox/.vscode/**"
           ]
         },
         {
           "condition": "(basic)",
           "exclude": [
-            "src/CommandBox/appsettings.json",
-            "src/CommandBox/Extensions.cs",
-            "src/CommandBox/Options.cs",
-            "src/CommandBox/Settings.cs",
-            "src/CommandBox/Properties/*",
-            "src/CommandBox/Options/*"
+            "src/BasicBox/appsettings.json",
+            "src/BasicBox/Extensions.cs",
+            "src/BasicBox/Options.cs",
+            "src/BasicBox/Settings.cs",
+            "src/BasicBox/Properties/*",
+            "src/BasicBox/Options/*"
           ]
         },
         {
@@ -46,7 +46,7 @@
         {
           "condition": "(!options)",
           "exclude": [
-            "src/CommandBox/Options/SettingsOptions.cs"
+            "src/BasicBox/Options/SettingsOptions.cs"
           ]
         },
         {
@@ -58,7 +58,7 @@
         {
           "condition": "(!nswag)",
           "exclude": [
-            "src/CommandBox/nswag.json"
+            "src/BasicBox/nswag.json"
           ]
         }
       ]
@@ -67,7 +67,7 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "CommandBox",
+      "replaces": "BasicBox",
       "isEnabled": false
     },
     "vscode": {
