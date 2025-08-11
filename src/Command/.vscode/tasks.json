@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+			"label": "build_Solution",
+			"type": "dotnet",
+			"task": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+		},
+		{
+            "label": "build_ConsoleBox",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/ConsoleBox/ConsoleBox.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

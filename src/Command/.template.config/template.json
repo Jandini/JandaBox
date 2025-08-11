@@ -1,19 +1,19 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/Console"],
-  "name": "JandaBox Console Application Project",
+  "classifications": ["JandaBox/Command"],
+  "name": "JandaBox Command Line Interface",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Console provides project for console application with dependency injection, logging, and configuration.",
-  "groupIdentity": "consoleprj",
+  "description": "JandaBox Command provides solution template for console application with command line parser, dependency injection, logging, and configuration.",
+  "groupIdentity": "commandbox",
   "precedence": "4000",
-  "identity": "JandaBox.Console.Project",
-  "shortName": "consoleprj",
+  "identity": "JandaBox.Command",
+  "shortName": "commandbox",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "ConsoleBox",
+  "sourceName": "CommandBox",
   "preferNameDirectory": true,
   "sources": [
     {
@@ -22,35 +22,43 @@
           "exclude": [
             "**/.vs/**",
             "**/bin/**",
-            "**/obj/**"
+            "**/obj/**",
+            "src/CommandBox/.vscode/**"
           ]
         },
         {
           "condition": "(basic)",
           "exclude": [
-            "appsettings.json",
-            "Extensions.cs",
-            "Options.cs",
-            "Settings.cs",
-            "Properties/*"
-          ]
-        },
-        {
-          "condition": "(!settings)",
-          "exclude": [
-            "Settings.cs"
-          ]
-        },
-        {
-          "condition": "(nswag)",
-          "exclude": [
-            "nswag.json"
+            "src/CommandBox/appsettings.json",
+            "src/CommandBox/Extensions.cs",
+            "src/CommandBox/Options.cs",
+            "src/CommandBox/Settings.cs",
+            "src/CommandBox/Properties/*",
+            "src/CommandBox/Options/*"
           ]
         },
         {
           "condition": "(!vscode)",
           "exclude": [            
             ".vscode/**"
+          ]
+        },
+        {
+          "condition": "(!options)",
+          "exclude": [
+            "src/CommandBox/Options/SettingsOptions.cs"
+          ]
+        },
+        {
+          "condition": "(!git-version)",
+          "exclude": [
+            "GitVersion.yml"
+          ]
+        },
+        {
+          "condition": "(!nswag)",
+          "exclude": [
+            "src/CommandBox/nswag.json"
           ]
         }
       ]
@@ -59,7 +67,7 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "ConsoleBox",
+      "replaces": "CommandBox",
       "isEnabled": false
     },
     "vscode": {
@@ -67,13 +75,6 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
-    },
-    "path": {
-      "type": "parameter",
-      "datatype": "text",
-      "defaultValue": "",
-      "replaces": "VS_PATH",
-      "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
     },
     "basic": {
       "type": "parameter",
@@ -87,18 +88,24 @@
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
-    "settings": {
+    "options": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Use settings binders."
+      "description": "Use IOptions pattern."
+    },
+    "git-version": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Provide semantic versioning with GitVesion."
     },
     "async": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Run main with async await."
-    },
+    },    
     "nswag": {
       "type": "parameter",
       "datatype": "bool",
@@ -125,6 +132,22 @@
       "replaces": "BASE_URL",
       "defaultValue": "https://localhost:8080",
       "description": "Web API client base url."
+    },
+    "projectTypeId":{
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "PROJECT_INSTANCE_GUID",
+      "parameters": {
+        "defaultFormat":"D"
+      }
+    },
+    "solutionId":{
+      "type": "generated",
+      "generator": "guid",
+      "replaces": "SOLUTION_GUID",
+      "parameters": {
+        "defaultFormat":"D"
+      }
     }
   }
 }
