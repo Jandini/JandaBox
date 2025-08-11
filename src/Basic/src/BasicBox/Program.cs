@@ -40,14 +40,18 @@ try
             }
         };
 
-        exitCode = await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
+        exitCode = await serviceProvider
+            .GetRequiredService<Main>()
+            .RunAsync(cancellationTokenSource.Token);
 #else
-        exitCode = serviceProvider.GetRequiredService<Main>().Run();
+        exitCode = serviceProvider
+            .GetRequiredService<Main>()
+            .Run();
 #endif
     }
     catch (Exception ex)
     {
-        serviceProvider.GetService<ILogger<Program>>()?
+        serviceProvider.GetService<ILogger<Program>>()
             .LogCritical(ex, "Program failed.");
     }
 }
