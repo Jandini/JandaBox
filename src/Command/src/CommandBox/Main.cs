@@ -28,7 +28,7 @@ using CommandBox;
 
 #if (options)
 internal class Main(ILogger<Main> logger, IOptions<SettingsOptions> settings)
-#elif (settings && nswag)
+#elif (options && nswag)
 internal class Main(ILogger<Main> logger, IOptions<SettingsOptions> settings, IAPI_CLIENT client)
 #elif (nswag)
 internal class Main(ILogger<Main> logger, IAPI_CLIENT client) 
@@ -37,12 +37,10 @@ internal class Main(ILogger<Main> logger)
 #endif
 {
 #if (async && options)
-    readonly SettingsOptions _settings = settings.Value;
     public async Task RunAsync(string path, CancellationToken cancellationToken = default)
 #elif (async)
     public async Task RunAsync(CancellationToken cancellationToken = default)
 #elif (options)
-    readonly SettingsOptions _settings = settings.Value;
     public void Run(string path)
 #else
     public void Run()
@@ -50,7 +48,7 @@ internal class Main(ILogger<Main> logger)
     {
 #if (options)
         var dir = new DirectoryInfo(path);
-        logger.LogInformation(_settings.MessageFormat, dir.Name, dir.GetFiles().Length);
+        logger.LogInformation(settings.Value.MessageFormat, dir.Name, dir.GetFiles().Length);
 #else
         logger.LogInformation("Hello World!");
 #endif
