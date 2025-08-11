@@ -27,17 +27,6 @@
           ]
         },
         {
-          "condition": "(basic)",
-          "exclude": [
-            "src/CommandBox/appsettings.json",
-            "src/CommandBox/Extensions.cs",
-            "src/CommandBox/Options.cs",
-            "src/CommandBox/Settings.cs",
-            "src/CommandBox/Properties/*",
-            "src/CommandBox/Options/*"
-          ]
-        },
-        {
           "condition": "(!vscode)",
           "exclude": [            
             ".vscode/**"
@@ -75,12 +64,6 @@
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
-    },
-    "basic": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Create basic console application."
     },
     "serilog": {
       "type": "parameter",
