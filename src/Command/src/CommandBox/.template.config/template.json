@@ -43,7 +43,7 @@
           ]
         },
         {
-          "condition": "(nswag)",
+          "condition": "(!nswag)",
           "exclude": [
             "nswag.json"
           ]
