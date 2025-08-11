@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
   "classifications": ["JandaBox/Command"],
-  "name": "JandaBox Console Command Line Application",
+  "name": "JandaBox Command Line Interface Project",
   "generatorVersions": "[1.0.0.0-*)",
   "description": "JandaBox Command provides project for console application with dependency injection, logging, and configuration.",
   "groupIdentity": "commandprj",
