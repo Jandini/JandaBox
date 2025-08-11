@@ -6,25 +6,27 @@ using Serilog;
 using Serilog.Sinks.SystemConsole.Themes;
 #endif
 
-try 
+int exitCode = byte.MaxValue;
+
+try
 {
     using var serviceProvider = new ServiceCollection()
-    #if (serilog)    
+#if (serilog)
         .AddLogging(builder => builder.AddSerilog(new LoggerConfiguration()
             .Enrich.WithMachineName()
             .WriteTo.Console(
                 theme: AnsiConsoleTheme.Code,
                 outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u4}] [{MachineName}] [{SourceContext}] {Message}{NewLine}{Exception}")
             .CreateLogger()))
-    #else
+#else
         .AddLogging(builder => builder.AddConsole())
-    #endif
+#endif
         .AddTransient<Main>()
         .BuildServiceProvider();
 
     try
     {
-    #if (async)
+#if (async)
         using var cancellationTokenSource = new CancellationTokenSource();
 
         Console.CancelKeyPress += (sender, eventArgs) =>
@@ -38,22 +40,20 @@ try
             }
         };
 
-        await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
-    #else
-        serviceProvider.GetRequiredService<Main>().Run();
-    #endif
-        return 0;
+        exitCode = await serviceProvider.GetRequiredService<Main>().RunAsync(cancellationTokenSource.Token);
+#else
+        exitCode = serviceProvider.GetRequiredService<Main>().Run();
+#endif
     }
     catch (Exception ex)
     {
         serviceProvider.GetService<ILogger<Program>>()?
             .LogCritical(ex, "Program failed.");
-
-        return -1;
     }
 }
-catch (Exception ex) 
+catch (Exception ex)
 {
     Console.WriteLine(ex.Message);
-    return -1;
 }
+
+return exitCode;
