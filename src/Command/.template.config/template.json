@@ -33,7 +33,8 @@
             "src/CommandBox/Extensions.cs",
             "src/CommandBox/Options.cs",
             "src/CommandBox/Settings.cs",
-            "src/CommandBox/Properties/*"
+            "src/CommandBox/Properties/*",
+            "src/CommandBox/Options/*"
           ]
         },
         {
@@ -43,9 +44,9 @@
           ]
         },
         {
-          "condition": "(!settings)",
+          "condition": "(!options)",
           "exclude": [
-            "src/CommandBox/Settings.cs"
+            "src/CommandBox/Options/SettingsOptions.cs"
           ]
         },
         {
@@ -87,11 +88,11 @@
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
-    "settings": {
+    "options": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Use settings binders."
+      "description": "Use IOptions pattern."
     },
     "git-version": {
       "type": "parameter",

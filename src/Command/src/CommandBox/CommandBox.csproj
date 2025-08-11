@@ -31,8 +31,8 @@
 		<!--#endif-->
 		<!--#if (!basic)-->
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
-		<!--#if (settings)-->
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+		<!--#if (options)-->
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
 		<!--#endif-->
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.10" />

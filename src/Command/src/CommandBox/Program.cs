@@ -96,11 +96,11 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
             switch (parameters)
             {
                 case Options.Run options:
-#if (async && settings)
+#if (async && options)
                     await main.RunAsync(options.Path, cancellationTokenSource.Token);
 #elif (async)
                     await main.RunAsync(cancellationTokenSource.Token);
-#elif (settings)
+#elif (options)
                     main.Run(options.Path);
 #else
                     main.Run();

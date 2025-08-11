@@ -18,7 +18,7 @@ internal class Main(ILogger<Main> logger)
 #endif
 }
 #else
-#if (settings)
+#if (options)
 using Microsoft.Extensions.Options;
 #endif
 using Microsoft.Extensions.Logging;
@@ -26,29 +26,31 @@ using Microsoft.Extensions.Logging;
 using CommandBox;
 #endif
 
-#if (settings)
-internal class Main(ILogger<Main> logger, IOptions<Settings> settings)
+#if (options)
+internal class Main(ILogger<Main> logger, IOptions<SettingsOptions> settings)
 #elif (settings && nswag)
-internal class Main(ILogger<Main> logger, IOptions<Settings> settings, IAPI_CLIENT client)
+internal class Main(ILogger<Main> logger, IOptions<SettingsOptions> settings, IAPI_CLIENT client)
 #elif (nswag)
 internal class Main(ILogger<Main> logger, IAPI_CLIENT client) 
 #else
 internal class Main(ILogger<Main> logger) 
 #endif
 {
-#if (async && settings)
+#if (async && options)
+    readonly SettingsOptions _settings = settings.Value;
     public async Task RunAsync(string path, CancellationToken cancellationToken = default)
 #elif (async)
     public async Task RunAsync(CancellationToken cancellationToken = default)
-#elif (settings)
+#elif (options)
+    readonly SettingsOptions _settings = settings.Value;
     public void Run(string path)
 #else
     public void Run()
 #endif
     {
-#if (settings)
+#if (options)
         var dir = new DirectoryInfo(path);
-        logger.LogInformation(settings.Value.Message, dir.Name, dir.GetFiles().Length);
+        logger.LogInformation(_settings.MessageFormat, dir.Name, dir.GetFiles().Length);
 #else
         logger.LogInformation("Hello World!");
 #endif

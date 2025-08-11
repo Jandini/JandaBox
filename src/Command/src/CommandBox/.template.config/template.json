@@ -32,13 +32,14 @@
             "Extensions.cs",
             "Options.cs",
             "Settings.cs",
-            "Properties/*"
+            "Properties/*",
+            "Options/*"
           ]
         },
         {
-          "condition": "(!settings)",
+          "condition": "(!options)",
           "exclude": [
-            "Settings.cs"
+            "Options/SettingsOptions.cs"
           ]
         },
         {
@@ -87,11 +88,11 @@
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
-    "settings": {
+    "options": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Use settings binders."
+      "description": "Use IOptions pattern."
     },
     "async": {
       "type": "parameter",
