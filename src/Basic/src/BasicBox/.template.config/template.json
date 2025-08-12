@@ -1,19 +1,19 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/Command"],
-  "name": "JandaBox Command Line Interface Project",
+  "classifications": ["JandaBox/Basic"],
+  "name": "JandaBox Basic Console Project",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Command provides project for console application with dependency injection, logging, and configuration.",
-  "groupIdentity": "commandprj",
+  "description": "JandaBox Basic provides basic console application project with dependency injection, logging, and configuration.",
+  "groupIdentity": "basicprj",
   "precedence": "4000",
-  "identity": "JandaBox.Command.Project",
-  "shortName": "commandprj",
+  "identity": "JandaBox.Basic.Project",
+  "shortName": "basicprj",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "CommandBox",
+  "sourceName": "BasicBox",
   "preferNameDirectory": true,
   "sources": [
     {
@@ -23,6 +23,17 @@
             "**/.vs/**",
             "**/bin/**",
             "**/obj/**"
+          ]
+        },
+        {
+          "condition": "(basic)",
+          "exclude": [
+            "appsettings.json",
+            "Extensions.cs",
+            "Options.cs",
+            "Settings.cs",
+            "Properties/*",
+            "Options/*"
           ]
         },
         {
@@ -49,7 +60,7 @@
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "CommandBox",
+      "replaces": "BasicBox",
       "isEnabled": false
     },
     "vscode": {
@@ -64,6 +75,12 @@
       "defaultValue": "",
       "replaces": "VS_PATH",
       "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
+    },
+    "basic": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create basic console application."
     },
     "serilog": {
       "type": "parameter",

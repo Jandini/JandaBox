@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build_BasicBox",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+//#if (path == "")
+                "${workspaceFolder}/BasicBox.csproj"
+//#else
+                "${workspaceFolder}/VS_PATH/BasicBox/BasicBox.csproj"
+//#endif
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
