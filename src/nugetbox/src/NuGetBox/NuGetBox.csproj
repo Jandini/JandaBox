@@ -1,18 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<LangVersion>10</LangVersion>
+		<LangVersion>12</LangVersion>
 	</PropertyGroup>
-
 	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
-	<!--#if (nuget)-->
-
 	<PropertyGroup>
 		<Authors>PACKAGE_AUTHORS</Authors>
 		<PackageIcon>icon.png</PackageIcon>
@@ -22,15 +18,14 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>		
 		<!--#endif-->
 		<PackageReadmeFile>README.md</PackageReadmeFile>		
-		<PackageId>LibraryBox</PackageId>
-		<AssemblyName>LibraryBox</AssemblyName>
-		<RootNamespace>LibraryBox</RootNamespace>
-		<Description>LibraryBox</Description>
-		<PackageTags>LibraryBox</PackageTags>
-		<RepositoryUrl>https://github.com/GITHUB_USER/LibraryBox</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/GITHUB_USER/LibraryBox</PackageProjectUrl>
+		<PackageId>NuGetBox</PackageId>
+		<AssemblyName>NuGetBox</AssemblyName>
+		<RootNamespace>NuGetBox</RootNamespace>
+		<Description>NuGetBox</Description>
+		<PackageTags>NuGetBox</PackageTags>
+		<RepositoryUrl>https://github.com/GITHUB_USER/NuGetBox</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/GITHUB_USER/NuGetBox</PackageProjectUrl>
 	</PropertyGroup>
-
 	<ItemGroup>
 		<None Include="..\..\icon.png" Pack="true" PackagePath=""/>
 		<!--#if (license)-->
@@ -38,9 +33,7 @@
 		<!--#endif-->
 		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
-	<!--#endif-->
 	<!--#if (git-version)-->
-
 	<ItemGroup>
 		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
 			<PrivateAssets>all</PrivateAssets>

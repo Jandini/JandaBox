@@ -4,10 +4,10 @@
   "classifications": ["JandaBox/NuGet"],
   "name": "JandaBox NuGet Class Library",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox NuGet Library provides NuGet ready class library template with github actions and semantic versioning.",
+  "description": "JandaBox nugetbox provides NuGet ready class library template with github actions and semantic versioning.",
   "groupIdentity": "nugetbox",
   "precedence": "4000",
-  "identity": "JandaBox.Library",
+  "identity": "JandaBox.NuGet",
   "shortName": "nugetbox",
   "tags": {
     "language": "C#",
@@ -39,12 +39,6 @@
           ]
         },
         {
-          "condition": "(!nuget)",
-          "exclude": [
-            "icon.png"
-          ]
-        },
-        {
           "condition": "(!license)",
           "exclude": [
             "LICENSE"
@@ -58,13 +52,7 @@
       "type": "parameter",
       "replaces": "LibraryBox",
       "isEnabled": false
-    },
-    "nuget": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Add nuget package properties to project file."
-    },   
+    }, 
     "tagNugetOrg": {
       "type": "parameter",
       "datatype": "bool",
