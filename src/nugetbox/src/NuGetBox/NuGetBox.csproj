@@ -9,7 +9,6 @@
 		<DebugType>none</DebugType>
 		<DebugSymbols>false</DebugSymbols>
 	</PropertyGroup>
-	<!--#if (nuget)-->
 	<PropertyGroup>
 		<Authors>PACKAGE_AUTHORS</Authors>
 		<PackageIcon>icon.png</PackageIcon>
@@ -34,7 +33,6 @@
 		<!--#endif-->
 		<None Include="..\..\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
-	<!--#endif-->
 	<!--#if (git-version)-->
 	<ItemGroup>
 		<PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
