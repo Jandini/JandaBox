@@ -25,7 +25,7 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: ConsoleBox
-      working-directory: src/Console/src
+      working-directory: src/consolebox/src
       run: |
         cp ConsoleBox/ConsoleBox.csproj ConsoleBox/ConsoleBox.csproj.bak
         sed -i '/<Target Name="NSwag"/,/<\/Target>/d' ConsoleBox/ConsoleBox.csproj
@@ -48,7 +48,7 @@ jobs:
         mv ConsoleBox/ConsoleBox.csproj.bak ConsoleBox/ConsoleBox.csproj
 
     - name: WebApiBox
-      working-directory: src/WebApi/src
+      working-directory: src/webapibox/src
       run: |
         echo none
         dotnet build -nologo -c:Release 
@@ -66,8 +66,8 @@ jobs:
         echo --name-override --elastic-logging --exception-middleware --windows-service 
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BnameOverride%3B
 
-    - name: LibraryBox
-      working-directory: src/Library/src
+    - name: NuGetBox
+      working-directory: src/nugetbox/src
       run: |
         echo build
         dotnet build 
