@@ -62,7 +62,6 @@ jobs:
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
         echo --name-override --elastic-logging
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog
-
         echo --name-override --elastic-logging --exception-middleware --windows-service 
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BnameOverride%3B
 
@@ -81,6 +80,5 @@ jobs:
         find . -type f -name "Program.cs" -exec sed -i "s/$HEADER/$REPLACEMENT/g" {} +
   
     - name: Pack
-      run: nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_SemVer }}
+      run: dotnet pack JandaBox.csproj -p:Version=${{ env.GitVersion_SemVer }}
   
- 
