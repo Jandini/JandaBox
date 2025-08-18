@@ -24,6 +24,11 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
+    - name: BasicBox
+      working-directory: src/basicbox/src
+      run: |
+        dotnet build 
+        
     - name: CommandBox
       working-directory: src/commandbox/src
       run: |
