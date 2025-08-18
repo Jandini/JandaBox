@@ -10,7 +10,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>dotnet template jandabox console webapi nuget</PackageTags>
     <Description>
-      Provides solution template for console application with dependency injection, logging, and configuration.
+      Provides Command Line Interface, Console, NuGet and WebApi templates with dependency injection, logging, and configuration.
       Run `dotnet new install jandabox` to install the templates.
     </Description>
     <PackageProjectUrl>https://github.com/Jandini/JandaBox</PackageProjectUrl>
