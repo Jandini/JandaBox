@@ -27,17 +27,13 @@ jobs:
     - name: CommandBox
       working-directory: src/commandbox/src
       run: |
-        cp ConsoleBox/ConsoleBox.csproj ConsoleBox/ConsoleBox.csproj.bak
-        sed -i '/<Target Name="NSwag"/,/<\/Target>/d' ConsoleBox/ConsoleBox.csproj
-        echo --serilog -async
-        dotnet build /p:DefineConstants=serilog%3Basync
-        echo --serilog
-        dotnet build /p:DefineConstants=serilog
-        echo --async
-        dotnet build /p:DefineConstants=async
+        cp CommandBox/CommandBox.csproj CommandBox/CommandBox.csproj.bak
+        sed -i '/<Target Name="NSwag"/,/<\/Target>/d' CommandBox/CommandBox.csproj
+        echo --options
+        dotnet build /p:DefineConstants=options
         echo none
         dotnet build 
-        mv ConsoleBox/ConsoleBox.csproj.bak ConsoleBox/ConsoleBox.csproj
+        mv CommandBox/CommandBox.csproj.bak CommandBox/CommandBox.csproj
 
     - name: ConsoleBox
       working-directory: src/consolebox/src
