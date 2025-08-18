@@ -59,4 +59,3 @@ Parser.Default.ParseArguments<Options.Run>(args).WithParsed((parameters) =>
         Console.WriteLine(ex.Message);
     }    
 });
-#endif
