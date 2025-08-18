@@ -29,9 +29,6 @@ jobs:
       run: |
         cp CommandBox/CommandBox.csproj CommandBox/CommandBox.csproj.bak
         sed -i '/<Target Name="NSwag"/,/<\/Target>/d' CommandBox/CommandBox.csproj
-        echo --options
-        dotnet build /p:DefineConstants=options
-        echo none
         dotnet build 
         mv CommandBox/CommandBox.csproj.bak CommandBox/CommandBox.csproj
 
@@ -40,21 +37,6 @@ jobs:
       run: |
         cp ConsoleBox/ConsoleBox.csproj ConsoleBox/ConsoleBox.csproj.bak
         sed -i '/<Target Name="NSwag"/,/<\/Target>/d' ConsoleBox/ConsoleBox.csproj
-        echo --basic --serilog -async
-        dotnet build /p:DefineConstants=basic%3Bserilog%3Basync
-        echo --basic --serilog
-        dotnet build /p:DefineConstants=basic%3Bserilog
-        echo --basic
-        dotnet build /p:DefineConstants=basic
-        echo --basic --sync
-        dotnet build /p:DefineConstants=basic%3Basync
-        echo --serilog
-        dotnet build /p:DefineConstants=serilog
-        echo --serilog --async
-        dotnet build /p:DefineConstants=serilog%3Basync
-        echo --async
-        dotnet build /p:DefineConstants=async
-        echo none
         dotnet build 
         mv ConsoleBox/ConsoleBox.csproj.bak ConsoleBox/ConsoleBox.csproj
 
