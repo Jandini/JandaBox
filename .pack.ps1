@@ -14,10 +14,6 @@ if (!(Get-Command dotnet-gitversion -ErrorAction SilentlyContinue)) {
     }
 }
 
-if (!(Get-Command nuget -ErrorAction SilentlyContinue)) {
-    Write-Warning "Nuget.exe command is missing"
-}
-
 
 $gitVersion = $(dotnet gitversion /showvariable SemVer)
 
@@ -29,8 +25,6 @@ else {
     Write-Host "Packing JandaBox.$gitVersion"
 }
 
-
-nuget pack .nuspec -OutputDirectory bin\Release -NoDefaultExcludes -Version ${gitVersion}
-
+dotnet pack JandaBox.csproj /p:Version=${gitVersion}
 dotnet new uninstall JandaBox | Out-Null
 dotnet new install bin/Release/JandaBox.${gitVersion}.nupkg

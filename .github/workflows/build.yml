@@ -11,8 +11,7 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
 
@@ -25,31 +24,29 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
+    - name: BasicBox
+      working-directory: src/basicbox/src
+      run: |
+        dotnet build 
+        
+    - name: CommandBox
+      working-directory: src/commandbox/src
+      run: |
+        cp CommandBox/CommandBox.csproj CommandBox/CommandBox.csproj.bak
+        sed -i '/<Target Name="NSwag"/,/<\/Target>/d' CommandBox/CommandBox.csproj
+        dotnet build 
+        mv CommandBox/CommandBox.csproj.bak CommandBox/CommandBox.csproj
+
     - name: ConsoleBox
-      working-directory: src/Console/src
+      working-directory: src/consolebox/src
       run: |
         cp ConsoleBox/ConsoleBox.csproj ConsoleBox/ConsoleBox.csproj.bak
         sed -i '/<Target Name="NSwag"/,/<\/Target>/d' ConsoleBox/ConsoleBox.csproj
-        echo --basic --serilog -async
-        dotnet build /p:DefineConstants=basic%3Bserilog%3Basync
-        echo --basic --serilog
-        dotnet build /p:DefineConstants=basic%3Bserilog
-        echo --basic
-        dotnet build /p:DefineConstants=basic
-        echo --basic --sync
-        dotnet build /p:DefineConstants=basic%3Basync
-        echo --serilog
-        dotnet build /p:DefineConstants=serilog
-        echo --serilog --async
-        dotnet build /p:DefineConstants=serilog%3Basync
-        echo --async
-        dotnet build /p:DefineConstants=async
-        echo none
         dotnet build 
         mv ConsoleBox/ConsoleBox.csproj.bak ConsoleBox/ConsoleBox.csproj
 
     - name: WebApiBox
-      working-directory: src/WebApi/src
+      working-directory: src/webapibox/src
       run: |
         echo none
         dotnet build -nologo -c:Release 
@@ -63,16 +60,20 @@ jobs:
         dotnet build -nologo -c:Release /p:DefineConstants=elasticLog
         echo --name-override --elastic-logging
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog
-
         echo --name-override --elastic-logging --exception-middleware --windows-service 
         dotnet build -nologo -c:Release /p:DefineConstants=nameOverride%3BelasticLog%3BexceptionMiddleware%3BwindowsService%3BnameOverride%3B
 
-    - name: LibraryBox
-      working-directory: src/Library/src
+    - name: NuGetBox
+      working-directory: src/nugetbox/src
       run: |
         echo build
         dotnet build 
         # Cannot pack due to license properties in project file
+
+    - name: Version
+      run: |  
+        dotnet tool install --global GitVersion.Tool --version 5.12.0
+        dotnet gitversion /output buildserver 
 
     - name: Update
       run: | 
@@ -82,6 +83,5 @@ jobs:
         find . -type f -name "Program.cs" -exec sed -i "s/$HEADER/$REPLACEMENT/g" {} +
   
     - name: Pack
-      run: nuget pack .nuspec -NoDefaultExcludes -OutputDirectory bin -Version ${{ env.GitVersion_SemVer }}
+      run: dotnet pack JandaBox.csproj -p:Version=${{ env.GitVersion_SemVer }}
   
- 

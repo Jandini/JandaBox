@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>JandaBox</PackageId>
+    <Version>$(Version)</Version> 
+    <Title>JandaBox</Title>
+    <Authors>Matt Janda</Authors>
+    <Owners>Matt Janda</Owners>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>dotnet template jandabox console webapi nuget</PackageTags>
+    <Description>
+      Provides Command Line Interface, Console, NuGet and WebApi templates with dependency injection, logging, and configuration.
+      Run `dotnet new install jandabox` to install the templates.
+    </Description>
+    <PackageProjectUrl>https://github.com/Jandini/JandaBox</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Jandini/JandaBox</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>images/icon.png</PackageIcon>
+    <PackageReadmeFile>docs/README.md</PackageReadmeFile>
+    <NoBuild>true</NoBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>   
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>NU5128</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="src\**\*" 
+          Pack="true" 
+          PackagePath="content/src" 
+          Exclude="src\**\obj\**;src\**\.vs\**;src\**\bin\**" />
+          
+    <None Include="box.png" 
+          Pack="true" 
+          PackagePath="images/icon.png" />
+
+    <None Include="LICENSE.txt" 
+          Pack="true" 
+          PackagePath="" />
+
+    <None Include="README.md" 
+          Pack="true" 
+          PackagePath="docs/README.md" />
+  </ItemGroup>
+</Project>
