@@ -2,7 +2,7 @@
   "profiles": {
     "Run": {
       "commandName": "Project",
-      //#if (settings)
+      //#if (options)
       "commandLineArgs": "--path ."
       //#else
       "commandLineArgs": "run"

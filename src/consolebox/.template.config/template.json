@@ -4,7 +4,7 @@
   "classifications": ["JandaBox/Console"],
   "name": "JandaBox Console Application Solution",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Console provides solution template for console application with dependency injection, logging, and configuration.",
+  "description": "JandaBox Console Application template provides console application with dependency injection, logging, and configuration.",
   "groupIdentity": "consolebox",
   "precedence": "4000",
   "identity": "JandaBox.Console",
@@ -27,25 +27,15 @@
           ]
         },
         {
-          "condition": "(basic)",
-          "exclude": [
-            "src/ConsoleBox/appsettings.json",
-            "src/ConsoleBox/Extensions.cs",
-            "src/ConsoleBox/Options.cs",
-            "src/ConsoleBox/Settings.cs",
-            "src/ConsoleBox/Properties/*"
-          ]
-        },
-        {
           "condition": "(!vscode)",
           "exclude": [            
             ".vscode/**"
           ]
         },
         {
-          "condition": "(!settings)",
+          "condition": "(!options)",
           "exclude": [
-            "src/ConsoleBox/Settings.cs"
+            "src/ConsoleBox/Options/SettingsOptions.cs"
           ]
         },
         {
@@ -75,23 +65,17 @@
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
     },
-    "basic": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Create basic console application."
-    },
     "serilog": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
-    "settings": {
+    "options": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Use settings binders."
+      "description": "Use IOptions pattern."
     },
     "git-version": {
       "type": "parameter",

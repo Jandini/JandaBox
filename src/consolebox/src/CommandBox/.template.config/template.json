@@ -26,23 +26,13 @@
           ]
         },
         {
-          "condition": "(basic)",
+          "condition": "(!options)",
           "exclude": [
-            "appsettings.json",
-            "Extensions.cs",
-            "Options.cs",
-            "Settings.cs",
-            "Properties/*"
+            "Options/SettingsOptions.cs"
           ]
         },
         {
-          "condition": "(!settings)",
-          "exclude": [
-            "Settings.cs"
-          ]
-        },
-        {
-          "condition": "(nswag)",
+          "condition": "(!nswag)",
           "exclude": [
             "nswag.json"
           ]
@@ -75,23 +65,17 @@
       "replaces": "VS_PATH",
       "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
     },
-    "basic": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Create basic console application."
-    },
     "serilog": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "true",
       "description": "Use Serilog logger."
     },
-    "settings": {
+    "options": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
-      "description": "Use settings binders."
+      "description": "Use IOptions pattern."
     },
     "async": {
       "type": "parameter",

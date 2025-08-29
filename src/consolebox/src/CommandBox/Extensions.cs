@@ -56,9 +56,10 @@ internal static class Extensions
 
     internal static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
-#if (settings)
-        return services.AddSingleton(configuration)
-            .Configure<Settings>(settings => configuration.GetRequiredSection("ConsoleBox").Bind(settings));
+#if (options)
+        return services
+            .Configure<SettingsOptions>(configuration.GetSection("Settings"))
+            .AddSingleton(configuration);            
 #else
         return services.AddSingleton(configuration);
 #endif
