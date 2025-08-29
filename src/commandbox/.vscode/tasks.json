@@ -12,12 +12,12 @@
 			"problemMatcher": [],
 		},
 		{
-            "label": "build_ConsoleBox",
+            "label": "build_CommandBox",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/ConsoleBox/ConsoleBox.csproj"
+                "${workspaceFolder}/src/CommandBox/CommandBox.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
