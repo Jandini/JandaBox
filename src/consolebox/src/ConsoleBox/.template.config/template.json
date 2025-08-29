@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Janda",
+  "classifications": ["JandaBox/Console"],
+  "name": "JandaBox Console Application Project",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "JandaBox Console provides project for console application with dependency injection, logging, and configuration.",
+  "groupIdentity": "consoleprj",
+  "precedence": "4000",
+  "identity": "JandaBox.Console.Project",
+  "shortName": "consoleprj",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "ConsoleBox",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/.vs/**",
+            "**/bin/**",
+            "**/obj/**"
+          ]
+        },       
+        {
+          "condition": "(!vscode)",
+          "exclude": [            
+            ".vscode/**"
+          ]
+        }
+      ]
+    }
+  ],
+  "symbols": {
+    "sourceName": {
+      "type": "parameter",
+      "replaces": "ConsoleBox",
+      "isEnabled": false
+    },
+    "vscode": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Create launch.json and tasks.json files for Visual Studio Code."
+    },
+    "path": {
+      "type": "parameter",
+      "datatype": "text",
+      "defaultValue": "",
+      "replaces": "VS_PATH",
+      "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
+    },
+    "serilog": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Use Serilog logger."
+    }
+  }
+}

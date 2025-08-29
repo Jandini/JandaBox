@@ -29,14 +29,7 @@
 		<!--#else-->
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0" />
 		<!--#endif-->
-		<PackageReference Include="CommandLineParser" Version="2.9.1" />
-		<!--#if (options)-->
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
-		<!--#endif-->
-		<!--#if (nswag)-->
-		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-		<!--#endif-->
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="appsettings.json">
@@ -46,17 +39,4 @@
 	<ItemGroup>
 		<None Remove="appsettings.json" />
 	</ItemGroup>
-	<!--#if (nswag)-->	
-	<Target Name="NSwag" BeforeTargets="BeforeBuild" Condition="!Exists('API_CLIENT.cs')">
-		<PropertyGroup>
-			<Url Condition="Exists('swagger.json')">swagger.json</Url>
-			<Url Condition=" '$(Url)' == '' ">SWAGGER_JSON_URL</Url>
-		</PropertyGroup>
-		<Exec Command="where nswag &gt;nul 2&gt;nul || dotnet tool install --global NSwag.ConsoleCore" />		
-		<Exec Command="nswag run nswag.json /variables:OutputFile=API_CLIENT.cs,ClassName=API_CLIENT,NameSpace=$(ProjectName),Url=$(Url)" />
-		<ItemGroup>
-			<Compile Include="API_CLIENT.cs" />
-		</ItemGroup>
-	</Target>
-	<!--#endif-->
 </Project>
