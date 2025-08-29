@@ -1,0 +1,24 @@
+<Project>
+  <ItemGroup>
+    <!-- Use ** to populate %(RecursiveDir) -->
+    <PackageFiles Include="$(MSBuildThisFileDirectory)package\**\*" />
+  </ItemGroup>
+
+  <!-- Build: copy into $(TargetDir) keeping subfolders -->
+  <Target Name="BuildPackageFiles" BeforeTargets="Build">
+    <Message Text="Copying files to $(TargetDir)" Importance="High" />
+    <Copy
+      SourceFiles="@(PackageFiles)"
+      DestinationFiles="@(PackageFiles->'$(TargetDir)%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+  </Target>
+
+  <!-- Publish: copy into $(PublishDir) keeping subfolders -->
+  <Target Name="PublishPackageFiles" BeforeTargets="Publish">
+    <Message Text="Copying package files to $(PublishDir)" Importance="High" />
+    <Copy
+      SourceFiles="@(PackageFiles)"
+      DestinationFiles="@(PackageFiles->'$(PublishDir)%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+  </Target>
+</Project>
