@@ -7,7 +7,7 @@
   "description": "JandaBox package project template creates a NuGet package that delivers files alongside compiled binaries.",
   "groupIdentity": "packageprj",
   "precedence": "4000",
-  "identity": "JandaBox.Package",
+  "identity": "JandaBox.Package.Project",
   "shortName": "packageprj",
   "tags": {
     "language": "C#",
