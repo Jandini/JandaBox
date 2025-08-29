@@ -1,19 +1,19 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
-  "classifications": ["JandaBox/Basic"],
-  "name": "JandaBox Basic Console Application",
+  "classifications": ["JandaBox/Package"],
+  "name": "JandaBox NuGet File Package Solution",
   "generatorVersions": "[1.0.0.0-*)",
-  "description": "JandaBox Basic template provides basic console application with dependency injection, logging, and configuration.",
-  "groupIdentity": "basicbox",
+  "description": "JandaBox package project template creates a NuGet package that delivers files alongside compiled binaries.",
+  "groupIdentity": "packagebox",
   "precedence": "4000",
-  "identity": "JandaBox.Basic",
-  "shortName": "basicbox",
+  "identity": "JandaBox.Package",
+  "shortName": "packagebox",
   "tags": {
     "language": "C#",
     "type": "project"
   },
-  "sourceName": "BasicBox",
+  "sourceName": "PackageBox",
   "preferNameDirectory": true,
   "sources": [
     {
@@ -23,54 +23,30 @@
             "**/.vs/**",
             "**/bin/**",
             "**/obj/**",
-            "src/BasicBox/.vscode/**"
+            "**/.vscode/**"
           ]
-        },       
-        {
-          "condition": "(!vscode)",
-          "exclude": [            
-            ".vscode/**"
-          ]
-        },       
+        },
         {
           "condition": "(!git-version)",
           "exclude": [
             "GitVersion.yml"
           ]
-        }       
+        }
       ]
     }
   ],
   "symbols": {
     "sourceName": {
       "type": "parameter",
-      "replaces": "BasicBox",
+      "replaces": "PackageBox",
       "isEnabled": false
     },
-    "vscode": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "false",
-      "description": "Create launch.json and tasks.json files for Visual Studio Code."
-    },  
-    "serilog": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Use Serilog logger."
-    },   
     "git-version": {
       "type": "parameter",
       "datatype": "bool",
       "defaultValue": "false",
       "description": "Provide semantic versioning with GitVesion."
     },
-    "async": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Run main with async await."
-    },    
     "projectTypeId":{
       "type": "generated",
       "generator": "guid",

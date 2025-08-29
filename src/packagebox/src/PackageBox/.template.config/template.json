@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Matt Janda",
+  "classifications": ["JandaBox/Package"],
+  "name": "JandaBox NuGet File Package Project",
+  "generatorVersions": "[1.0.0.0-*)",
+  "description": "JandaBox package project template creates a NuGet package that delivers files alongside compiled binaries.",
+  "groupIdentity": "packageprj",
+  "precedence": "4000",
+  "identity": "JandaBox.Package.Project",
+  "shortName": "packageprj",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "PackageBox",
+  "preferNameDirectory": true,
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/.vs/**",
+            "**/bin/**",
+            "**/obj/**",
+            "**/.vscode/**"
+          ]
+        }       
+      ]
+    }
+  ],
+  "symbols": {
+    "sourceName": {
+      "type": "parameter",
+      "replaces": "PackageBox",
+      "isEnabled": false
+    }
+  }
+}

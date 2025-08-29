@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoBuild>true</NoBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput> 
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>PackageBox</PackageId>
+    <Authors>Matt Janda</Authors>
+    <PackageIcon>PackageBox.png</PackageIcon>
+    <Description>PackageBox delivers standalone files to the project's binary output.</Description>
+    <PackageTags>PackageBox</PackageTags>
+    <RepositoryUrl>https://github.com/PackageBox</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/PackageBox</PackageProjectUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="PackageBox.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <PropertyGroup>
+    <NoWarn>NU5128</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="PackageBox.targets">
+      <Pack>true</Pack>
+      <PackagePath>build/PackageBox.targets</PackagePath>
+    </Content>
+  </ItemGroup>  
+  <ItemGroup>
+    <Content Include="package/**/*">
+      <Pack>true</Pack>
+      <PackagePath>build/package/</PackagePath>
+    </Content>
+  </ItemGroup>
+	<!--#if (git-version)-->
+  <ItemGroup>
+    <PackageReference Include="GitVersion.MsBuild" Version="5.12.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+	<!--#endif-->
+</Project>
