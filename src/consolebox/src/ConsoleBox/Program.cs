@@ -23,21 +23,21 @@ try
         using var cancellationTokenSource = serviceProvider.GetCancellationTokenSource();
         var main = serviceProvider.GetRequiredService<Main>();
 
-        switch (parameters)
-        {
-            case Options.Run options:
-                await main.RunAsync(options.Path, cancellationTokenSource.Token);
-                break;
-        };
+        await main.RunAsync(cancellationTokenSource.Token);
+        return 0;
     }
     catch (Exception ex)
     {
-        serviceProvider.GetService<ILogger<Program>>()?
-            .LogCritical(ex, "Program failed.");
+        var logger = serviceProvider.GetService<ILogger<Program>>();
+        logger.LogCritical(ex, "Program failed.");
+
+        return -1;
     }
 }
 catch (Exception ex)
 {
     Console.WriteLine(ex.Message);
+
+    return -1;
 }    
 

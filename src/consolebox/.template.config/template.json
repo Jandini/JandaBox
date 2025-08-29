@@ -59,12 +59,6 @@
       "defaultValue": "false",
       "description": "Create launch.json and tasks.json files for Visual Studio Code."
     },
-    "serilog": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Use Serilog logger."
-    },
     "git-version": {
       "type": "parameter",
       "datatype": "bool",

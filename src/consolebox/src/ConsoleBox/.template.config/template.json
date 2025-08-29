@@ -52,12 +52,6 @@
       "defaultValue": "",
       "replaces": "VS_PATH",
       "description": "Add relative path to tasks.json and launch.json files. e.g. 'src'"
-    },
-    "serilog": {
-      "type": "parameter",
-      "datatype": "bool",
-      "defaultValue": "true",
-      "description": "Use Serilog logger."
     }
   }
 }
