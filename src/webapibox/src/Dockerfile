@@ -1,25 +1,30 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
+# Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 8080 8081
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+# Restore
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS restore
+WORKDIR /src/WebApiBox
+# Copy only the project file(s) first for better caching
+COPY WebApiBox/WebApiBox.csproj .
+RUN dotnet restore WebApiBox.csproj
+
+# Build (no restore)
+FROM restore AS build
 ARG BUILD_CONFIGURATION=Release
 ARG BUILD_VERSION=1.0.0
-WORKDIR /src
-COPY ["WebApiBox/WebApiBox.csproj", "WebApiBox/"]
-RUN dotnet restore "./WebApiBox/WebApiBox.csproj"
-COPY . .
-WORKDIR "/src/WebApiBox"
-RUN dotnet build "./WebApiBox.csproj" -c $BUILD_CONFIGURATION -o /app/build /p:DisableGitVersionTask=true /p:Version=$BUILD_VERSION
+# Now copy the rest of the sources
+COPY ./WebApiBox .
+RUN dotnet build WebApiBox.csproj -c $BUILD_CONFIGURATION --no-restore /p:DisableGitVersionTask=true /p:Version=$BUILD_VERSION
 
+# Publish (no build)
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./WebApiBox.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false /p:DisableGitVersionTask=true /p:Version=$BUILD_VERSION
+ARG BUILD_VERSION=1.0.0
+RUN dotnet publish WebApiBox.csproj -c $BUILD_CONFIGURATION --no-build -o /app/publish /p:UseAppHost=false /p:DisableGitVersionTask=true /p:Version=$BUILD_VERSION
 
+# Final image
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
