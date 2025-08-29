@@ -8,6 +8,7 @@ try
     var config = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
         .AddApplicationSettings()
+        .AddEnvironmentVariables()
         .Build();
 
     using var serviceProvider = new ServiceCollection()
