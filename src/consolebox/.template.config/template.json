@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/template",
   "author": "Matt Janda",
   "classifications": ["JandaBox/Console"],
-  "name": "JandaBox Console Application",
+  "name": "JandaBox Console Application Solution",
   "generatorVersions": "[1.0.0.0-*)",
   "description": "JandaBox Console provides solution template for console application with dependency injection, logging, and configuration.",
   "groupIdentity": "consolebox",
