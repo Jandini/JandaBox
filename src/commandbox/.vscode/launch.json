@@ -2,21 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ConsoleBox Solution (Debug)",
+            "name": "CommandBox Solution (Debug)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build_Solution",
-            "program": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/ConsoleBox.dll",
-            "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0",
+            "program": "${workspaceFolder}/src/CommandBox/bin/Debug/net8.0/CommandBox.dll",
+            "cwd": "${workspaceFolder}/src/CommandBox/bin/Debug/net8.0",
             "args": [],            
         },
         {
-            "name": "ConsoleBox Project (Debug)",
+            "name": "CommandBox Project (Debug)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build_ConsoleBox",
-            "program": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0/ConsoleBox.dll",
-            "cwd": "${workspaceFolder}/src/ConsoleBox/bin/Debug/net8.0",
+            "preLaunchTask": "build_CommandBox",
+            "program": "${workspaceFolder}/src/CommandBox/bin/Debug/net8.0/CommandBox.dll",
+            "cwd": "${workspaceFolder}/src/CommandBox/bin/Debug/net8.0",
             "args": [],            
         }
      ]

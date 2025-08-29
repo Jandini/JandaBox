@@ -4,7 +4,7 @@
   "classifications": [
     "JandaBox/WebApi"
   ],
-  "name": "JandaBox ASP.NET Core Web API",
+  "name": "JandaBox ASP.NET Core Web API Solution",
   "generatorVersions": "[1.0.0.0-*)",
   "description": "JandaBox WebApi provides solution template for web api with AutoMapper, Serilog and Health endpoint.",
   "groupIdentity": "webapibox",
